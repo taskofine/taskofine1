@@ -1,9 +1,25 @@
-import React from 'react'
+import mongoose from "mongoose";
 
-const database = () => {
-  return (
-    <div>database</div>
-  )
+let isConnected = false;
+
+export const connectToDB = async() => {
+  mongoose.set('strictQuery', true);
+  if(isConnected){
+    console.log("MongoDB is already connected!");
+    return;
+  }
+
+  try{
+   mongoose.connect(process.env.MONGODB_URI, {
+    dbName:process.env.MONGODB_DB,
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+   });
+
+   isConnected=true;
+   console.log("MongoDB connected!");
+
+  }catch(error){
+    console.log("eeeeeeeeeeeee=" + error);
+  }
 }
-
-export default database
