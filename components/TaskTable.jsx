@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import DateSelector from '../components/DateSelector';
 
 const TaskTable = () => {
   const [tasksOpen, setTasksOpen] = useState(false);
@@ -21,9 +22,9 @@ const TaskTable = () => {
 
 
   return (
-  <div className='my-5' dir="rtl">
-    <div className="relative overflow-x-auto">
-      <table responsive className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <div className='my-5 relative' dir="rtl">
+    <div className="overflow-x-auto">
+      <table  className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
@@ -74,14 +75,9 @@ const TaskTable = () => {
              )}
             </td>
             <td className="px-6 py-4" onClick={setTimetable}>
-             1-7 June
-             {isTimetableOpen && (
-                 <div className='bg-white'>
-                   <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>
-                   <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>
-                   <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>
-                 </div>
-             )}
+            <DateSelector className=""/>
+            <span> עד </span>
+            <DateSelector className=""/>
             </td>
             <td className="px-6 py-4">
               <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}}/>
@@ -102,7 +98,7 @@ const TaskTable = () => {
 
     {tasksOpen && (
         <div className="relative overflow-x-auto mr-7 mt-5" >
-        <table  responsive className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <table   className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
