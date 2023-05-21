@@ -1,16 +1,28 @@
 'use client'
 import {useState} from 'react'
 import { Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 
 const TaskTable = () => {
   const [tasksOpen, setTasksOpen] = useState(false);
   const toggleTasks = () =>{  
    tasksOpen? setTasksOpen(false) : setTasksOpen(true);
   }
+  const [isStatusOpen, setIsStatusOpen] = useState(false);
+  const setStatus =  () =>  {
+    setIsStatusOpen(!isStatusOpen);
+  }
+  const [isTimetableOpen, setIsTimetableOpen] = useState(false);
+  const setTimetable =  () =>  {
+    setIsTimetableOpen(!isTimetableOpen);
+  }  
+ 
+
 
   return (
-  <div className='my-5'>
-    <div className="relative overflow-x-visible">
+  <div className='my-5' dir="rtl">
+    <div className="relative overflow-x-auto">
       <table responsive className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -41,21 +53,38 @@ const TaskTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr onClick={toggleTasks} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <span onClick={toggleTasks} className='ml-2'>
+              <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
+            </span>
             שלב 1 - בניית תכנית עסקית
-            </th>
-            <td className="px-6 py-4">
-              סמליל צ'ט
             </td>
             <td className="px-6 py-4">
+              <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
+            </td>
+            <td className="px-6 py-4" onClick={setStatus} >
              סגור
+             {isStatusOpen && (
+                 <div className='bg-white'>
+                   <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>
+                   <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>
+                   <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>
+                 </div>
+             )}
             </td>
-            <td className="px-6 py-4">
+            <td className="px-6 py-4" onClick={setTimetable}>
              1-7 June
+             {isTimetableOpen && (
+                 <div className='bg-white'>
+                   <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>
+                   <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>
+                   <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>
+                 </div>
+             )}
             </td>
             <td className="px-6 py-4">
-              performer icon
+              <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}}/>
             </td>
             <td className="px-6 py-4">
               שלב 0 
@@ -72,7 +101,7 @@ const TaskTable = () => {
     </div>
 
     {tasksOpen && (
-        <div className="relative overflow-x-auto mr-7" >
+        <div className="relative overflow-x-auto mr-7 mt-5" >
         <table  responsive className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -106,7 +135,7 @@ const TaskTable = () => {
               א. למלא קובץ (בזמן הפגישה עם אלחי)
               </th>
               <td className="px-6 py-4">
-               סמליל צ'ט
+                <FontAwesomeIcon icon={faComment }  size="xl"  style={{color:'#FFD700'}}/>
               </td>
               <td className="px-6 py-4">
               משימה חדשה
@@ -114,14 +143,14 @@ const TaskTable = () => {
               <td className="px-6 py-4">
                01-06-2023
               </td>
-              <td className="px-6 py-4">
-                סמליל המבצע
+              <td className="px-6 py-4 text-center">
+                <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}} />
               </td>
               <td className="px-6 py-4">
                 ""
               </td>
-              <td className="px-6 py-4">
-                סמליל קבצים
+              <td className="px-6 py-4 text-center">
+                <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}/>
               </td>
             </tr>
           </tbody>
