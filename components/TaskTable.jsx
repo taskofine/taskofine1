@@ -17,7 +17,16 @@ const TaskTable = () => {
   const [isTimetableOpen, setIsTimetableOpen] = useState(false);
   const setTimetable =  () =>  {
     setIsTimetableOpen(!isTimetableOpen);
-  }  
+  }
+  const [isTraineesOpen, setIsTraineesOpen] = useState(false);
+  const setTrainees =  () =>  {
+    setIsTraineesOpen(!isTraineesOpen);
+  }
+  const [valueSearchTrainees, setValueSearchTrainees] = useState("");
+  const [listTrainees, setListTrainees] = useState([]);  
+  const handleChangeSearchTrainees = (text) => {
+    console.log("aaaaaaaaaaaaa="  + text.target.value);
+  } 
  
 
 
@@ -79,11 +88,23 @@ const TaskTable = () => {
             <span> עד </span>
             <DateSelector className=""/>
             </td>
-            <td className="px-6 py-4">
-              <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}}/>
+            <td className="px-6 py-4" >
+              <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
+              {isTraineesOpen && (
+                 <div className='bg-slate-500 flex flex-col justify-center'>
+                   <input type="text" 
+                    value={valueSearchTrainees}  
+                    onChange={handleChangeSearchTrainees } 
+                    placeholder='חיפוש מתאמנים' 
+                    className="border border-gray-300 m-2 px-4 py-2 rounded-md w-25"
+                    />
+                    <p className='my-3 mx-2 text-white'>המלצות:</p>
+                    
+                 </div>
+             )}
             </td>
             <td className="px-6 py-4">
-              שלב 0 
+              אין
             </td>
             <td className="px-6 py-4">
              7 ימים
