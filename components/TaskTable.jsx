@@ -10,7 +10,15 @@ const TaskTable = () => {
   const {data: session} = useSession();
   let amIAdmin = false;
   const [tasksOpen, setTasksOpen] = useState(false);
-  const toggleTasks = () =>{  
+  const [openedTask, setOpenedTask]  = useState('-1');
+  const toggleTasks = (stageNumber) =>{
+   //if this task is already opened
+   if(openedTask===stageNumber){
+    setOpenedTask('-1');
+   }else{
+    setOpenedTask(stageNumber);
+   }
+    
    tasksOpen? setTasksOpen(false) : setTasksOpen(true);
   }
   const [isStatusOpen, setIsStatusOpen] = useState(false);
@@ -73,7 +81,7 @@ const TaskTable = () => {
   }, [listTrainees]);
 
 
-const StageTable = () => {
+const StageTable = ({stageNumber}) => {
   return (
     <table  className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -105,7 +113,7 @@ const StageTable = () => {
       </tr>
     </thead>
     <tbody>
-     <Stage/>
+     <Stage stageNumber={stageNumber}/>
     </tbody>
   </table>
   );
@@ -114,8 +122,8 @@ const StageTable = () => {
 
 
 
-const TaskTable = () =>{
-  return tasksOpen?
+const TaskTable = ({stageNumber}) =>{
+  return stageNumber===openedTask ?
      (
       <div className="relative overflow-x-auto mr-7 mt-5" >
       <table   className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -154,11 +162,11 @@ const TaskTable = () =>{
 
 
 
- const Stage = () => {
+ const Stage = ({stageNumber}) => {
   return (
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-    <span onClick={toggleTasks} className='ml-2'>
+    <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
       <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
     </span>
     שלב 1 - בניית תכנית עסקית
@@ -256,10 +264,10 @@ const TaskTable = () =>{
   return (
   <div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">  
-      <StageTable/>
-      <TaskTable/>
-      <StageTable/>
-      <TaskTable/>
+      <StageTable stageNumber="0"/>
+      <TaskTable stageNumber="0"/>
+      <StageTable stageNumber="1"/>
+      <TaskTable stageNumber="1"/>
     </div>
    
   </div>  
