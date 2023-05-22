@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
       <Link href="/" className='flex gap-2 flex-center'>
-        <Image src="/assets/icons/elchai.png" width={96} height={96} alt="Taskofine" className='object-contain'></Image>
+        <Image src="/assets/icons/logo.png" width={96} height={96} alt="Taskofine" className='object-contain'></Image>
         <p className='logo_text'>אלחי פין יעוץ ולווי עסקי</p>
       </Link>
       

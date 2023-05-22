@@ -1,9 +1,10 @@
 'use client'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import DateSelector from '../components/DateSelector';
+import {useSession} from "next-auth/react";
 
 const TaskTable = () => {
   const [tasksOpen, setTasksOpen] = useState(false);
@@ -26,8 +27,16 @@ const TaskTable = () => {
   const [listTrainees, setListTrainees] = useState([]);  
   const handleChangeSearchTrainees = (text) => {
     console.log("aaaaaaaaaaaaa="  + text.target.value);
-  } 
+  }
+  const [isTaskStatusOpen, setIsTaskStatusOpen] = useState(false);
+  const setTaskStatus = () => {
+  
+    setIsTaskStatusOpen(!isTaskStatusOpen);
+  }
  
+  useEffect(()=>{
+   
+  }, []); 
 
 
   return (
@@ -154,8 +163,20 @@ const TaskTable = () => {
               <td className="px-6 py-4">
                 <FontAwesomeIcon icon={faComment }  size="xl"  style={{color:'#FFD700'}}/>
               </td>
-              <td className="px-6 py-4">
-              משימה חדשה
+              <td className="px-6 py-4" >
+              <span onClick={setTaskStatus}>משימה חדשה</span>
+              {isTaskStatusOpen && (
+                 <div className='bg-white flex flex-wrap static w-40'>
+                   <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>
+                   <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בוצעה</p>
+                   <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בבדיקה</p>
+                   <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה לעריכה</p>
+                   <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md'>משימה נערכה</p>
+                   <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md'>אלחי תציל אותי</p>
+                   <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md'>הושלם בהצלחה</p>
+                   <p className='bg-black text-white w-40 text-center mt-2 p-2 rounded-md'>איחור בהגשה</p>
+                 </div>
+             )}
               </td>
               <td className="px-6 py-4">
                01-06-2023
