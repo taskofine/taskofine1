@@ -7,6 +7,8 @@ import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 
 const TaskTable = () => {
+  const {data: session} = useSession();
+  let amIAdmin = false;
   const [tasksOpen, setTasksOpen] = useState(false);
   const toggleTasks = () =>{  
    tasksOpen? setTasksOpen(false) : setTasksOpen(true);
@@ -33,10 +35,40 @@ const TaskTable = () => {
   
     setIsTaskStatusOpen(!isTaskStatusOpen);
   }
+
+
+  const retreiveUsers = async() => {
+    try{
+      const response = await fetch('/api/users', {method: 'GET'});
+      const data = await response.json();
+      setListTrainees(data); 
+    }
+     catch(error){ 
+      console.log("eeeeeeeeee error in retreiveUsers():" + error);
+     }
+      finally{  console.log("hhhhhhhhhhhhhh");}   
+  }
+
+
+  const validateAdmin = () => {
+    listTrainees.map((item)=>{
+      //finding myseld on the list of users
+      if(item.email === session?.user?.email){
+        amIAdmin = item.isAdmin;
+        console.log("rrrrrrrrrrrr=" + amIAdmin);
+      }
+    });
+  } 
  
+
   useEffect(()=>{
-   
-  }, []); 
+   retreiveUsers();
+  }, []);
+  
+
+  useEffect(()=>{
+    validateAdmin();
+  }, [listTrainees]);
 
 
   return (
