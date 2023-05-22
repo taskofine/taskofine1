@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
+import {stage1,stage2,stage3,stage4,stage5,stage6,stage7,stage8,stage9,stage10} from "../utils/stages";
+
 
 const TaskTable = () => {
   const {data: session} = useSession();
@@ -123,6 +125,20 @@ const StageTable = ({stageNumber}) => {
 
 
 const TaskTable = ({stageNumber}) =>{
+  let relevantStage;
+  switch(stageNumber){
+   case '1':  relevantStage=stage1; break;
+   case '2':  relevantStage=stage2; break;
+   case '3':  relevantStage=stage3; break;
+   case '4':  relevantStage=stage4; break;
+   case '5':  relevantStage=stage5; break;
+   case '6':  relevantStage=stage6; break;
+   case '7':  relevantStage=stage7; break;
+   case '8':  relevantStage=stage8; break;
+   case '9':  relevantStage=stage9; break;
+   case '10':  relevantStage=stage10; break;
+  }
+
   return stageNumber===openedTask ?
      (
       <div className="relative overflow-x-auto mr-7 mt-5" >
@@ -153,7 +169,14 @@ const TaskTable = ({stageNumber}) =>{
           </tr>
         </thead>
         <tbody>
-       <Task/>
+          {
+            
+            relevantStage.tasks.map((item,index)=>{  
+             return <Task stageNumber={stageNumber} index={index}/>
+           }) 
+          }
+       
+       
         </tbody>
       </table>
     </div>
@@ -163,19 +186,45 @@ const TaskTable = ({stageNumber}) =>{
 
 
  const Stage = ({stageNumber}) => {
+
+ let name='';
+ let status='';
+ let trainees=[];
+ let lastStage='';
+ let durationInDays='';
+ let plannedTimeInHours='';
+
+ 
+  switch(stageNumber){
+    case '1': name=stage1.name; status=stage1.status; trainees=stage1.trainees; lastStage=stage1.lastStage; durationInDays=stage1.durationInDays;  plannedTimeInHours=stage1.plannedTimeInHours; break;
+    case '2': name=stage2.name; status=stage2.status; trainees=stage2.trainees; lastStage=stage2.lastStage; durationInDays=stage2.durationInDays;  plannedTimeInHours=stage2.plannedTimeInHours; break;
+    case '3': name=stage3.name; status=stage3.status; trainees=stage3.trainees; lastStage=stage3.lastStage; durationInDays=stage3.durationInDays;  plannedTimeInHours=stage3.plannedTimeInHours; break;
+    case '4': name=stage4.name; status=stage4.status; trainees=stage4.trainees; lastStage=stage4.lastStage; durationInDays=stage4.durationInDays;  plannedTimeInHours=stage4.plannedTimeInHours; break;
+    case '5': name=stage5.name; status=stage5.status; trainees=stage5.trainees; lastStage=stage5.lastStage; durationInDays=stage5.durationInDays;  plannedTimeInHours=stage5.plannedTimeInHours; break;
+    case '6': name=stage6.name; status=stage6.status; trainees=stage6.trainees; lastStage=stage6.lastStage; durationInDays=stage6.durationInDays;  plannedTimeInHours=stage6.plannedTimeInHours; break;
+    case '7': name=stage7.name; status=stage7.status; trainees=stage7.trainees; lastStage=stage7.lastStage; durationInDays=stage7.durationInDays;  plannedTimeInHours=stage7.plannedTimeInHours; break;
+    case '8': name=stage8.name; status=stage8.status; trainees=stage8.trainees; lastStage=stage8.lastStage; durationInDays=stage8.durationInDays;  plannedTimeInHours=stage8.plannedTimeInHours; break;
+    case '9': name=stage9.name; status=stage9.status; trainees=stage9.trainees; lastStage=stage9.lastStage; durationInDays=stage9.durationInDays;  plannedTimeInHours=stage9.plannedTimeInHours; break;
+    case '10': name=stage10.name; status=stage10.status; trainees=stage10.trainees; lastStage=stage10.lastStage; durationInDays=stage10.durationInDays;  plannedTimeInHours=stage10.plannedTimeInHours; break;
+    default:
+      break;  
+  }
+
   return (
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
     <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
       <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
     </span>
-    שלב 1 - בניית תכנית עסקית
+      {
+        name
+      }
     </td>
     <td className="px-6 py-4">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
     </td>
     <td className="px-6 py-4" onClick={setStatus} >
-     סגור
+     {status}
      {isStatusOpen && (
          <div className='bg-white'>
            <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>
@@ -204,30 +253,51 @@ const TaskTable = ({stageNumber}) =>{
      )}
     </td>
     <td className="px-6 py-4">
-      אין
+      {lastStage}
     </td>
     <td className="px-6 py-4">
-     7 ימים
+     {durationInDays}
     </td>
     <td className="px-6 py-4">
-      12 שעות
+      {plannedTimeInHours}
     </td>
   </tr> 
   );
  } 
 
 
- const Task = ()=>{
+ const Task = ({stageNumber,index})=>{ 
+  let name='';
+  let status='';
+  let trainees = [];
+  let connectBoard='';
+  let files=[];
+  switch(stageNumber){
+    case '1':  name=stage1.tasks[index].name; status=stage1.tasks[index].status; trainees=stage1.tasks[index].trainees; connectBoard=stage1.tasks[index].connectBoard; stage1.tasks[index].files; break;
+    case '2':  name=stage2.tasks[index].name; status=stage2.tasks[index].status; trainees=stage2.tasks[index].trainees; connectBoard=stage2.tasks[index].connectBoard; stage2.tasks[index].files; break;
+    case '3':  name=stage3.tasks[index].name; status=stage3.tasks[index].status; trainees=stage3.tasks[index].trainees; connectBoard=stage3.tasks[index].connectBoard; stage3.tasks[index].files; break;
+    case '4':  name=stage4.tasks[index].name; status=stage4.tasks[index].status; trainees=stage4.tasks[index].trainees; connectBoard=stage4.tasks[index].connectBoard; stage4.tasks[index].files; break;
+    case '5':  name=stage5.tasks[index].name; status=stage5.tasks[index].status; trainees=stage5.tasks[index].trainees; connectBoard=stage5.tasks[index].connectBoard; stage5.tasks[index].files; break;
+    case '6':  name=stage6.tasks[index].name; status=stage6.tasks[index].status; trainees=stage6.tasks[index].trainees; connectBoard=stage6.tasks[index].connectBoard; stage6.tasks[index].files; break;
+    case '7':  name=stage7.tasks[index].name; status=stage7.tasks[index].status; trainees=stage7.tasks[index].trainees; connectBoard=stage7.tasks[index].connectBoard; stage7.tasks[index].files; break;
+    case '8':  name=stage8.tasks[index].name; status=stage8.tasks[index].status; trainees=stage8.tasks[index].trainees; connectBoard=stage8.tasks[index].connectBoard; stage8.tasks[index].files; break;
+    case '9':  name=stage9.tasks[index].name; status=stage9.tasks[index].status; trainees=stage9.tasks[index].trainees; connectBoard=stage9.tasks[index].connectBoard; stage9.tasks[index].files; break;
+    case '10':  name=stage10.tasks[index].name; status=stage10.tasks[index].status; trainees=stage10.tasks[index].trainees; connectBoard=stage10.tasks[index].connectBoard; stage10.tasks[index].files; break;
+    default:  break; 
+  }
+
+
+  
   return(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-    א. למלא קובץ (בזמן הפגישה עם אלחי)
+      {name}
     </th>
     <td className="px-6 py-4">
       <FontAwesomeIcon icon={faComment }  size="xl"  style={{color:'#FFD700'}}/>
     </td>
     <td className="px-6 py-4" >
-    <span onClick={setTaskStatus}>משימה חדשה</span>
+    <span onClick={setTaskStatus}>{status}</span>
     {isTaskStatusOpen && (
        <div className='bg-white flex flex-wrap static w-40'>
          <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>
@@ -248,7 +318,7 @@ const TaskTable = ({stageNumber}) =>{
       <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}} />
     </td>
     <td className="px-6 py-4">
-      ""
+      {connectBoard}
     </td>
     <td className="px-6 py-4 text-center">
       <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}/>
@@ -264,10 +334,26 @@ const TaskTable = ({stageNumber}) =>{
   return (
   <div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">  
-      <StageTable stageNumber="0"/>
-      <TaskTable stageNumber="0"/>
       <StageTable stageNumber="1"/>
       <TaskTable stageNumber="1"/>
+      <StageTable stageNumber="2"/>
+      <TaskTable stageNumber="2"/>
+      <StageTable stageNumber="3"/>
+      <TaskTable stageNumber="3"/>
+      <StageTable stageNumber="4"/>
+      <TaskTable stageNumber="4"/>
+      <StageTable stageNumber="5"/>
+      <TaskTable stageNumber="5"/>
+      <StageTable stageNumber="6"/>
+      <TaskTable stageNumber="6"/>
+      <StageTable stageNumber="7"/>
+      <TaskTable stageNumber="7"/>
+      <StageTable stageNumber="8"/>
+      <TaskTable stageNumber="8"/>
+      <StageTable stageNumber="9"/>
+      <TaskTable stageNumber="9"/>
+      <StageTable stageNumber="10"/>
+      <TaskTable stageNumber="10"/>
     </div>
    
   </div>  
