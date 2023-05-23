@@ -10,6 +10,9 @@ const Nav = () => {
   const {data: session} = useSession();
 
   const updateDB = async() =>{
+  
+   coaching.stage1.status="חדש";
+
     try{
       const response = await fetch(`/api/users`, {
         method: 'PATCH',
