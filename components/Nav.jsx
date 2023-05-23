@@ -3,9 +3,39 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {useState, useEffect} from 'react';
 import {signIn,signOut,useSession, getProviders} from 'next-auth/react';
+import {coaching}  from '../utils/skeletonCoaching';
 
 const Nav = () => {
+
   const {data: session} = useSession();
+
+  const updateDB = async() =>{
+    try{
+      const response = await fetch(`/api/users`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          email: session?.user?.email,
+          coaching
+        })
+      });
+     
+      if (response.ok) {
+        console.log('Data updated successfully');
+        // Handle successful response
+      } else {
+        console.error('Error updating data:', response.status);
+        // Handle error response
+      }
+
+    }
+     catch(error){ 
+      console.log("eeeeeeeeee error in retreiveUsers():" + error);
+     }
+      finally{  console.log("hhhhhhhhhhhhhh");} 
+  }
+
+
+  
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -19,10 +49,10 @@ const Nav = () => {
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
-      <Link href="/" className='flex gap-2 flex-center'>
-        <Image src="/assets/icons/logo.png" width={96} height={96} alt="Taskofine" className='object-contain'></Image>
+      {/*<Link href="/" className='flex gap-2 flex-center'> */}
+        <Image onClick={updateDB} src="/assets/icons/logo.png" width={96} height={96} alt="Taskofine" className='object-contain'></Image>
         <p className='logo_text'>אלחי פין יעוץ ולווי עסקי</p>
-      </Link>
+      {/*</Link>*/}
       
        {/* Desktop Navigation  */}
        <div className='sm:flex hidden'>
