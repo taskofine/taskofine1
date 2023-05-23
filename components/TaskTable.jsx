@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
-import {stage1,stage2,stage3,stage4,stage5,stage6,stage7,stage8,stage9,stage10} from "../utils/stages";
+import coaching  from '../utils/skeletonCoaching';
 
 
 const TaskTable = () => {
@@ -58,16 +58,51 @@ const TaskTable = () => {
      catch(error){ 
       console.log("eeeeeeeeee error in retreiveUsers():" + error);
      }
-      finally{  console.log("hhhhhhhhhhhhhh");}   
+      finally{  }   
   }
 
 
+  const updateDB = async() =>{
+      try{
+        const response = await fetch(`/api/users`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            email: session?.user?.email,
+            coaching
+          })
+        });
+       
+        if (response.ok) {
+          console.log('Data updated successfully');
+        } else {
+          console.error('Error updating data:', response.status);
+        }
+      }
+       catch(error){ 
+        console.log("eeeeeeeeee error in updateDB():" + error);
+       }
+        
+    }
+
+
   //checking if the logged in user is an admin
-  const validateAdmin = () => {
+  const validateAdmin = () => {  
     listTrainees.map((item)=>{
       //finding myseld on the list of users
       if(item.email === session?.user?.email){
         amIAdmin = item.isAdmin;
+        //update the skeleton to hold the paralel data existing for this user on DB
+        coaching.stage1 = item.coaching.stage1;
+        coaching.stage2 = item.coaching.stage2;
+        coaching.stage3 = item.coaching.stage3;
+        coaching.stage4 = item.coaching.stage4;
+        coaching.stage5 = item.coaching.stage5;
+        coaching.stage6 = item.coaching.stage6;
+        coaching.stage7 = item.coaching.stage7;
+        coaching.stage8 = item.coaching.stage8;
+        coaching.stage9 = item.coaching.stage9;
+        coaching.stage10 = item.coaching.stage10;
+       
       }
     });
   } 
@@ -135,16 +170,16 @@ const StageTable = ({stageNumber}) => {
 const TaskTable = ({stageNumber}) =>{
   let relevantStage;
   switch(stageNumber){
-   case '1':  relevantStage=stage1; break;
-   case '2':  relevantStage=stage2; break;
-   case '3':  relevantStage=stage3; break;
-   case '4':  relevantStage=stage4; break;
-   case '5':  relevantStage=stage5; break;
-   case '6':  relevantStage=stage6; break;
-   case '7':  relevantStage=stage7; break;
-   case '8':  relevantStage=stage8; break;
-   case '9':  relevantStage=stage9; break;
-   case '10':  relevantStage=stage10; break;
+   case '1':  relevantStage=coaching.stage1; break;
+   case '2':  relevantStage=coaching.stage2; break;
+   case '3':  relevantStage=coaching.stage3; break;
+   case '4':  relevantStage=coaching.stage4; break;
+   case '5':  relevantStage=coaching.stage5; break;
+   case '6':  relevantStage=coaching.stage6; break;
+   case '7':  relevantStage=coaching.stage7; break;
+   case '8':  relevantStage=coaching.stage8; break;
+   case '9':  relevantStage=coaching.stage9; break;
+   case '10':  relevantStage=coaching.stage10; break;
   }
 
   return stageNumber===openedTask ?
@@ -206,18 +241,19 @@ const TaskTable = ({stageNumber}) =>{
  let durationInDays='';
  let plannedTimeInHours='';
 
- 
+ //console.log("dddddddddddddd=" + JSON.stringify(coaching.stage1));
+
   switch(stageNumber){
-    case '1': name=stage1.name; status=stage1.status; trainees=stage1.trainees; lastStage=stage1.lastStage; durationInDays=stage1.durationInDays;  plannedTimeInHours=stage1.plannedTimeInHours; break;
-    case '2': name=stage2.name; status=stage2.status; trainees=stage2.trainees; lastStage=stage2.lastStage; durationInDays=stage2.durationInDays;  plannedTimeInHours=stage2.plannedTimeInHours; break;
-    case '3': name=stage3.name; status=stage3.status; trainees=stage3.trainees; lastStage=stage3.lastStage; durationInDays=stage3.durationInDays;  plannedTimeInHours=stage3.plannedTimeInHours; break;
-    case '4': name=stage4.name; status=stage4.status; trainees=stage4.trainees; lastStage=stage4.lastStage; durationInDays=stage4.durationInDays;  plannedTimeInHours=stage4.plannedTimeInHours; break;
-    case '5': name=stage5.name; status=stage5.status; trainees=stage5.trainees; lastStage=stage5.lastStage; durationInDays=stage5.durationInDays;  plannedTimeInHours=stage5.plannedTimeInHours; break;
-    case '6': name=stage6.name; status=stage6.status; trainees=stage6.trainees; lastStage=stage6.lastStage; durationInDays=stage6.durationInDays;  plannedTimeInHours=stage6.plannedTimeInHours; break;
-    case '7': name=stage7.name; status=stage7.status; trainees=stage7.trainees; lastStage=stage7.lastStage; durationInDays=stage7.durationInDays;  plannedTimeInHours=stage7.plannedTimeInHours; break;
-    case '8': name=stage8.name; status=stage8.status; trainees=stage8.trainees; lastStage=stage8.lastStage; durationInDays=stage8.durationInDays;  plannedTimeInHours=stage8.plannedTimeInHours; break;
-    case '9': name=stage9.name; status=stage9.status; trainees=stage9.trainees; lastStage=stage9.lastStage; durationInDays=stage9.durationInDays;  plannedTimeInHours=stage9.plannedTimeInHours; break;
-    case '10': name=stage10.name; status=stage10.status; trainees=stage10.trainees; lastStage=stage10.lastStage; durationInDays=stage10.durationInDays;  plannedTimeInHours=stage10.plannedTimeInHours; break;
+    case '1': name=coaching.stage1.name; status=coaching.stage1.status; trainees=coaching.stage1.trainees; lastStage=coaching.stage1.lastStage; durationInDays=coaching.stage1.durationInDays;  plannedTimeInHours=coaching.stage1.plannedTimeInHours; break;
+    case '2': name=coaching.stage2.name; status=coaching.stage2.status; trainees=coaching.stage2.trainees; lastStage=coaching.stage2.lastStage; durationInDays=coaching.stage2.durationInDays;  plannedTimeInHours=coaching.stage2.plannedTimeInHours; break;
+    case '3': name=coaching.stage3.name; status=coaching.stage3.status; trainees=coaching.stage3.trainees; lastStage=coaching.stage3.lastStage; durationInDays=coaching.stage3.durationInDays;  plannedTimeInHours=coaching.stage3.plannedTimeInHours; break;
+    case '4': name=coaching.stage4.name; status=coaching.stage4.status; trainees=coaching.stage4.trainees; lastStage=coaching.stage4.lastStage; durationInDays=coaching.stage4.durationInDays;  plannedTimeInHours=coaching.stage4.plannedTimeInHours; break;
+    case '5': name=coaching.stage5.name; status=coaching.stage5.status; trainees=coaching.stage5.trainees; lastStage=coaching.stage5.lastStage; durationInDays=coaching.stage5.durationInDays;  plannedTimeInHours=coaching.stage5.plannedTimeInHours; break;
+    case '6': name=coaching.stage6.name; status=coaching.stage6.status; trainees=coaching.stage6.trainees; lastStage=coaching.stage6.lastStage; durationInDays=coaching.stage6.durationInDays;  plannedTimeInHours=coaching.stage6.plannedTimeInHours; break;
+    case '7': name=coaching.stage7.name; status=coaching.stage7.status; trainees=coaching.stage7.trainees; lastStage=coaching.stage7.lastStage; durationInDays=coaching.stage7.durationInDays;  plannedTimeInHours=coaching.stage7.plannedTimeInHours; break;
+    case '8': name=coaching.stage8.name; status=coaching.stage8.status; trainees=coaching.stage8.trainees; lastStage=coaching.stage8.lastStage; durationInDays=coaching.stage8.durationInDays;  plannedTimeInHours=coaching.stage8.plannedTimeInHours; break;
+    case '9': name=coaching.stage9.name; status=coaching.stage9.status; trainees=coaching.stage9.trainees; lastStage=coaching.stage9.lastStage; durationInDays=coaching.stage9.durationInDays;  plannedTimeInHours=coaching.stage9.plannedTimeInHours; break;
+    case '10': name=coaching.stage10.name; status=coaching.stage10.status; trainees=coaching.stage10.trainees; lastStage=coaching.stage10.lastStage; durationInDays=coaching.stage10.durationInDays;  plannedTimeInHours=coaching.stage10.plannedTimeInHours; break;
     default:
       break;  
   }
@@ -290,16 +326,16 @@ const TaskTable = ({stageNumber}) =>{
   let connectBoard='';
   let files=[];
   switch(stageNumber){
-    case '1':  name=stage1.tasks[index].name; status=stage1.tasks[index].status; trainees=stage1.tasks[index].trainees; connectBoard=stage1.tasks[index].connectBoard; stage1.tasks[index].files; break;
-    case '2':  name=stage2.tasks[index].name; status=stage2.tasks[index].status; trainees=stage2.tasks[index].trainees; connectBoard=stage2.tasks[index].connectBoard; stage2.tasks[index].files; break;
-    case '3':  name=stage3.tasks[index].name; status=stage3.tasks[index].status; trainees=stage3.tasks[index].trainees; connectBoard=stage3.tasks[index].connectBoard; stage3.tasks[index].files; break;
-    case '4':  name=stage4.tasks[index].name; status=stage4.tasks[index].status; trainees=stage4.tasks[index].trainees; connectBoard=stage4.tasks[index].connectBoard; stage4.tasks[index].files; break;
-    case '5':  name=stage5.tasks[index].name; status=stage5.tasks[index].status; trainees=stage5.tasks[index].trainees; connectBoard=stage5.tasks[index].connectBoard; stage5.tasks[index].files; break;
-    case '6':  name=stage6.tasks[index].name; status=stage6.tasks[index].status; trainees=stage6.tasks[index].trainees; connectBoard=stage6.tasks[index].connectBoard; stage6.tasks[index].files; break;
-    case '7':  name=stage7.tasks[index].name; status=stage7.tasks[index].status; trainees=stage7.tasks[index].trainees; connectBoard=stage7.tasks[index].connectBoard; stage7.tasks[index].files; break;
-    case '8':  name=stage8.tasks[index].name; status=stage8.tasks[index].status; trainees=stage8.tasks[index].trainees; connectBoard=stage8.tasks[index].connectBoard; stage8.tasks[index].files; break;
-    case '9':  name=stage9.tasks[index].name; status=stage9.tasks[index].status; trainees=stage9.tasks[index].trainees; connectBoard=stage9.tasks[index].connectBoard; stage9.tasks[index].files; break;
-    case '10':  name=stage10.tasks[index].name; status=stage10.tasks[index].status; trainees=stage10.tasks[index].trainees; connectBoard=stage10.tasks[index].connectBoard; stage10.tasks[index].files; break;
+    case '1':  name=coaching.stage1.tasks[index].name; status=coaching.stage1.tasks[index].status; trainees=coaching.stage1.tasks[index].trainees; connectBoard=coaching.stage1.tasks[index].connectBoard; files=coaching.stage1.tasks[index].files; break;
+    case '2':  name=coaching.stage2.tasks[index].name; status=coaching.stage2.tasks[index].status; trainees=coaching.stage2.tasks[index].trainees; connectBoard=coaching.stage2.tasks[index].connectBoard; files=coaching.stage2.tasks[index].files; break;
+    case '3':  name=coaching.stage3.tasks[index].name; status=coaching.stage3.tasks[index].status; trainees=coaching.stage3.tasks[index].trainees; connectBoard=coaching.stage3.tasks[index].connectBoard; files=coaching.stage3.tasks[index].files; break;
+    case '4':  name=coaching.stage4.tasks[index].name; status=coaching.stage4.tasks[index].status; trainees=coaching.stage4.tasks[index].trainees; connectBoard=coaching.stage4.tasks[index].connectBoard; files=coaching.stage4.tasks[index].files; break;
+    case '5':  name=coaching.stage5.tasks[index].name; status=coaching.stage5.tasks[index].status; trainees=coaching.stage5.tasks[index].trainees; connectBoard=coaching.stage5.tasks[index].connectBoard; files=coaching.stage5.tasks[index].files; break;
+    case '6':  name=coaching.stage6.tasks[index].name; status=coaching.stage6.tasks[index].status; trainees=coaching.stage6.tasks[index].trainees; connectBoard=coaching.stage6.tasks[index].connectBoard; files=coaching.stage6.tasks[index].files; break;
+    case '7':  name=coaching.stage7.tasks[index].name; status=coaching.stage7.tasks[index].status; trainees=coaching.stage7.tasks[index].trainees; connectBoard=coaching.stage7.tasks[index].connectBoard; files=coaching.stage7.tasks[index].files; break;
+    case '8':  name=coaching.stage8.tasks[index].name; status=coaching.stage8.tasks[index].status; trainees=coaching.stage8.tasks[index].trainees; connectBoard=coaching.stage8.tasks[index].connectBoard; files=coaching.stage8.tasks[index].files; break;
+    case '9':  name=coaching.stage9.tasks[index].name; status=coaching.stage9.tasks[index].status; trainees=coaching.stage9.tasks[index].trainees; connectBoard=coaching.stage9.tasks[index].connectBoard; files=coaching.stage9.tasks[index].files; break;
+    case '10': name=coaching.stage10.tasks[index].name; status=coaching.stage10.tasks[index].status; trainees=coaching.stage10.tasks[index].trainees; connectBoard=coaching.stage10.tasks[index].connectBoard; files=coaching.stage10.tasks[index].files; break;
     default:  break; 
   }
 
