@@ -1,4 +1,4 @@
-import {Schema, model,models} from "mongoose";
+import mongoose,{Schema, model,models} from "mongoose";
 
 const UserSchema = new Schema({
   email:{type:String, unique:[true, 'Email already exists'], required:[true, 'Email is required']},
@@ -16,6 +16,10 @@ const UserSchema = new Schema({
    isAdmin: {
     type:Boolean,
     default:false
+   },
+   coaching: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true
    } 
 });
 

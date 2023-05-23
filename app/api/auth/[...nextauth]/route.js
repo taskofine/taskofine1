@@ -2,6 +2,8 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { connectToDB } from "../../../../utils/database" ;
 import User from "../../../../models/user";
+import {coaching} from '../../../../utils/skeletonCoaching';
+
 
 const handler = NextAuth({
     providers: [
@@ -34,7 +36,8 @@ const handler = NextAuth({
           email:profile.email,
           userName:profile.name.replace(" ", "").toLowerCase(),
           name: profile.name,
-          image:profile.picture 
+          image:profile.picture,
+          coaching 
         });
         
        }

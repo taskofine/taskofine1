@@ -83,6 +83,10 @@ const TaskTable = () => {
   }, [listTrainees]);
 
 
+
+
+  
+
 const StageTable = ({stageNumber}) => {
   return (
     <table  className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -120,6 +124,10 @@ const StageTable = ({stageNumber}) => {
   </table>
   );
 }
+
+
+
+
 
 
 
@@ -182,6 +190,10 @@ const TaskTable = ({stageNumber}) =>{
     </div>
   ) : (<></>) 
 }
+
+
+
+
 
 
 
@@ -264,6 +276,11 @@ const TaskTable = ({stageNumber}) =>{
   </tr> 
   );
  } 
+
+
+
+
+
 
 
  const Task = ({stageNumber,index})=>{ 
