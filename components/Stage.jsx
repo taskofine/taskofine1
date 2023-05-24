@@ -7,7 +7,7 @@ import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 
-const Stage = ({stageNumber, listTrainees}) => {
+const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask}) => {
 
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const setStatus =  () =>  {
@@ -36,19 +36,9 @@ const Stage = ({stageNumber, listTrainees}) => {
       coaching.stage10 = item.coaching.stage10; 
     });
    
-    console.log("wwwwwwwwwwwwwwww=" + coaching.stage1.plannedTimeInHours);
+  
   } 
-  const [openedTask, setOpenedTask]  = useState('-1');
-  const toggleTasks = (stageNumber) =>{
-   //if this task is already opened
-   if(openedTask===stageNumber){
-    setOpenedTask('-1');
-   }else{
-    setOpenedTask(stageNumber);
-   }
-    
-   tasksOpen? setTasksOpen(false) : setTasksOpen(true);
-  }
+
   const [tasksOpen, setTasksOpen] = useState(false);
 
 

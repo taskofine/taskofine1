@@ -20,7 +20,7 @@ const TaskTable = ({stageNumber}) =>{
       case '10':  relevantStage=coaching.stage10; break;
     }
       
-    return stageNumber===openedTask ?
+    return /*stageNumber===openedTask*/ 4>3 ?
       (
         <div className="relative overflow-x-auto mr-7 mt-5" >
           <table   className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
