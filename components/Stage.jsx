@@ -7,6 +7,7 @@ import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 
+let countedStages = [];
 
 const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB}) => {
  
@@ -38,21 +39,26 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   let plannedTimeInHours='';
   
    setTimeout(()=>{
-    switch(stageNumber){
-      case '1': setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours); break;
-      case '2': setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); break;
-      case '3': setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); break;
-      case '4': setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); break;
-      case '5': setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); break;
-      case '6': setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); break;
-      case '7': setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); break;
-      case '8': setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); break;
-      case '9': setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); break;
-      case '10': setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); break;
-      default:break;
-    }
+    if(!countedStages.includes(stageNumber)){
+      countedStages.push(stageNumber);
+      switch(stageNumber){
+        case '1': setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours); break;
+        case '2': setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); break;
+        case '3': setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); break;
+        case '4': setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); break;
+        case '5': setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); break;
+        case '6': setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); break;
+        case '7': setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); break;
+        case '8': setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); break;
+        case '9': setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); break;
+        case '10': setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); break;
+        default:break;
+      }
+    }  
+  
     
    },1000);
+   
 
        
   return (
@@ -110,7 +116,6 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
                type="text"
                value={inputPlannedTimeValue}
                onChange={(event)=>{
-                
                  setInputPlannedTimeValue(event.target.value);
                }}
                onKeyDown={(event)=>{
