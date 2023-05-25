@@ -37,6 +37,17 @@ const MainTable = () => {
     //finding myseld on the list of users
     if(item.email === session?.user?.email){
       amIAdmin = item.isAdmin;
+      //update the skeleton with the updated data from DB
+      coaching.stage1=item.coaching.stage1;
+      coaching.stage2=item.coaching.stage2;
+      coaching.stage3=item.coaching.stage3;
+      coaching.stage4=item.coaching.stage4;
+      coaching.stage5=item.coaching.stage5;
+      coaching.stage6=item.coaching.stage6;
+      coaching.stage7=item.coaching.stage7;
+      coaching.stage8=item.coaching.stage8;
+      coaching.stage9=item.coaching.stage9;
+      coaching.stage10=item.coaching.stage10;
       }
     });
   }
@@ -80,6 +91,9 @@ const MainTable = () => {
     setOpenedTask(stageNumber);
    }
   }
+
+
+  
 
   return (
   <div className='my-5 relative' dir="rtl">
