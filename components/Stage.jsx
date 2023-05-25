@@ -30,6 +30,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
 
   const [tasksOpen, setTasksOpen] = useState(false);
   const [inputPlannedTimeValue, setInputPlannedTimeValue] = useState("0"); 
+  const [inputDurationInDays,setInputDurationInDays] = useState("0");
+  const [inputLastStage, setInputLastStage] = useState("");
+  const [inputStatus, setInputStatus] = useState("");
   
   let name='';
   let status='';
@@ -42,16 +45,66 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
     if(!countedStages.includes(stageNumber)){
       countedStages.push(stageNumber);
       switch(stageNumber){
-        case '1': setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours); break;
-        case '2': setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); break;
-        case '3': setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); break;
-        case '4': setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); break;
-        case '5': setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); break;
-        case '6': setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); break;
-        case '7': setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); break;
-        case '8': setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); break;
-        case '9': setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); break;
-        case '10': setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); break;
+        case '1': 
+          setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours);  
+          setInputDurationInDays(coaching.stage1.durationInDays);
+          setInputLastStage(coaching.stage1.lastStage);
+          setStatus(coaching.stage1.status);
+          break;
+        case '2': 
+          setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage2.durationInDays);
+          setInputLastStage(coaching.stage2.lastStage);
+          setStatus(coaching.stage2.status);
+          break;
+        case '3': 
+          setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage3.durationInDays);
+          setInputLastStage(coaching.stage3.lastStage);
+          setStatus(coaching.stage3.status);
+          break;
+        case '4': 
+          setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage4.durationInDays);
+          setInputLastStage(coaching.stage4.lastStage);
+          setStatus(coaching.stage4.status);
+          break;
+        case '5': 
+          setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage5.durationInDays);
+          setInputLastStage(coaching.stage5.lastStage);
+          setStatus(coaching.stage5.status);
+          break;
+        case '6': 
+          setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage6.durationInDays);
+          setInputLastStage(coaching.stage6.lastStage);
+          setStatus(coaching.stage6.status);
+          break;
+        case '7': 
+          setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage7.durationInDays);
+          setInputLastStage(coaching.stage7.lastStage);
+          setStatus(coaching.stage7.status);
+          break;
+        case '8': 
+          setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage8.durationInDays);
+          setInputLastStage(coaching.stage8.lastStage);
+          setStatus(coaching.stage8.status);
+          break;
+        case '9': 
+          setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); 
+          setInputDurationInDays(coaching.stage9.durationInDays);
+          setInputLastStage(coaching.stage9.lastStage);
+          setStatus(coaching.stage9.status);
+          break;
+        case '10': 
+        setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); 
+        setInputDurationInDays(coaching.stage10.durationInDays);
+        setInputLastStage(coaching.stage10.lastStage);
+        setStatus(coaching.stage10.status);
+        break;
         default:break;
       }
     }  
@@ -103,11 +156,72 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           </div>
             )}
           </td>
-          <td className="px-6 py-4">
-             {lastStage}
+          <td className="px-6 py-4">  
+            <input
+               className='border'
+               type="text"
+               value={inputLastStage}
+               onChange={(event)=>{
+                 setInputLastStage(event.target.value);
+               }}
+               onKeyDown={(event)=>{
+                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                   event.preventDefault();
+                 }
+               }
+             }
+             onBlur={(event)=> {
+               const val = event.target.value; 
+               switch(stageNumber){
+                 case '1': coaching.stage1.lastStage  = val;  break;
+                 case '2': coaching.stage2.lastStage  = val; break;
+                 case '3': coaching.stage3.lastStage  = val; break;
+                 case '4': coaching.stage4.lastStage  = val; break;
+                 case '5':  coaching.stage5.lastStage  = val; break;
+                 case '6': coaching.stage6.lastStage  = val; break;
+                 case '7': coaching.stage7.lastStage  = val; break;
+                 case '8': coaching.stage8.lastStage  = val; break;
+                 case '9': coaching.stage9.lastStage  = val; break;
+                 case '10': coaching.stage10.lastStage  = val; break;
+                 default: break;
+                }
+                updateDB();
+               }}  
+             />
            </td>
            <td className="px-6 py-4">
-            {durationInDays}
+           <input
+               className='border'
+               type="text"
+               value={inputDurationInDays}
+               onChange={(event)=>{
+                 setInputDurationInDays(event.target.value);
+               }}
+               onKeyDown={(event)=>{
+                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                   event.preventDefault();
+                 }
+               }
+             }
+             onBlur={(event)=> {
+               const val = event.target.value; 
+               
+               switch(stageNumber){
+                case '1': coaching.stage1.durationInDays = val;  break;
+                case '2': coaching.stage2.durationInDays  = val; break;
+                case '3': coaching.stage3.durationInDays  = val; break;
+                case '4': coaching.stage4.durationInDays  = val; break;
+                case '5':  coaching.stage5.durationInDays  = val; break;
+                case '6': coaching.stage6.durationInDays  = val; break;
+                case '7': coaching.stage7.durationInDays  = val; break;
+                case '8': coaching.stage8.durationInDays  = val; break;
+                case '9': coaching.stage9.durationInDays  = val; break;
+                case '10': coaching.stage10.durationInDays  = val; break;
+                default: break;
+               }
+               updateDB();
+             }}  
+             />
            </td>
            <td className="px-6 py-4">
            
