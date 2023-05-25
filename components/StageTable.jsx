@@ -2,7 +2,7 @@
 import {useState, useEffect} from 'react'
 import Stage from './Stage';
  
-const StageTable = ({stageNumber,toggleTasks,openedTasks,setOpenedTasks, updateDB,listTrainees}) => {
+const StageTable = ({stageNumber,toggleTasks,openedTasks,setOpenedTasks, updateDB,listTrainees, indexRenderedTasks, setIndexRenderedTasks}) => {
 
   const handleChangeSearchTrainees = (text) => {
     console.log("aaaaaaaaaaaaa="  + text.target.value);

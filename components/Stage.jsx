@@ -33,6 +33,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   const [inputDurationInDays,setInputDurationInDays] = useState("0");
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
+  const [inputName, setInputName] = useState("");
   
   let name='';
   let status='';
@@ -50,60 +51,70 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputDurationInDays(coaching.stage1.durationInDays);
           setInputLastStage(coaching.stage1.lastStage);
           setStatus(coaching.stage1.status);
+          setInputName(coaching.stage1.name);
           break;
         case '2': 
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage2.durationInDays);
           setInputLastStage(coaching.stage2.lastStage);
           setStatus(coaching.stage2.status);
+          setInputName(coaching.stage2.name);
           break;
         case '3': 
           setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage3.durationInDays);
           setInputLastStage(coaching.stage3.lastStage);
           setStatus(coaching.stage3.status);
+          setInputName(coaching.stage3.name);
           break;
         case '4': 
           setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage4.durationInDays);
           setInputLastStage(coaching.stage4.lastStage);
           setStatus(coaching.stage4.status);
+          setInputName(coaching.stage4.name);
           break;
         case '5': 
           setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage5.durationInDays);
           setInputLastStage(coaching.stage5.lastStage);
           setStatus(coaching.stage5.status);
+          setInputName(coaching.stage5.name);
           break;
         case '6': 
           setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage6.durationInDays);
           setInputLastStage(coaching.stage6.lastStage);
           setStatus(coaching.stage6.status);
+          setInputName(coaching.stage6.name);
           break;
         case '7': 
           setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage7.durationInDays);
           setInputLastStage(coaching.stage7.lastStage);
           setStatus(coaching.stage7.status);
+          setInputName(coaching.stage7.name);
           break;
         case '8': 
           setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage8.durationInDays);
           setInputLastStage(coaching.stage8.lastStage);
           setStatus(coaching.stage8.status);
+          setInputName(coaching.stage8.name);
           break;
         case '9': 
           setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage9.durationInDays);
           setInputLastStage(coaching.stage9.lastStage);
           setStatus(coaching.stage9.status);
+          setInputName(coaching.stage9.name);
           break;
         case '10': 
         setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); 
         setInputDurationInDays(coaching.stage10.durationInDays);
         setInputLastStage(coaching.stage10.lastStage);
         setStatus(coaching.stage10.status);
+        setInputName(coaching.stage10.name);
         break;
         default:break;
       }
@@ -120,10 +131,44 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
         <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
           <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
         </span>
-          {
-          name
-          }
+          
+        <input
+               className='border'
+               type="text"
+               value={inputName}
+               onChange={(event)=>{
+                 setInputName (event.target.value);
+               }}
+               onKeyDown={(event)=>{
+                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                   event.preventDefault();
+                 }
+               }
+             }
+             onBlur={(event)=> {
+               const val = event.target.value; 
+               
+               switch(stageNumber){
+                case '1': coaching.stage1.name = val;  break;
+                case '2': coaching.stage2.name  = val; break;
+                case '3': coaching.stage3.name  = val; break;
+                case '4': coaching.stage4.name  = val; break;
+                case '5':  coaching.stage5.name  = val; break;
+                case '6': coaching.stage6.name  = val; break;
+                case '7': coaching.stage7.name  = val; break;
+                case '8': coaching.stage8.name  = val; break;
+                case '9': coaching.stage9.name  = val; break;
+                case '10': coaching.stage10.name  = val; break;
+                default: break;
+               }
+               updateDB();
+             }}  
+             />
+
       </td>
+
+
+
       <td className="px-6 py-4">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
       </td>
