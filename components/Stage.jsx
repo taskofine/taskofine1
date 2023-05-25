@@ -7,7 +7,10 @@ import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 
-const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask}) => {
+
+const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB}) => {
+ 
+  const {data: session} = useSession();
 
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const setStatus =  () =>  {
@@ -21,9 +24,10 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   const setTrainees =  () =>  {
     setIsTraineesOpen(!isTraineesOpen);
   }
-  const retreiveSkeletonDB = () => {
+  const retreiveSkeletonDB = () => {  
     //update the skeleton to hold the paralel data existing for this user on DB
     listTrainees.map((item)=>{
+     
       coaching.stage1 = item.coaching.stage1;
       coaching.stage2 = item.coaching.stage2;
       coaching.stage3 = item.coaching.stage3;
@@ -48,7 +52,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
         let lastStage='';
         let durationInDays='';
         let plannedTimeInHours='';
-       
+        
         if(listTrainees.length>0){
          retreiveSkeletonDB();
         }
@@ -128,6 +132,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
                type="text"
                value={inputPlannedTimeValue}
                onChange={(event)=>{
+                
                  setInputPlannedTimeValue(event.target.value);
                }}
                onKeyDown={(event)=>{

@@ -3,8 +3,73 @@
 import TaskTable from './TaskTable';
 import StageTable from './StageTable';
 import {useState, useEffect} from 'react'
+import {useSession} from "next-auth/react";
+import coaching  from '../utils/skeletonCoaching';
 
 const MainTable = () => {
+
+  let amIAdmin = false;
+  const {data: session} = useSession();
+
+  //getting all the users who have logged in (at least once) to this app
+  // and have been registered in collection 'users' in DB
+  const [listTrainees, setListTrainees] = useState([]);
+  const retreiveUsers = async() => {
+    try{
+      const response = await fetch('/api/users', {method: 'GET'});
+      const data = await response.json();
+      setListTrainees(data);
+    }
+     catch(error){ 
+      console.log("eeeeeeeeee error in retreiveUsers():" + error);
+     }
+      finally{  }   
+  } 
+  useEffect(()=>{
+    retreiveUsers();
+   }, []); 
+
+
+
+  //checking if the logged in user is an admin
+  const validateAdmin = () => {  
+  listTrainees.map((item)=>{
+    //finding myseld on the list of users
+    if(item.email === session?.user?.email){
+      amIAdmin = item.isAdmin;
+      }
+    });
+  }
+  useEffect(()=>{
+    validateAdmin();
+  }, [listTrainees]); 
+
+
+
+
+  //update the skeleton to DB
+  const updateDB = async() =>{
+    try{
+      const response = await fetch(`/api/users`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          email: session?.user?.email,
+          coaching
+        })
+      });
+     
+      if (response.ok) {
+        console.log('Data updated successfully');
+      } else {
+        console.error('Error updating data:', response.status);
+      }
+    }
+     catch(error){ 
+      console.log("eeeeeeeeee error in updateDB():" + error);
+     }
+      
+  }
+
 
   const [openedTask, setOpenedTask]  = useState('-1');
   const toggleTasks = (stageNumber) =>{
@@ -18,27 +83,28 @@ const MainTable = () => {
 
   return (
   <div className='my-5 relative' dir="rtl">
-    <div className="overflow-x-auto">  
-      <StageTable stageNumber="1" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='1' && <TaskTable stageNumber="1"/>}
-      <StageTable stageNumber="2" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='2' && <TaskTable stageNumber="2"/>}
-      <StageTable stageNumber="3" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='3' && <TaskTable stageNumber="3"/>}
-      <StageTable stageNumber="4" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='4' && <TaskTable stageNumber="4"/>}
-      <StageTable stageNumber="5" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='5' && <TaskTable stageNumber="5"/>}
-      <StageTable stageNumber="6" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='6' && <TaskTable stageNumber="6"/>}
-      <StageTable stageNumber="7" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='7' && <TaskTable stageNumber="7"/>}
-      <StageTable stageNumber="8" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='8' && <TaskTable stageNumber="8"/>}
-      <StageTable stageNumber="9" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='9' && <TaskTable stageNumber="9"/>}
-      <StageTable stageNumber="10" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask}/>
-      {openedTask==='10' && <TaskTable stageNumber="10"/>} 
+    <div className="overflow-x-auto">    
+      <StageTable stageNumber="1" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='1' && <TaskTable stageNumber="1" updateDB={updateDB} listTrainees={listTrainees}/>}
+      <StageTable stageNumber="2" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='2' && <TaskTable stageNumber="2" updateDB={updateDB} listTrainees={listTrainees}/>}
+      <StageTable stageNumber="3" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='3' && <TaskTable stageNumber="3" updateDB={updateDB} listTrainees={listTrainees} />}
+      <StageTable stageNumber="4" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='4' && <TaskTable stageNumber="4" updateDB={updateDB} listTrainees={listTrainees} />}
+      <StageTable stageNumber="5" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='5' && <TaskTable stageNumber="5" updateDB={updateDB} listTrainees={listTrainees}/>}
+      <StageTable stageNumber="6" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='6' && <TaskTable stageNumber="6" updateDB={updateDB} listTrainees={listTrainees} />}
+      <StageTable stageNumber="7" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='7' && <TaskTable stageNumber="7" updateDB={updateDB} listTrainees={listTrainees} />}
+      <StageTable stageNumber="8" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='8' && <TaskTable stageNumber="8" updateDB={updateDB} listTrainees={listTrainees} />}
+      <StageTable stageNumber="9" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='9' && <TaskTable stageNumber="9" updateDB={updateDB} listTrainees={listTrainees}/>}
+      <StageTable stageNumber="10" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees}/>
+      {openedTask==='10' && <TaskTable stageNumber="10" updateDB={updateDB} listTrainees={listTrainees}/>} 
+  
     </div>
   </div>  
   )

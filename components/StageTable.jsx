@@ -2,8 +2,8 @@
 import {useState, useEffect} from 'react'
 import Stage from './Stage';
  
-const StageTable = ({stageNumber,toggleTasks,openedTasks,setOpenedTasks}) => {
-  const [listTrainees, setListTrainees] = useState([]);  
+const StageTable = ({stageNumber,toggleTasks,openedTasks,setOpenedTasks, updateDB,listTrainees}) => {
+
   const handleChangeSearchTrainees = (text) => {
     console.log("aaaaaaaaaaaaa="  + text.target.value);
   }
@@ -39,7 +39,7 @@ const StageTable = ({stageNumber,toggleTasks,openedTasks,setOpenedTasks}) => {
         </tr>
       </thead>
     <tbody>
-      <Stage stageNumber={stageNumber} listTrainees={listTrainees} toggleTasks={toggleTasks} openedTasks={openedTasks} setOpenedTasks={setOpenedTasks}/>
+      <Stage stageNumber={stageNumber} listTrainees={listTrainees} toggleTasks={toggleTasks} openedTasks={openedTasks} setOpenedTasks={setOpenedTasks} updateDB={updateDB} />
     </tbody>
   </table>
         );

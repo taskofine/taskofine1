@@ -3,8 +3,8 @@ import React,{useState, useEffect} from 'react'
 import coaching  from '../utils/skeletonCoaching';
 import Task from './Task';
 
-const TaskTable = ({stageNumber}) =>{  
-  
+const TaskTable = ({stageNumber, updateDB, listTrainees}) =>{  
+
   let openedTask='3';
      let relevantStage;
     switch(stageNumber){
