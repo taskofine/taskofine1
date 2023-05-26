@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import coaching  from '../utils/skeletonCoaching';
 
+let modifiedStartDate;
+let modifiedEndDate;
 
 
 const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => {
@@ -13,10 +15,10 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
   useEffect(()=>{
     const update = () => { 
       if(startPeriod){ 
-        setStartDate(startPeriod);
+        modifiedStartDate? setStartDate(modifiedStartDate) :  setStartDate(startPeriod);
       }   
       if(endPeriod){
-        setEndDate(endPeriod);
+       modifiedEndDate? setEndDate(modifiedEndDate) :  setEndDate(endPeriod);
       }
     }
    update();  
@@ -24,7 +26,8 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
 
 
   const handleStartDateChange = (date) => { 
-    setStartDate(date);
+    //setStartDate(date);
+    modifiedStartDate = date;
     switch(stageNumber){
       case '1': coaching.stage1.startPeriod = date; break;
       case '2': coaching.stage2.startPeriod = date; break;
@@ -42,7 +45,8 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
 
   };
   const handleEndDateChange = (date) => {
-    setEndDate(date);
+    //setEndDate(date);
+    modifiedEndDate = date;
     switch(stageNumber){
       case '1': coaching.stage1.endPeriod = date; break;
       case '2': coaching.stage2.endPeriod = date; break;
