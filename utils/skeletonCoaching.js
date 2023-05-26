@@ -7,6 +7,8 @@ let coaching = {
       lastStage: "אין",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
         {
             name:"א. למלא קובץ (בזמן הפגישה עם אלחי)",
@@ -67,6 +69,8 @@ let coaching = {
       lastStage: "שלב 1 - בניית תכנית עסקית",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. כתיבת חזון עסקי (מסמך)',
@@ -120,6 +124,8 @@ let coaching = {
       lastStage: "שלב 2 - חזון עסקי והכנה לשיווק",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:"א. חשבונית דיגיטלית (חשבונית ירוקה)",
@@ -159,6 +165,8 @@ let coaching = {
       lastStage: "שלב 3 - תשתית חזקה לעסק איכותי, יעיל ומתקדם",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. עיצוב לוגו - אישור הלוגו מול הגרפיקאית וקבלת כל הקבצים כולל נגטיב וקובץ ללא רקע',
@@ -205,6 +213,8 @@ let coaching = {
       lastStage: "שלב 4 - מיתוג מלא של העסק",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. ריכוז כל התמונות לאתר בתיקייה (דרייב)',
@@ -243,6 +253,8 @@ let coaching = {
       lastStage: "שלב 5 - הקמת אתר תדמיתי/חנות",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. תוכנית אסטרטגית לשיתופי פעולה (פגישה)',
@@ -282,6 +294,8 @@ let coaching = {
       lastStage: "שלב 6 - הסכמי עבודה מול ספקים ולקוחות",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. הרשמה לתוכנת ביזיבוקס',
@@ -322,6 +336,8 @@ let coaching = {
       lastStage: "שלב 7 - תזרים מזומנים (bizibox)",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. פתיחת וואטסאפ עסקי כולל הגדרות של תגובה אוטומטית',
@@ -360,6 +376,8 @@ let coaching = {
       lastStage: "שלב 8 - בניית מערך שיווק ומכירות",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. פגישת אסטרטגיה יחד עם הקמפיינר',
@@ -398,6 +416,8 @@ let coaching = {
       lastStage: "שלב 9 - ליווי והכנה אסטרטגית לקמפיין שיווקי",
       durationInDays: "7 ימים",
       plannedTimeInHours: "12 שעות",
+      startPeriod: new Date(),
+      endPeriod: new Date(),
       tasks: [
           {
               name:'א. צפייה בסרטון טיפול בהתנגדויות',

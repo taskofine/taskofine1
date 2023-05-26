@@ -6,6 +6,8 @@ import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/f
 import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 
 let countedStages = [];
 
@@ -34,6 +36,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputName, setInputName] = useState("");
+  const [inputTrainees, setInputTrainees] = useState([]);
+  const [inputStartPeriod, setInputStartPeriod] = useState(null);
+  const [inputEndPeriod, setInputEndPeriod] = useState(null);
   
   let name='';
   let status='';
@@ -41,6 +46,8 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   let lastStage='';
   let durationInDays='';
   let plannedTimeInHours='';
+
+  
   
    setTimeout(()=>{
     if(!countedStages.includes(stageNumber)){
@@ -52,6 +59,10 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage1.lastStage);
           setStatus(coaching.stage1.status);
           setInputName(coaching.stage1.name);
+          setInputTrainees(coaching.stage1.trainees);
+          setInputStartPeriod(coaching.stage1.startPeriod);
+          setInputEndPeriod(coaching.stage1.endPeriod);
+         
           break;
         case '2': 
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
@@ -59,6 +70,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage2.lastStage);
           setStatus(coaching.stage2.status);
           setInputName(coaching.stage2.name);
+          setInputTrainees(coaching.stage2.trainees);
+          setInputStartPeriod(coaching.stage2.startPeriod);
+          setInputEndPeriod(coaching.stage2.endPeriod);
           break;
         case '3': 
           setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); 
@@ -66,6 +80,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage3.lastStage);
           setStatus(coaching.stage3.status);
           setInputName(coaching.stage3.name);
+          setInputTrainees(coaching.stage3.trainees);
+          setInputStartPeriod(coaching.stage3.startPeriod);
+          setInputEndPeriod(coaching.stage3.endPeriod);
           break;
         case '4': 
           setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); 
@@ -73,6 +90,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage4.lastStage);
           setStatus(coaching.stage4.status);
           setInputName(coaching.stage4.name);
+          setInputTrainees(coaching.stage4.trainees);
+          setInputStartPeriod(coaching.stage4.startPeriod);
+          setInputEndPeriod(coaching.stage4.endPeriod);
           break;
         case '5': 
           setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); 
@@ -80,6 +100,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage5.lastStage);
           setStatus(coaching.stage5.status);
           setInputName(coaching.stage5.name);
+          setInputTrainees(coaching.stage5.trainees);
+          setInputStartPeriod(coaching.stage5.startPeriod);
+          setInputEndPeriod(coaching.stage5.endPeriod);
           break;
         case '6': 
           setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); 
@@ -87,6 +110,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage6.lastStage);
           setStatus(coaching.stage6.status);
           setInputName(coaching.stage6.name);
+          setInputTrainees(coaching.stage6.trainees);
+          setInputStartPeriod(coaching.stage6.startPeriod);
+          setInputEndPeriod(coaching.stage6.endPeriod);
           break;
         case '7': 
           setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); 
@@ -94,6 +120,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage7.lastStage);
           setStatus(coaching.stage7.status);
           setInputName(coaching.stage7.name);
+          setInputTrainees(coaching.stage7.trainees);
+          setInputStartPeriod(coaching.stage7.startPeriod);
+          setInputEndPeriod(coaching.stage7.endPeriod);
           break;
         case '8': 
           setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); 
@@ -101,6 +130,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage8.lastStage);
           setStatus(coaching.stage8.status);
           setInputName(coaching.stage8.name);
+          setInputTrainees(coaching.stage8.trainees);
+          setInputStartPeriod(coaching.stage8.startPeriod);
+          setInputEndPeriod(coaching.stage8.endPeriod);
           break;
         case '9': 
           setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); 
@@ -108,6 +140,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputLastStage(coaching.stage9.lastStage);
           setStatus(coaching.stage9.status);
           setInputName(coaching.stage9.name);
+          setInputTrainees(coaching.stage9.trainees);
+          setInputStartPeriod(coaching.stage9.startPeriod);
+          setInputEndPeriod(coaching.stage9.endPeriod);
           break;
         case '10': 
         setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); 
@@ -115,16 +150,18 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
         setInputLastStage(coaching.stage10.lastStage);
         setStatus(coaching.stage10.status);
         setInputName(coaching.stage10.name);
+        setInputTrainees(coaching.stage10.trainees);
+        setInputStartPeriod(coaching.stage10.startPeriod);
+        setInputEndPeriod(coaching.stage10.endPeriod);
         break;
         default:break;
       }
-    }  
-  
     
+    }  
    },1000);
    
 
-       
+  
   return (
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -183,17 +220,17 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
             )}
       </td>
       <td className="px-6 py-4" onClick={setTimetable}>
-        <DateSelector className=""/>
+      <DateSelector type="start" stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}/>
         <span> עד </span>
-        <DateSelector className=""/>
+        <DateSelector type="end" stageNumber={stageNumber} updateDB={updateDB}  endPeriod={inputEndPeriod}/>
       </td>
       <td className="px-6 py-4" >
         <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
           <div className='bg-slate-500 flex flex-col justify-center'>
             <input type="text" 
-              value={valueSearchTrainees}  
-              onChange={handleChangeSearchTrainees } 
+              value={inputTrainees[0]}  
+              onChange={setInputTrainees } 
               placeholder='חיפוש מתאמנים' 
               className="border border-gray-300 m-2 px-4 py-2 rounded-md w-25"
             />
