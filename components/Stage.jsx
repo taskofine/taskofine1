@@ -10,7 +10,7 @@ import coaching  from '../utils/skeletonCoaching';
 
 let countedStages = [];
 
-const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB}) => {
+const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
  
   const {data: session} = useSession();
 
@@ -157,7 +157,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       }
     
     }  
-   },500);
+   },1000);
    
 
   

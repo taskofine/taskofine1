@@ -10,7 +10,7 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRenderedTasks}) => {
+const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated}) => {
   let name='';
   let status='';
   let trainees = [];

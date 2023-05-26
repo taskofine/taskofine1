@@ -63,13 +63,15 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
      updateDB();
   };
 
+
+
   return (
     <div className='w-12 sm:w-16'>
       {
         type==="start"?
-        <DatePicker className='flex' dateFormat="dd/MM/yyyy" selected={new Date(startDate)} onChange={(date) => handleStartDateChange(date)} />
+        <DatePicker  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(startDate)} onChange={(date) => handleStartDateChange(date)}  />
         :
-        <DatePicker className='flex' dateFormat="dd/MM/yyyy" selected={new Date(endDate)} onChange={(date) => handleEndDateChange(date)} />
+        <DatePicker className='flex' dateFormat="dd/MM/yyyy" selected={new Date(endDate)} onChange={(date) => handleEndDateChange(date)}  />
       }
    
     </div>
