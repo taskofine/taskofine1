@@ -6,8 +6,7 @@ import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/f
 import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
-import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+
 
 let countedStages = [];
 
@@ -158,7 +157,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       }
     
     }  
-   },1000);
+   },500);
    
 
   

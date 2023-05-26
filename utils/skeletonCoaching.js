@@ -15,21 +15,24 @@ let coaching = {
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date() 
         },
         {
             name:"ב. השלמת נתונים לתוכנית העסקית",
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         },
         {
             name:'ג. צירוף דו"ח רווח והפסד מרואה חשבון עבור הכנסות השנה הקודמת',
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         }
         ,
         {
@@ -37,28 +40,32 @@ let coaching = {
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         },
         {
             name:'ה. איחוד הלוואות / הגשת בקשה למימון',
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         },
         {
             name:'ו. בנק - הפרדה בין החשבון הפרטי לחשבון העסקי',
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         },
         {
             name:'ז. השלמת מסמכים למימון (רק במידה ומגישים בקשה)',
             status: "משימה חדשה",
             trainees: ["lior751@gmail.com"],
             connectBoard: "Connect Us",
-            files: [] 
+            files: [],
+            endTime: new Date()  
         },
       ]
     },
@@ -77,21 +84,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. מילוי מסמך התנגדויות',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. יצירת בידול לעסק שלך (בעניין התאמת השרות לקהל היעד המדוייק שלכם)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           ,
           {
@@ -99,21 +109,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ה. הכנת שירות כניסה (פגישה/טיפול)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ו. הכנת מוצר "אפס" חינמי: מדריך/סרטון חינמי/וובינר',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
       ]
     },
@@ -132,21 +145,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. סליקה (משולם)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. לוודא פתיחה של הוראת קבע באשראי (לאחר קבלת אישור מחברת הסליקה)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           ,
           {
@@ -154,7 +170,8 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -173,21 +190,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. דף פייסבוק עסקי מעוצב ומותאם גם לנייד',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:"ג. קאברים לעוד רשתות חברתיות (ערוץ יוטיוב, לינקדאין וכו')",
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           ,
           {
@@ -195,14 +215,16 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ה. הקמת מערכת אוטומטית לקביעת תורים',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -221,28 +243,32 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. ריכוז המלצות כתובות',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. ריכוז סרטוני המלצה',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ד. פתיחת משתמש במערכת דיוור (עדיפות לסמוב, או אינפוריו מובייל)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -261,21 +287,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. הסכם שת"פ (מסמך)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. חוזה לעובדים (מסמך)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           ,
           {
@@ -283,7 +312,8 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -302,21 +332,24 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. תיאום פגישת הדגמה עם נציג ביזיבוקס',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. השלמת הזנת כל הנתונים לביזיבוקס',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           ,
           {
@@ -324,7 +357,8 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
           
       ]
@@ -344,28 +378,32 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. ייצוא אנשי הקשר מגוגל והעלאת הקובץ למערכת (סרטון הסבר)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. הרשמה לתוכנת פלו - קבלת קישור מאלחי (תוכנית שותפים)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ד. הסבר על השימוש בתוכנה ושליחת הודעה לכל אנשי הקשר (פגישה)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -384,28 +422,32 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. בניית שאלון ללקוחות בגוגל פורמס (פגישה)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. פתיחת חשבון מודעות בפייסבוק (פגישה עם הקמפיינר)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ד. אישור עיצובי המודעות מול מנהל הקמפיין / גרפיקאית',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     },
@@ -424,28 +466,32 @@ let coaching = {
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ב. בניית תסריטי שיחה (מסמך)',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ג. ביצוע סימולציה לשיחה עם לקוח',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           },
           {
               name:'ד. הנחיות לצוות מכירות חיצוני / פנימי - כתיבת מסמך נהלים והנחיות',
               status: "משימה חדשה",
               trainees: ["lior751@gmail.com"],
               connectBoard: "Connect Us",
-              files: [] 
+              files: [],
+              endTime: new Date()  
           }
       ]
     } 

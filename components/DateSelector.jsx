@@ -26,7 +26,7 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
 
 
   const handleStartDateChange = (date) => { 
-    //setStartDate(date);
+     //useEffect running after this
     modifiedStartDate = date;
     switch(stageNumber){
       case '1': coaching.stage1.startPeriod = date; break;
@@ -45,7 +45,7 @@ const DateSelector = ({type, stageNumber, updateDB, startPeriod, endPeriod}) => 
 
   };
   const handleEndDateChange = (date) => {
-    //setEndDate(date);
+    //useEffect running after this
     modifiedEndDate = date;
     switch(stageNumber){
       case '1': coaching.stage1.endPeriod = date; break;

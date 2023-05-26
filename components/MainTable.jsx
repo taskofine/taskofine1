@@ -42,7 +42,6 @@ const MainTable = () => {
       amIAdmin = item.isAdmin;
       //update the skeleton with the updated data from DB
       coaching.stage1=item.coaching.stage1;
-      console.log("xxxxxxxxxxxxx=" + coaching.stage1.startPeriod);
       coaching.stage2=item.coaching.stage2;
       coaching.stage3=item.coaching.stage3;
       coaching.stage4=item.coaching.stage4;
