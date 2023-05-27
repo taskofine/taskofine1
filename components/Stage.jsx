@@ -63,7 +63,6 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputTrainees(coaching.stage1.trainees);
           setInputStartPeriod(coaching.stage1.startPeriod);
           setInputEndPeriod(coaching.stage1.endPeriod);
-          console.log("ccccccccccccccccc=" + coaching.stage1.startPeriod); 
           break;
         case '2': 
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
@@ -163,7 +162,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
    
 
   
-  return isSkeletonUpdated && (
+  return  (
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
         <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>

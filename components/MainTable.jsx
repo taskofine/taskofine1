@@ -27,7 +27,6 @@ const MainTable = () => {
       const data = await response.json();
       setListTrainees(data);
       setFirstEffectComplete(true);
-      console.log("aaaaaaaaaaaaaaaaa");
     }
      catch(error){ 
       console.log("eeeeeeeeee error in retreiveUsers():" + error);
@@ -105,9 +104,20 @@ const MainTable = () => {
    }
   }
 
-  
+  if(!session?.user?.email){
+    return (<h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
+      נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
+    </h1>)
+  }
+
+  else if(!isSkeletonUpdated){
+    return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
+    אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
+    </h1>)
+  }
+
   return (
-    /*isSkeletonUpdated &&*/(<div className='my-5 relative' dir="rtl">
+    (<div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">    
       <StageTable stageNumber="1" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}/>
       {openedTask==='1' && <TaskTable stageNumber="1" updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} />}
