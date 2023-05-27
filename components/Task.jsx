@@ -28,7 +28,7 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
   const [inputEndDate, setInputEndDate] = useState(new Date());
   
 
-  setTimeout(()=>{
+  useEffect(()=>{
     if(!(indexRenderedTasks.includes(index))){
       //updating indexRenderedTasks to hold also this index
       let arr = indexRenderedTasks;
@@ -99,7 +99,7 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
         default: break;  
       } 
     }
-  }, 1000);
+  }, [isSkeletonUpdated]);
 
 
 
