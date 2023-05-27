@@ -45,9 +45,7 @@ const MainTable = () => {
     listTrainees.map((item)=>{  
       //finding myseld on the list of users
       if(item.email === session?.user?.email){
-        if(!session?.user?.email){
-          //showAlert("נא לרענן את הדף");
-          console.log("bbbbbbbbbbbbbbbb");
+        if(!session?.user?.email){       
           alert("נא לרענן את הדף!");
         }
         amIAdmin = item.isAdmin;
@@ -106,14 +104,6 @@ const MainTable = () => {
    }
   }
 
-  const [alertMessage, setAlertMessage] = useState('');
-  const showAlert = (message) => {
-    setAlertMessage(message);
-    // Optionally, you can use setTimeout to clear the alert after a certain duration
-    setTimeout(() => {
-      setAlertMessage('');
-    }, 1000); // Clear the alert after 3 seconds (adjust the duration as needed)
-  };
   
   return (
     isSkeletonUpdated &&(<div className='my-5 relative' dir="rtl">

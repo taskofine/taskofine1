@@ -3,9 +3,9 @@ import {useState, useEffect} from 'react'
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import DateSelector from '../components/DateSelector';
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
+import DatePickerRange from './DatePickerRange';
 
 
 let countedStages = [];
@@ -221,9 +221,14 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
             )}
       </td>
       <td className="px-6 py-4" onClick={setTimetable}>
+      {/*
       <DateSelector type="start" stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}/>
         <span> עד </span>
         <DateSelector type="end" stageNumber={stageNumber} updateDB={updateDB}  endPeriod={inputEndPeriod}/>
+      */}
+
+      <DatePickerRange stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
+
       </td>
       <td className="px-6 py-4" >
         <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
