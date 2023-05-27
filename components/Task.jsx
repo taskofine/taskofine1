@@ -39,62 +39,61 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
           setInputName(coaching.stage1.tasks[index].name);
           setInputStatus(coaching.stage1.tasks[index].status);
           setInputConnectBoard(coaching.stage1.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage1.tasks[index].endTime.toString());
-          
+          setInputEndDate(coaching.stage1.tasks[index].endTime);
           break;
         case '2': 
           setInputName(coaching.stage2.tasks[index].name);
           setInputStatus(coaching.stage2.tasks[index].status);
           setInputConnectBoard(coaching.stage2.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage2.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage2.tasks[index].endTime);
           break;
         case '3': 
           setInputName(coaching.stage3.tasks[index].name);
           setInputStatus(coaching.stage3.tasks[index].status);
           setInputConnectBoard(coaching.stage3.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage3.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage3.tasks[index].endTime);
           break;
         case '4': 
           setInputName(coaching.stage4.tasks[index].name);
           setInputStatus(coaching.stage4.tasks[index].status);
           setInputConnectBoard(coaching.stage4.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage4.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage4.tasks[index].endTime);
           break;
         case '5': 
           setInputName(coaching.stage5.tasks[index].name);
           setInputStatus(coaching.stage5.tasks[index].status);
           setInputConnectBoard(coaching.stage5.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage5.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage5.tasks[index].endTime);
           break; 
         case '6': 
           setInputName(coaching.stage6.tasks[index].name);
           setInputStatus(coaching.stage6.tasks[index].status);
           setInputConnectBoard(coaching.stage6.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage6.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage6.tasks[index].endTime);
           break;
         case '7': 
           setInputName(coaching.stage7.tasks[index].name);
           setInputStatus(coaching.stage7.tasks[index].status);
           setInputConnectBoard(coaching.stage7.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage7.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage7.tasks[index].endTime);
           break;
         case '8': 
           setInputName(coaching.stage8.tasks[index].name);
           setInputStatus(coaching.stage8.tasks[index].status);
           setInputConnectBoard(coaching.stage8.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage8.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage8.tasks[index].endTime);
           break;
         case '9': 
           setInputName(coaching.stage9.tasks[index].name);
           setInputStatus(coaching.stage9.tasks[index].status);
           setInputConnectBoard(coaching.stage9.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage9.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage9.tasks[index].endTime);
           break; 
         case '10': 
           setInputName(coaching.stage10.tasks[index].name);
           setInputStatus(coaching.stage10.tasks[index].status);
           setInputConnectBoard(coaching.stage10.tasks[index].connectBoard);
-          setInputEndDate(coaching.stage10.tasks[index].endTime.toString());
+          setInputEndDate(coaching.stage10.tasks[index].endTime);
           break;                
         default: break;  
       } 

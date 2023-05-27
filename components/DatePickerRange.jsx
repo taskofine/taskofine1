@@ -20,7 +20,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
          modifiedEndDate? setEndDate(modifiedEndDate) :  setEndDate(new Date(endPeriod));
         }
       }
-     update();  
+     //update();  
   });
 
 

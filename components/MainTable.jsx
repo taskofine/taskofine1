@@ -106,7 +106,7 @@ const MainTable = () => {
 
   
   return (
-    isSkeletonUpdated &&(<div className='my-5 relative' dir="rtl">
+    /*isSkeletonUpdated &&*/(<div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">    
       <StageTable stageNumber="1" toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}/>
       {openedTask==='1' && <TaskTable stageNumber="1" updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} />}
