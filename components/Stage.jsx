@@ -48,7 +48,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
 
   
   
-   setTimeout(()=>{
+   useEffect(()=>{ 
+    if(!isSkeletonUpdated) return;
+    console.log("ccccccccccccccccc"); 
     if(!countedStages.includes(stageNumber)){
       countedStages.push(stageNumber);
       switch(stageNumber){
@@ -157,7 +159,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       }
     
     }  
-   },1000);
+   },[isSkeletonUpdated]);
    
 
   
