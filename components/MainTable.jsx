@@ -6,6 +6,8 @@ import {useState, useEffect} from 'react'
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 
+
+
 const MainTable = () => {
 
   let amIAdmin = false;
@@ -25,8 +27,8 @@ const MainTable = () => {
     try{
       const response = await fetch('/api/users', {method: 'GET'});
       const data = await response.json();
-      setListTrainees(data);
-      setFirstEffectComplete(true);
+       setListTrainees(data);
+       setFirstEffectComplete(true);
     }
      catch(error){ 
       console.log("eeeeeeeeee error in retreiveUsers():" + error);
@@ -41,13 +43,17 @@ const MainTable = () => {
 
   //checking if the logged in user is an admin
   useEffect(()=>{
-    console.log("bbbbbbbbbbbbbbbbb="+session?.user?.email);  
+    if(session){
+      window.localStorage.setItem("session", JSON.stringify(session));  
+    }
+    const RetreivedSession = window.localStorage.getItem("session");
+    const objSession = JSON.parse(RetreivedSession);
+    const emailSession = objSession?.user?.email;
+
     listTrainees.map((item)=>{  
       //finding myseld on the list of users
-      if(item.email === session?.user?.email){
-        if(!session?.user?.email){       
-          alert("נא לרענן את הדף!");
-        }
+      if(item.email === session?.user?.email || item.email===emailSession){
+         
         amIAdmin = item.isAdmin;
         //update the skeleton with the updated data from DB
         coaching.stage1=item.coaching.stage1;
@@ -60,7 +66,6 @@ const MainTable = () => {
         coaching.stage8=item.coaching.stage8;
         coaching.stage9=item.coaching.stage9;
         coaching.stage10=item.coaching.stage10;
-         
         setIsSkeletonUpdated(true);
         }
       }); 
@@ -104,17 +109,17 @@ const MainTable = () => {
    }
   }
 
-  if(!session?.user?.email){
+  if(!session){
     return (<h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
     </h1>)
   }
 
- /* else if(!isSkeletonUpdated){
+  else if(!isSkeletonUpdated){
     return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
     אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
     </h1>)
-  }*/
+  }
 
   return (
     (<div className='my-5 relative' dir="rtl">

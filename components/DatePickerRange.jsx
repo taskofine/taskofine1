@@ -21,7 +21,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
         }
       }
      update();  
-  });
+  },[]);
 
 
   const handleStartDateChange = (date) => {

@@ -123,7 +123,7 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
      updateDB();
   };
 
-
+  console.log("aaaaaaaaaaaaaa=" + inputEndDate);
 
   return(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
