@@ -27,6 +27,7 @@ const MainTable = () => {
       const data = await response.json();
       setListTrainees(data);
       setFirstEffectComplete(true);
+      console.log("aaaaaaaaaaaaaaaaa");
     }
      catch(error){ 
       console.log("eeeeeeeeee error in retreiveUsers():" + error);
@@ -41,7 +42,7 @@ const MainTable = () => {
 
   //checking if the logged in user is an admin
   useEffect(()=>{
-   
+    console.log("bbbbbbbbbbbbbbbbb="+session?.user?.email);  
     listTrainees.map((item)=>{  
       //finding myseld on the list of users
       if(item.email === session?.user?.email){
@@ -60,7 +61,7 @@ const MainTable = () => {
         coaching.stage8=item.coaching.stage8;
         coaching.stage9=item.coaching.stage9;
         coaching.stage10=item.coaching.stage10;
-             
+         
         setIsSkeletonUpdated(true);
         }
       }); 

@@ -20,7 +20,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
          modifiedEndDate? setEndDate(modifiedEndDate) :  setEndDate(new Date(endPeriod));
         }
       }
-     //update();  
+     update();  
   });
 
 
@@ -73,6 +73,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
         startDate={startDate}
         endDate={endDate}
         placeholderText="Start Date"
+        minDate={new Date()}
       />
       <DatePicker
         dateFormat="dd/MM/yyyy"
