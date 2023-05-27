@@ -183,7 +183,7 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
    )}
     </td>
     <td className="px-6 py-4">
-     <DatePicker className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
+     <DatePicker  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
     </td>
     <td className="px-6 py-4 text-center">
       <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}} />

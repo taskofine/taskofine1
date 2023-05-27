@@ -221,7 +221,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       </td>
       <td className="px-6 py-4" onClick={setTimetable}>
      
-      <DatePickerRange stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
+      <DatePickerRange  stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
 
       </td>
       <td className="px-6 py-4" >
