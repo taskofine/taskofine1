@@ -6,6 +6,7 @@ import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/f
 import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 import DatePickerRange from './DatePickerRange';
+import Image from 'next/image';
 
 
 let countedStages = [];
@@ -35,9 +36,12 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputName, setInputName] = useState("");
-  const [inputTrainees, setInputTrainees] = useState([]);
+  const [inputTrainees, setInputTrainees] = useState("");
+  const [inputSearchTrainees, setInputSearchTrainees] = useState("");
   const [inputStartPeriod, setInputStartPeriod] = useState(null);
   const [inputEndPeriod, setInputEndPeriod] = useState(null);
+  const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
+ 
   
   let name='';
   let status='';
@@ -53,6 +57,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
     
     if(!countedStages.includes(stageNumber)){
       countedStages.push(stageNumber);
+      setListSuggestedTrainees(listTrainees);
       switch(stageNumber){
         case '1': 
           setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours);  
@@ -63,6 +68,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputTrainees(coaching.stage1.trainees);
           setInputStartPeriod(coaching.stage1.startPeriod);
           setInputEndPeriod(coaching.stage1.endPeriod);
+          
           break;
         case '2': 
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
@@ -180,6 +186,15 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
    }
 
 
+
+   const manipulateTraineeList = (val) =>{
+    setInputSearchTrainees(val);
+    const filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()));
+    //setTrainees(filteredListTrainess);
+    setListSuggestedTrainees(filteredListTrainess);
+   }
+
+
   return  inputStartPeriod && inputEndPeriod &&(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -250,14 +265,28 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       <td className="px-6 py-4" >
         <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
-          <div className='bg-slate-500 flex flex-col justify-center'>
+          <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
             <input type="text" 
-              value={inputTrainees[0]}  
-              onChange={setInputTrainees } 
+              value={inputSearchTrainees}  
+              onChange={(val) => manipulateTraineeList(val.target.value)}
+              onKeyDown={(event)=>{
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                  event.preventDefault();
+                }
+              }} 
               placeholder='חיפוש מתאמנים' 
-              className="border border-gray-300 m-2 px-4 py-2 rounded-md w-25"
+              className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
             />
-            <p className='my-3 mx-2 text-white'>המלצות:</p> 
+            <p className='my-1 mx-2 text-white'>המלצות:</p>
+            <div>
+              {listSuggestedTraineees.map((trainess)=>{
+                return <p key={trainess._id} className='text-white flex mb-2'>
+                  <Image src={trainess.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                  {trainess.name}
+               </p>
+              })} 
+            </div>
+            
           </div>
             )}
           </td>
