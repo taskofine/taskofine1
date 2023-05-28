@@ -48,7 +48,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
 
   
   
-   useEffect(()=>{ 
+   useEffect(()=>{   
     if(!isSkeletonUpdated) return;
     
     if(!countedStages.includes(stageNumber)){
@@ -58,7 +58,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours);  
           setInputDurationInDays(coaching.stage1.durationInDays);
           setInputLastStage(coaching.stage1.lastStage);
-          setStatus(coaching.stage1.status);
+          setInputStatus(coaching.stage1.status);
           setInputName(coaching.stage1.name);
           setInputTrainees(coaching.stage1.trainees);
           setInputStartPeriod(coaching.stage1.startPeriod);
@@ -68,7 +68,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage2.durationInDays);
           setInputLastStage(coaching.stage2.lastStage);
-          setStatus(coaching.stage2.status);
+          setInputStatus(coaching.stage2.status);
           setInputName(coaching.stage2.name);
           setInputTrainees(coaching.stage2.trainees);
           setInputStartPeriod(coaching.stage2.startPeriod);
@@ -78,7 +78,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage3.durationInDays);
           setInputLastStage(coaching.stage3.lastStage);
-          setStatus(coaching.stage3.status);
+          setInputStatus(coaching.stage3.status);
           setInputName(coaching.stage3.name);
           setInputTrainees(coaching.stage3.trainees);
           setInputStartPeriod(coaching.stage3.startPeriod);
@@ -88,7 +88,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage4.durationInDays);
           setInputLastStage(coaching.stage4.lastStage);
-          setStatus(coaching.stage4.status);
+          setInputStatus(coaching.stage4.status);
           setInputName(coaching.stage4.name);
           setInputTrainees(coaching.stage4.trainees);
           setInputStartPeriod(coaching.stage4.startPeriod);
@@ -98,7 +98,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage5.durationInDays);
           setInputLastStage(coaching.stage5.lastStage);
-          setStatus(coaching.stage5.status);
+          setInputStatus(coaching.stage5.status);
           setInputName(coaching.stage5.name);
           setInputTrainees(coaching.stage5.trainees);
           setInputStartPeriod(coaching.stage5.startPeriod);
@@ -108,7 +108,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage6.durationInDays);
           setInputLastStage(coaching.stage6.lastStage);
-          setStatus(coaching.stage6.status);
+          setInputStatus(coaching.stage6.status);
           setInputName(coaching.stage6.name);
           setInputTrainees(coaching.stage6.trainees);
           setInputStartPeriod(coaching.stage6.startPeriod);
@@ -118,7 +118,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage7.durationInDays);
           setInputLastStage(coaching.stage7.lastStage);
-          setStatus(coaching.stage7.status);
+          setInputStatus(coaching.stage7.status);
           setInputName(coaching.stage7.name);
           setInputTrainees(coaching.stage7.trainees);
           setInputStartPeriod(coaching.stage7.startPeriod);
@@ -128,7 +128,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage8.durationInDays);
           setInputLastStage(coaching.stage8.lastStage);
-          setStatus(coaching.stage8.status);
+          setInputStatus(coaching.stage8.status);
           setInputName(coaching.stage8.name);
           setInputTrainees(coaching.stage8.trainees);
           setInputStartPeriod(coaching.stage8.startPeriod);
@@ -138,7 +138,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); 
           setInputDurationInDays(coaching.stage9.durationInDays);
           setInputLastStage(coaching.stage9.lastStage);
-          setStatus(coaching.stage9.status);
+          setInputStatus(coaching.stage9.status);
           setInputName(coaching.stage9.name);
           setInputTrainees(coaching.stage9.trainees);
           setInputStartPeriod(coaching.stage9.startPeriod);
@@ -148,7 +148,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
         setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); 
         setInputDurationInDays(coaching.stage10.durationInDays);
         setInputLastStage(coaching.stage10.lastStage);
-        setStatus(coaching.stage10.status);
+        setInputStatus(coaching.stage10.status);
         setInputName(coaching.stage10.name);
         setInputTrainees(coaching.stage10.trainees);
         setInputStartPeriod(coaching.stage10.startPeriod);
@@ -161,7 +161,25 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
    },[isSkeletonUpdated]);
    
 
-  
+   const populateStatusInCoaching = (val) => {
+    setInputStatus(val);
+    switch(stageNumber){
+    case '1': coaching.stage1.status=val;  break;
+    case '2': coaching.stage2.status=val; break;
+    case '3': coaching.stage3.status=val; break;
+    case '4': coaching.stage4.status=val; break;
+    case '5': coaching.stage5.status=val; break;
+    case '6': coaching.stage6.status=val; break;
+    case '7': coaching.stage7.status=val; break;
+    case '8': coaching.stage8.status=val; break;
+    case '9': coaching.stage9.status=val; break;
+    case '10': coaching.stage10.status=val; break;
+    default: break;
+    }
+    updateDB();
+   }
+
+
   return  inputStartPeriod && inputEndPeriod &&(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -210,12 +228,17 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
       </td>
       <td className="px-6 py-4" onClick={setStatus} >
-        {status}
+        <div className='bg-white'>
+          {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
+          {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
+          {(inputStatus==="סגור" || status) && <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>}
+        </div>
+          {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
             <div className='bg-white'>
-              <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>
-              <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>
-              <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>
+              <p className='bg-orange-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</p>       
+              <p className='bg-green-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</p>      
+              <p className='bg-gray-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</p>
             </div>
             )}
       </td>

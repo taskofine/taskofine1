@@ -25,7 +25,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
 
 
   const handleStartDateChange = (date) => {
-    //setStartDate(date);
+    setStartDate(date);
     modifiedStartDate=date;
     switch(stageNumber){
         case '1': coaching.stage1.startPeriod = date; break;
@@ -45,7 +45,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
 
 
   const handleEndDateChange = (date) => {
-    //setEndDate(date);
+    setEndDate(date);
     modifiedEndDate = date;
     switch(stageNumber){
         case '1': coaching.stage1.endPeriod = date; break;
