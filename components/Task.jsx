@@ -123,7 +123,27 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
      updateDB();
   };
 
-  console.log("aaaaaaaaaaaaaa=" + inputEndDate);
+  
+
+  const populateStatusInCoaching = (val) => {
+    setInputStatus(val);
+    setIsTaskStatusOpen(false);
+    switch(stageNumber){
+    case '1': coaching.stage1.tasks[index].status=val;  break;
+    case '2': coaching.stage2.tasks[index].status=val; break;
+    case '3': coaching.stage3.tasks[index].status=val; break;
+    case '4': coaching.stage4.tasks[index].status=val; break;
+    case '5': coaching.stage5.tasks[index].status=val; break;
+    case '6': coaching.stage6.tasks[index].status=val; break;
+    case '7': coaching.stage7.tasks[index].status=val; break;
+    case '8': coaching.stage8.tasks[index].status=val; break;
+    case '9': coaching.stage9.tasks[index].status=val; break;
+    case '10': coaching.stage10.tasks[index].status=val; break;
+    default: break;
+    }
+    updateDB();
+   }
+
 
   return(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -165,20 +185,31 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
       <FontAwesomeIcon icon={faComment }  size="xl"  style={{color:'#FFD700'}}/>
     </td>
     <td className="px-6 py-4" >
-    <span onClick={setTaskStatus}>
-      {inputStatus}
-
-    </span>
+    <div onClick={setTaskStatus}>
+      
+      <div className='bg-white flex flex-wrap static w-40'>
+        {(inputStatus==="משימה חדשה" || status) && <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>}
+        {(inputStatus==="משימה בוצעה" || status) && <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בוצעה</p>}
+        {(inputStatus==="משימה בבדיקה" || status) && <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בבדיקה</p>}
+        {(inputStatus==="משימה לעריכה" || status) && <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md'>משימה לעריכה</p>}
+        {(inputStatus==="משימה נערכה" || status) && <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md'>משימה נערכה</p>}
+        {(inputStatus==="אלחי תציל אותי" || status) && <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md'>אלחי תציל אותי</p>}
+        {(inputStatus==="הושלם בהצלחה" || status) && <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md'>הושלם בהצלחה</p>}
+        {(inputStatus==="איחור בהגשה" || status) && <p className='bg-black w-40 text-center mt-2 p-2 rounded-md'>איחור בהגשה</p>}
+       </div>
+     
+    </div>
+    -{isTaskStatusOpen &&(<hr className=''/>)} 
     {isTaskStatusOpen && (
        <div className='bg-white flex flex-wrap static w-40'>
-         <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>
-         <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בוצעה</p>
-         <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בבדיקה</p>
-         <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה לעריכה</p>
-         <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md'>משימה נערכה</p>
-         <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md'>אלחי תציל אותי</p>
-         <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md'>הושלם בהצלחה</p>
-         <p className='bg-black text-white w-40 text-center mt-2 p-2 rounded-md'>איחור בהגשה</p>
+         <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה חדשה"; populateStatusInCoaching(val);}} >משימה חדשה</p>
+         <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בוצעה";  populateStatusInCoaching(val);}} >משימה בוצעה</p>
+         <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בבדיקה";  populateStatusInCoaching(val);}} >משימה בבדיקה</p>
+         <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה לעריכה"  ;populateStatusInCoaching(val);}} >משימה לעריכה</p>
+         <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה נערכה"  ;populateStatusInCoaching(val);}} >משימה נערכה</p>
+         <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "אלחי תציל אותי";  populateStatusInCoaching(val);}} >אלחי תציל אותי</p>
+         <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "הושלם בהצלחה";   populateStatusInCoaching(val);}} >הושלם בהצלחה</p>
+         <p className='bg-black text-white w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "איחור בהגשה"  ;populateStatusInCoaching(val);}} >איחור בהגשה</p>
        </div>
    )}
     </td>
