@@ -109,7 +109,7 @@ const MainTable = () => {
    }
   }
 
-  if(!session){
+  /*if(!session){
     return (<h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
     </h1>)
@@ -119,7 +119,7 @@ const MainTable = () => {
     return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
     אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
     </h1>)
-  }
+  }*/
 
   return (
     (<div className='my-5 relative' dir="rtl">
