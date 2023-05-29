@@ -36,11 +36,12 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputName, setInputName] = useState("");
-  const [inputTrainees, setInputTrainees] = useState("");
+  const [inputTrainees, setInputTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");
   const [inputStartPeriod, setInputStartPeriod] = useState(null);
   const [inputEndPeriod, setInputEndPeriod] = useState(null);
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
+  const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
  
   
   let name='';
@@ -187,12 +188,76 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
 
 
 
-   const manipulateTraineeList = (val) =>{
+   const manipulateSuggestedTraineeList = (val) =>{
     setInputSearchTrainees(val);
     const filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()));
     //setTrainees(filteredListTrainess);
     setListSuggestedTrainees(filteredListTrainess);
    }
+
+   const manipulateSelectedTrainessList= (index) =>{
+    console.log("aaaaaaaaaaaa=" + index);
+   }
+
+
+  //getting an index of a trainee in listTrainees & adding it to selected trainees
+   const addTraineeToSelectedTrainees = (trainee)=>{ //trainee shows an entire record of  a trainee
+    
+     //trainee: the complete record of the trainee we wish to add to selectedTrainees
+     //inputTrainees: selected trainees
+     let arr = inputTrainees;
+    !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
+    setInputTrainees(arr);
+    setIsTraineesOpen(false); 
+    switch(stageNumber){
+      case '1': coaching.stage1.trainees=arr;  break;
+      case '2': coaching.stage2.trainees=arr; break;
+      case '3': coaching.stage3.trainees=arr; break;
+      case '4': coaching.stage4.trainees=arr; break;
+      case '5': coaching.stage5.trainees=arr; break;
+      case '6': coaching.stage6.trainees=arr; break;
+      case '7': coaching.stage7.trainees=arr; break;
+      case '8': coaching.stage8.trainees=arr; break;
+      case '9': coaching.stage9.trainees=arr; break;
+      case '10': coaching.stage10.trainees=arr; break;
+      default: break;
+      }
+      updateDB();
+   }
+
+
+
+
+   const removeTraineeFromSelectedTrainees = (trainee) => {
+   
+    //trainee is the email of the trainee we wish to remove
+    //we use here inputTrainees that holds the selected trainees
+    let arr = [];
+
+    inputTrainees.map((train)=>{
+      if(train!==trainee){  
+        arr.push(train);
+      }
+    
+    });   
+    setInputTrainees(arr);
+    setIsTraineesOpen(false);
+    switch(stageNumber){
+      case '1': coaching.stage1.trainees=arr;  break;
+      case '2': coaching.stage2.trainees=arr; break;
+      case '3': coaching.stage3.trainees=arr; break;
+      case '4': coaching.stage4.trainees=arr; break;
+      case '5': coaching.stage5.trainees=arr; break;
+      case '6': coaching.stage6.trainees=arr; break;
+      case '7': coaching.stage7.trainees=arr; break;
+      case '8': coaching.stage8.trainees=arr; break;
+      case '9': coaching.stage9.trainees=arr; break;
+      case '10': coaching.stage10.trainees=arr; break;
+      default: break;
+      }
+      updateDB();
+   }
+   
 
 
   return  inputStartPeriod && inputEndPeriod &&(
@@ -268,7 +333,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
             <input type="text" 
               value={inputSearchTrainees}  
-              onChange={(val) => manipulateTraineeList(val.target.value)}
+              onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
               onKeyDown={(event)=>{
                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
                   event.preventDefault();
@@ -278,15 +343,32 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
               className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
             />
             <p className='my-1 mx-2 text-white'>המלצות:</p>
-            <div>
-              {listSuggestedTraineees.map((trainess)=>{
-                return <p key={trainess._id} className='text-white flex mb-2'>
-                  <Image src={trainess.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
-                  {trainess.name}
+            <div >
+              {listSuggestedTraineees.map((trainee,index)=>{
+                return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
+                  <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                  {trainee.name}
                </p>
               })} 
             </div>
-            
+            <p className='my-1 mx-2 text-white'>משתתפים:</p>
+            <div >
+              {inputTrainees.map((trainee,index)=>{   
+                //we locate this trainee in listTrainees, in order to retreive his image + name
+                let image;  let name;
+                listTrainees.map((item)=>{ 
+                    if(item.email===trainee){
+                      image = item?.image;
+                      name = item?.name;
+                    }
+                  });
+                return <p key={index} className='text-white flex mb-2 justify-between' onClick={()=>manipulateSelectedTrainessList(index)}>
+                  <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                  {name}
+                  <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>
+               </p>
+              })} 
+            </div>
           </div>
             )}
           </td>

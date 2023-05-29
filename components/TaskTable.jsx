@@ -52,7 +52,7 @@ const TaskTable = ({stageNumber, updateDB, listTrainees, indexRenderedTasks, set
               <tbody>
                 {   
                   relevantStage.tasks.map((item,index)=>{  
-                   return <Task  key={index} stageNumber={stageNumber} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}/>
+                   return <Task  key={index} stageNumber={stageNumber} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} listTrainees={listTrainees}/>
                  }) 
                 }
               </tbody>

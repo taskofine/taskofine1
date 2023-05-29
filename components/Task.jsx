@@ -7,9 +7,10 @@ import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
+import Image from 'next/image';
 
 
-const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated}) => {
+const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
   let name='';
   let status='';
   let trainees = [];
@@ -26,11 +27,19 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
   const [inputName, setInputName] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputEndDate, setInputEndDate] = useState(new Date());
-  
+  const [inputTrainees, setInputTrainees] = useState("");
+  const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
+  const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
+  const [inputSearchTrainees, setInputSearchTrainees] = useState("");
+  const [isTraineesOpen, setIsTraineesOpen] = useState(false);
+  const setTrainees =  () =>  {
+    setIsTraineesOpen(!isTraineesOpen);
+  }
 
   useEffect(()=>{
     if(!(indexRenderedTasks.includes(index))){
       //updating indexRenderedTasks to hold also this index
+      setListSuggestedTrainees(listTrainees);
       let arr = indexRenderedTasks;
       arr.push(index);
       setIndexRenderedTasks(arr);
@@ -40,60 +49,70 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
           setInputStatus(coaching.stage1.tasks[index].status);
           setInputConnectBoard(coaching.stage1.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage1.tasks[index].endTime));
+          setInputTrainees(coaching.stage1.tasks[index].trainees);
           break;
         case '2': 
           setInputName(coaching.stage2.tasks[index].name);
           setInputStatus(coaching.stage2.tasks[index].status);
           setInputConnectBoard(coaching.stage2.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage2.tasks[index].endTime));
+          setInputTrainees(coaching.stage2.tasks[index].trainees);
           break;
         case '3': 
           setInputName(coaching.stage3.tasks[index].name);
           setInputStatus(coaching.stage3.tasks[index].status);
           setInputConnectBoard(coaching.stage3.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage3.tasks[index].endTime));
+          setInputTrainees(coaching.stage3.tasks[index].trainees);
           break;
         case '4': 
           setInputName(coaching.stage4.tasks[index].name);
           setInputStatus(coaching.stage4.tasks[index].status);
           setInputConnectBoard(coaching.stage4.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage4.tasks[index].endTime));
+          setInputTrainees(coaching.stage4.tasks[index].trainees);
           break;
         case '5': 
           setInputName(coaching.stage5.tasks[index].name);
           setInputStatus(coaching.stage5.tasks[index].status);
           setInputConnectBoard(coaching.stage5.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage5.tasks[index].endTime));
+          setInputTrainees(coaching.stage5.tasks[index].trainees);
           break; 
         case '6': 
           setInputName(coaching.stage6.tasks[index].name);
           setInputStatus(coaching.stage6.tasks[index].status);
           setInputConnectBoard(coaching.stage6.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage6.tasks[index].endTime));
+          setInputTrainees(coaching.stage6.tasks[index].trainees);
           break;
         case '7': 
           setInputName(coaching.stage7.tasks[index].name);
           setInputStatus(coaching.stage7.tasks[index].status);
           setInputConnectBoard(coaching.stage7.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage7.tasks[index].endTime));
+          setInputTrainees(coaching.stage7.tasks[index].trainees);
           break;
         case '8': 
           setInputName(coaching.stage8.tasks[index].name);
           setInputStatus(coaching.stage8.tasks[index].status);
           setInputConnectBoard(coaching.stage8.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage8.tasks[index].endTime));
+          setInputTrainees(coaching.stage8.tasks[index].trainees);
           break;
         case '9': 
           setInputName(coaching.stage9.tasks[index].name);
           setInputStatus(coaching.stage9.tasks[index].status);
           setInputConnectBoard(coaching.stage9.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage9.tasks[index].endTime));
+          setInputTrainees(coaching.stage9.tasks[index].trainees);
           break; 
         case '10': 
           setInputName(coaching.stage10.tasks[index].name);
           setInputStatus(coaching.stage10.tasks[index].status);
           setInputConnectBoard(coaching.stage10.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage10.tasks[index].endTime));
+          setInputTrainees(coaching.stage10.tasks[index].trainees);
           break;                
         default: break;  
       } 
@@ -143,6 +162,76 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
     }
     updateDB();
    }
+
+
+   const manipulateSuggestedTraineeList = (val) =>{
+    setInputSearchTrainees(val);
+    const filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()));
+    //setTrainees(filteredListTrainess);
+    setListSuggestedTrainees(filteredListTrainess);
+   }
+
+   const manipulateSelectedTrainessList= (index) =>{
+    console.log("aaaaaaaaaaaa=" + index);
+   }
+
+     //getting an index of a trainee in listTrainees & adding it to selected trainees
+     const addTraineeToSelectedTrainees = (trainee)=>{ //trainee shows an entire record of  a trainee
+    
+      //trainee: the complete record of the trainee we wish to add to selectedTrainees
+      //inputTrainees: selected trainees
+      let arr = inputTrainees;
+     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
+     setInputTrainees(arr);
+     setIsTraineesOpen(false); 
+     switch(stageNumber){
+       case '1': coaching.stage1.tasks[index].trainees=arr;  break;
+       case '2': coaching.stage2.tasks[index].trainees=arr; break;
+       case '3': coaching.stage3.tasks[index].trainees=arr; break;
+       case '4': coaching.stage4.tasks[index].trainees=arr; break;
+       case '5': coaching.stage5.tasks[index].trainees=arr; break;
+       case '6': coaching.stage6.tasks[index].trainees=arr; break;
+       case '7': coaching.stage7.tasks[index].trainees=arr; break;
+       case '8': coaching.stage8.tasks[index].trainees=arr; break;
+       case '9': coaching.stage9.tasks[index].trainees=arr; break;
+       case '10': coaching.stage10.tasks[index].trainees=arr; break;
+       default: break;
+       }
+       updateDB();
+    }
+ 
+ 
+ 
+ 
+    const removeTraineeFromSelectedTrainees = (trainee) => {
+    
+     //trainee is the email of the trainee we wish to remove
+     //we use here inputTrainees that holds the selected trainees
+     let arr = [];
+ 
+     inputTrainees.map((train)=>{
+       if(train!==trainee){  
+         arr.push(train);
+       }
+     
+     });   
+     setInputTrainees(arr);
+     setIsTraineesOpen(false);
+     switch(stageNumber){
+       case '1': coaching.stage1.tasks[index].trainees=arr;  break;
+       case '2': coaching.stage2.tasks[index].trainees=arr; break;
+       case '3': coaching.stage3.tasks[index].trainees=arr; break;
+       case '4': coaching.stage4.tasks[index].trainees=arr; break;
+       case '5': coaching.stage5.tasks[index].trainees=arr; break;
+       case '6': coaching.stage6.tasks[index].trainees=arr; break;
+       case '7': coaching.stage7.tasks[index].trainees=arr; break;
+       case '8': coaching.stage8.tasks[index].trainees=arr; break;
+       case '9': coaching.stage9.tasks[index].trainees=arr; break;
+       case '10': coaching.stage10.tasks[index].trainees=arr; break;
+       default: break;
+       }
+       updateDB();
+    }
 
 
   return(
@@ -217,7 +306,51 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
      <DatePicker  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
     </td>
     <td className="px-6 py-4 text-center">
-      <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}} />
+      <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}}  onClick={setTrainees} />
+      {isTraineesOpen && ( 
+         <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
+           <input type="text" 
+             value={inputSearchTrainees}  
+             onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
+             onKeyDown={(event)=>{
+               if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                 event.preventDefault();
+               }
+             }} 
+             placeholder='חיפוש מתאמנים' 
+             className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
+           />
+          <p className='my-1 mx-2 text-white'>המלצות:</p>
+          <div >
+              {listSuggestedTraineees.map((trainee,index)=>{
+                return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
+                  <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                  {trainee.name}
+               </p>
+              })} 
+          </div>
+          <p className='my-1 mx-2 text-white'>משתתפים:</p>
+          <div>
+              {inputTrainees.map((trainee,index)=>{   
+                //we locate this trainee in listTrainees, in order to retreive his image + name
+                let image;  let name;
+                listTrainees.map((item)=>{ 
+                    if(item.email===trainee){
+                      image = item?.image;
+                      name = item?.name;
+                    }
+                  });
+                return <p key={index} className='text-white flex mb-2 justify-between' onClick={()=>manipulateSelectedTrainessList(index)}>
+                  <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                  {name}
+                  <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>
+               </p>
+              })} 
+            </div>  
+         </div>    
+         
+           
+            )}
     </td>
     <td className="px-6 py-4">
       
