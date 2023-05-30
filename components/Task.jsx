@@ -31,6 +31,10 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
   const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");
+  const [isFileOpen, setIsFileOpen]  = useState(false);
+  const setFile = () =>{
+    setIsFileOpen(!isFileOpen);
+  }
   const [isTraineesOpen, setIsTraineesOpen] = useState(false);
   const setTrainees =  () =>  {
     setIsTraineesOpen(!isTraineesOpen);
@@ -394,7 +398,8 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
 
     </td>
     <td className="px-6 py-4 text-center">
-      <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}/>
+      <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}  onClick={setFile} />
+      {isFileOpen && (<div>aaaaaaaaaaaaaa</div>)}
     </td>
   </tr>
   );
