@@ -34,9 +34,9 @@ const handler = NextAuth({
        //if no user exists, create one
        if(!userExists){
         const user = new User({
-          email:"aaaaaaaaaaa",
+          email:profile.email,
           userName:"bbbbbbbbbb",
-          name: "cccccccccccccc",
+          name: profile.name,
           image:"https://lh3.googleusercontent.com/a/AAcHTtcGeePOHSkdTsyI77BfBwnkg3UsCjoS3airSmZ4=s96-c",
           coaching: coaching 
         });
