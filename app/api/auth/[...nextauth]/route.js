@@ -26,22 +26,22 @@ const handler = NextAuth({
     async signIn({profile}){ 
      try{
        
-       /*await connectToDB();
+       await connectToDB();
      
        //check if a user already exists
        const userExists = await User.findOne({email:profile.email});
        
        //if no user exists, create one
        if(!userExists){
-        const user = await User.create({
+        /*const user = await User.create({
           email:profile?.email,
           userName:profile?.name.replace(" ", "").toLowerCase(),
           name: profile?.name,
           image:profile?.picture,
           coaching 
-        });
+        });*/
         
-       }*/
+       }
 
        return true;
      }catch(error){
