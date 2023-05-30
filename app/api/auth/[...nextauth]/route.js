@@ -35,7 +35,7 @@ const handler = NextAuth({
        if(!userExists){
         const user = new User({
           email:profile.email,
-          userName:"bbbbbbbbbb",
+          userName:profile.name.replace(" ", "").toLowerCase(),
           name: profile.name,
           image:"https://lh3.googleusercontent.com/a/AAcHTtcGeePOHSkdTsyI77BfBwnkg3UsCjoS3airSmZ4=s96-c",
           coaching: coaching 
