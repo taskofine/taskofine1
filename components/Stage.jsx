@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 let countedStages = [];
 
-const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
+const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
  
   const {data: session} = useSession();
 
@@ -258,7 +258,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       updateDB();
    }
    
-
+ 
 
   return  inputStartPeriod && inputEndPeriod &&(
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -267,8 +267,9 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
         </span>
           
-        <input
+        <input 
                className='border'
+               readOnly={amIAdmin?false:true}
                type="text"
                value={inputName}
                onChange={(event)=>{
@@ -307,7 +308,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       <td className="px-6 py-4">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
       </td>
-      <td className="px-6 py-4" onClick={setStatus} >
+      <td className="px-6 py-4" onClick={amIAdmin?setStatus:null} >
         <div className='bg-white'>
           {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
           {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
@@ -324,36 +325,45 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
       </td>
       <td className="px-6 py-4" onClick={setTimetable}>
      
-      <DatePickerRange  stageNumber={stageNumber} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
+      <DatePickerRange   stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
 
       </td>
       <td className="px-6 py-4" >
         <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
           <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
-            <input type="text" 
-              value={inputSearchTrainees}  
-              onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
-              onKeyDown={(event)=>{
+            {amIAdmin &&(
+              <>
+              <input type="text" 
+                value={inputSearchTrainees}  
+                onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
+                onKeyDown={(event)=>{
                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-                  event.preventDefault();
+                event.preventDefault();
                 }
               }} 
               placeholder='חיפוש מתאמנים' 
               className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
-            />
-            <p className='my-1 mx-2 text-white'>המלצות:</p>
-            <div >
-              {listSuggestedTraineees.map((trainee,index)=>{
-                return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
-                  <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
-                  {trainee.name}
-               </p>
-              })} 
-            </div>
+              />
+              <p className='my-1 mx-2 text-white'>המלצות:</p>
+              <div >
+                {listSuggestedTraineees.map((trainee,index)=>{
+                  return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
+                    <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                    {trainee.name}
+                 </p>
+                })} 
+              </div>
+              </>
+            )}
+     
+            
+         
+     
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
             <div >
               {inputTrainees.map((trainee,index)=>{   
+                
                 //we locate this trainee in listTrainees, in order to retreive his image + name
                 let image;  let name;
                 listTrainees.map((item)=>{ 
@@ -362,10 +372,10 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
                       name = item?.name;
                     }
                   });
-                return <p key={index} className='text-white flex mb-2 justify-between' onClick={()=>manipulateSelectedTrainessList(index)}>
+                return <p key={index} className={`text-white flex mb-2 justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
-                  <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>
+                  {amIAdmin && <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}
                </p>
               })} 
             </div>
@@ -374,6 +384,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
           </td>
           <td className="px-6 py-4">  
             <input
+               readOnly={amIAdmin?false:true}
                className='border'
                type="text"
                value={inputLastStage}
@@ -407,6 +418,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
            </td>
            <td className="px-6 py-4">
            <input
+              readOnly={amIAdmin?false:true}
                className='border'
                type="text"
                value={inputDurationInDays}
@@ -442,6 +454,7 @@ const Stage = ({stageNumber, listTrainees, toggleTasks, openedTask,setOpenedTask
            <td className="px-6 py-4">
            
            <input
+               readOnly={amIAdmin?false:true}
                className='border'
                type="text"
                value={inputPlannedTimeValue}

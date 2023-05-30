@@ -6,7 +6,7 @@ import coaching  from '../utils/skeletonCoaching';
 let modifiedStartDate;
 let modifiedEndDate;
 
-function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
+function DatePickerRange({stageNumber, amIAdmin, updateDB, startPeriod, endPeriod}) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   
@@ -66,6 +66,8 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
   return (
     <div>
       <DatePicker
+        disabled={amIAdmin?false:true}
+        
         dateFormat="dd/MM/yyyy"
         selected={startDate}
         onChange={handleStartDateChange}
@@ -76,6 +78,7 @@ function DatePickerRange({stageNumber, updateDB, startPeriod, endPeriod}) {
         minDate={new Date()}
       />
       <DatePicker
+        disabled={amIAdmin?false:true}
         dateFormat="dd/MM/yyyy"
         selected={endDate}
         onChange={handleEndDateChange}

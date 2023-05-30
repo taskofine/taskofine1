@@ -10,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Image from 'next/image';
 
 
-const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
   let name='';
   let status='';
   let trainees = [];
@@ -239,6 +239,7 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       
     <input
+      readOnly={amIAdmin?false:true}
       className='border'
       type="text"
       value={inputName}
@@ -303,32 +304,37 @@ const Task = ({stageNumber,index, updateDB, indexRenderedTasks, setIndexRendered
    )}
     </td>
     <td className="px-6 py-4">
-     <DatePicker  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
+     <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
     </td>
     <td className="px-6 py-4 text-center">
       <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}}  onClick={setTrainees} />
       {isTraineesOpen && ( 
          <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
-           <input type="text" 
-             value={inputSearchTrainees}  
-             onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
-             onKeyDown={(event)=>{
-               if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-                 event.preventDefault();
-               }
-             }} 
-             placeholder='חיפוש מתאמנים' 
-             className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
-           />
-          <p className='my-1 mx-2 text-white'>המלצות:</p>
-          <div >
-              {listSuggestedTraineees.map((trainee,index)=>{
-                return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
-                  <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
-                  {trainee.name}
-               </p>
-              })} 
-          </div>
+           {amIAdmin &&(
+              <>
+              <input type="text" 
+                value={inputSearchTrainees}  
+                onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
+                onKeyDown={(event)=>{
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                }
+              }} 
+              placeholder='חיפוש מתאמנים' 
+              className="border border-gray-300 m-1 px-2 py-2 rounded-md w-25"
+              />
+              <p className='my-1 mx-2 text-white'>המלצות:</p>
+              <div >
+                {listSuggestedTraineees.map((trainee,index)=>{
+                  return <p key={index} className='text-white flex mb-2' onClick={(trainees)=>{ addTraineeToSelectedTrainees(trainee)}}>
+                    <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+                    {trainee.name}
+                 </p>
+                })} 
+              </div>
+              </>
+            )} 
+          
           <p className='my-1 mx-2 text-white'>משתתפים:</p>
           <div>
               {inputTrainees.map((trainee,index)=>{   

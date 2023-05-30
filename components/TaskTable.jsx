@@ -3,8 +3,8 @@ import React,{useState, useEffect} from 'react'
 import coaching  from '../utils/skeletonCoaching';
 import Task from './Task';
 
-const TaskTable = ({stageNumber, updateDB, listTrainees, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated}) =>{  
-
+const TaskTable = ({stageNumber, amIAdmin, updateDB, listTrainees, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated}) =>{  
+ 
   let openedTask='3';
      let relevantStage;
     switch(stageNumber){
@@ -52,7 +52,7 @@ const TaskTable = ({stageNumber, updateDB, listTrainees, indexRenderedTasks, set
               <tbody>
                 {   
                   relevantStage.tasks.map((item,index)=>{  
-                   return <Task  key={index} stageNumber={stageNumber} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} listTrainees={listTrainees}/>
+                   return <Task  key={index} stageNumber={stageNumber} amIAdmin={amIAdmin} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} listTrainees={listTrainees}/>
                  }) 
                 }
               </tbody>
