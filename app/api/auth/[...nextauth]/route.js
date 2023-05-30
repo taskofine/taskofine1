@@ -33,13 +33,13 @@ const handler = NextAuth({
        
        //if no user exists, create one
        if(!userExists){
-        /*const user = await User.create({
-          email:profile?.email,
-          userName:profile?.name.replace(" ", "").toLowerCase(),
-          name: profile?.name,
-          image:profile?.picture,
-          coaching 
-        });*/
+        const user = await User.create({
+          email:/*profile?.email*/"mihaela55@gmail.com",
+          userName:/*profile?.name.replace(" ", "").toLowerCase()*/ "mihaela55",
+          name: "Mihaela Savin",
+          image:"https://lh3.googleusercontent.com/a/AAcHTtfzBaBZrYabSYwIbEeQMd48YnIfgm-Q_i0NRUNdjg=s96-c",
+          coaching: {} 
+        });
         
        }
 
