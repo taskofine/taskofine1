@@ -62,6 +62,7 @@ const MainTable = () => {
         setAmIAdmin(item.isAdmin);
   
         //update the skeleton with the updated data from DB
+        coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
         coaching.stage2=item.coaching.stage2;
         coaching.stage3=item.coaching.stage3;
@@ -73,6 +74,7 @@ const MainTable = () => {
         coaching.stage9=item.coaching.stage9;
         coaching.stage10=item.coaching.stage10;
         setIsSkeletonUpdated(true);
+        localStorage.setItem("isSkeletonUpdated", true);
         }
       }); 
   }, [firstEffectComplete]); 
@@ -122,6 +124,7 @@ const MainTable = () => {
   }
 
   else if(!isSkeletonUpdated){
+    localStorage.setItem("isSkeletonUpdated", false);
     return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
     אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
     </h1>)

@@ -1,5 +1,6 @@
 
 let coaching = {
+    chat: [],
     stage1: {
       name: "שלב 1 - בניית תכנית עסקית" , 
       status: "סגור",

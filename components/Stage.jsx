@@ -60,7 +60,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
    useEffect(()=>{   
     if(!isSkeletonUpdated) return;
-    
+    localStorage.setItem("chat", JSON.stringify(coaching.chat));
     if(!countedStages.includes(stageNumber)){
       countedStages.push(stageNumber);
       setListSuggestedTrainees(listTrainees);
@@ -264,6 +264,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
    }
    
  
+   
 
   return  inputStartPeriod && inputEndPeriod &&(
     <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -311,7 +312,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
       <td className="px-6 py-4">
-        <Link href="/chat" onClick={()=> router.replace(router.asPath)  }>
+        <Link href={'/chat'} onClick={()=> router.replace(router.asPath)  }>
           <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
         </Link>
         
