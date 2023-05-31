@@ -311,7 +311,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
       <td className="px-6 py-4">
-        <Link href={'/chat?isSkeletonUpdated=true'} onClick={()=> router.replace(router.asPath)  }>
+        <Link href={'/chat'} onClick={()=> router.replace(router.asPath)  }>
           <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
         </Link>
         
