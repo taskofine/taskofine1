@@ -8,6 +8,7 @@ import coaching  from '../utils/skeletonCoaching';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import Image from 'next/image';
+//import { Document, Page } from 'react-pdf';
 
 
 const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
@@ -399,7 +400,11 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
     </td>
     <td className="px-6 py-4 text-center">
       <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}  onClick={setFile} />
-      {isFileOpen && (<div>aaaaaaaaaaaaaa</div>)}
+      {isFileOpen && (
+       <button onClick={() => window.open("/assets/files/123.pdf", "_blank")}>
+       Open Document
+     </button>
+      )}
     </td>
   </tr>
   );
