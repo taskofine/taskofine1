@@ -8,7 +8,8 @@ import coaching  from '../utils/skeletonCoaching';
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import Image from 'next/image';
-//import { Document, Page } from 'react-pdf';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
@@ -17,7 +18,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   let trainees = [];
   let connectBoard='';
   let files=[];
-
+  const router = useRouter();
   const [isTaskStatusOpen, setIsTaskStatusOpen] = useState(false);
   const setTaskStatus = () => {
   
@@ -288,7 +289,9 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           /> 
     </th>
     <td className="px-6 py-4">
-      <FontAwesomeIcon icon={faComment }  size="xl"  style={{color:'#FFD700'}}/>
+      <Link href="/chat" onClick={()=> router.replace(router.asPath) } >
+        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
+      </Link>
     </td>
     <td className="px-6 py-4" >
     <div onClick={setTaskStatus}>

@@ -1,5 +1,6 @@
 'use client'
 import {useState, useEffect} from 'react'
+import { useRouter } from 'next/navigation';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +8,9 @@ import {useSession} from "next-auth/react";
 import coaching  from '../utils/skeletonCoaching';
 import DatePickerRange from './DatePickerRange';
 import Image from 'next/image';
+import ChatPage from '../app/chat/page';
+import Link from 'next/link';
+
 
 
 let countedStages = [];
@@ -14,7 +18,8 @@ let countedStages = [];
 const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
  
   const {data: session} = useSession();
-
+  const router = useRouter();
+  
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const setStatus =  () =>  {
     setIsStatusOpen(!isStatusOpen);
@@ -261,7 +266,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
  
 
   return  inputStartPeriod && inputEndPeriod &&(
-    <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
         <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
           <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
@@ -306,7 +311,10 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
       <td className="px-6 py-4">
-        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>
+        <Link href="/chat" onClick={()=> router.replace(router.asPath)  }>
+          <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
+        </Link>
+        
       </td>
       <td className="px-6 py-4" onClick={amIAdmin?setStatus:null} >
         <div className='bg-white'>

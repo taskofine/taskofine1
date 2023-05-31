@@ -4,6 +4,7 @@ import TaskTable from './TaskTable';
 import StageTable from './StageTable';
 import {useState, useEffect} from 'react'
 import {useSession} from "next-auth/react";
+
 import coaching  from '../utils/skeletonCoaching';
 
 
@@ -12,6 +13,7 @@ const MainTable = () => {
 
   
   const {data: session} = useSession();
+
 
  //Is the logged in user an admin?
  const [amIAdmin, setAmIAdmin] = useState(false);
