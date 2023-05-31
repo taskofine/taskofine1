@@ -32,6 +32,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
   const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");
+  const [inputFiles, setInputFiles] = useState([]);
   const [isFileOpen, setIsFileOpen]  = useState(false);
   const setFile = () =>{
     setIsFileOpen(!isFileOpen);
@@ -55,6 +56,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage1.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage1.tasks[index].endTime));
           setInputTrainees(coaching.stage1.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '2': 
           setInputName(coaching.stage2.tasks[index].name);
@@ -62,6 +64,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage2.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage2.tasks[index].endTime));
           setInputTrainees(coaching.stage2.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '3': 
           setInputName(coaching.stage3.tasks[index].name);
@@ -69,6 +72,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage3.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage3.tasks[index].endTime));
           setInputTrainees(coaching.stage3.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '4': 
           setInputName(coaching.stage4.tasks[index].name);
@@ -76,6 +80,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage4.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage4.tasks[index].endTime));
           setInputTrainees(coaching.stage4.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '5': 
           setInputName(coaching.stage5.tasks[index].name);
@@ -83,6 +88,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage5.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage5.tasks[index].endTime));
           setInputTrainees(coaching.stage5.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break; 
         case '6': 
           setInputName(coaching.stage6.tasks[index].name);
@@ -90,6 +96,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage6.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage6.tasks[index].endTime));
           setInputTrainees(coaching.stage6.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '7': 
           setInputName(coaching.stage7.tasks[index].name);
@@ -97,6 +104,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage7.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage7.tasks[index].endTime));
           setInputTrainees(coaching.stage7.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '8': 
           setInputName(coaching.stage8.tasks[index].name);
@@ -104,6 +112,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage8.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage8.tasks[index].endTime));
           setInputTrainees(coaching.stage8.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;
         case '9': 
           setInputName(coaching.stage9.tasks[index].name);
@@ -111,6 +120,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage9.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage9.tasks[index].endTime));
           setInputTrainees(coaching.stage9.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break; 
         case '10': 
           setInputName(coaching.stage10.tasks[index].name);
@@ -118,6 +128,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputConnectBoard(coaching.stage10.tasks[index].connectBoard);
           setInputEndDate(new Date(coaching.stage10.tasks[index].endTime));
           setInputTrainees(coaching.stage10.tasks[index].trainees);
+          setInputFiles(coaching.stage1.tasks[index].files);
           break;                
         default: break;  
       } 
@@ -398,13 +409,16 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
              />
 
     </td>
-    <td className="px-6 py-4 text-center">
-      <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}}  onClick={setFile} />
-      {isFileOpen && (
-       <button onClick={() => window.open("/assets/files/123.pdf", "_blank")}>
-       Open Document
-     </button>
-      )}
+    <td className="px-6 py-4 text-center"> 
+      {
+       inputFiles.map((file)=>{  console.log("aaaaaaaaaaaaa=" + file);
+         return( 
+            <button   onClick={() => window.open("/assets/files/" + file, "_blank")}>
+              <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}} />
+            </button> 
+         )
+       }) 
+      }
     </td>
   </tr>
   );

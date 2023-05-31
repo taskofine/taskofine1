@@ -15,7 +15,7 @@ let coaching = {
             status: "משימה חדשה",
             trainees: [],
             connectBoard: "Connect Us",
-            files: [],
+            files: ["stage1task0.pdf", "stage1task1.pdf"],
             endTime: new Date() 
         },
         {
