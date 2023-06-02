@@ -11,7 +11,7 @@ import Image from 'next/image';
 import ChatPage from '../app/chat/page';
 import Link from 'next/link';
 
-
+/////
 
 let countedStages = [];
 
