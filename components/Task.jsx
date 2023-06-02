@@ -290,7 +290,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       
     <input
       readOnly={amIAdmin?false:true}
-      className='border'
+      className='max-w-100 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
       type="text"
       value={inputName}
       onChange={(event)=>{
@@ -360,7 +360,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
      <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
     </td>
     <td className="px-6 py-4 text-center relative">
-      <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}}  onClick={setTrainees} />
+      <FontAwesomeIcon icon={faUserCircle }  size="3x" style={{color:'#008B8B'}}  onClick={setTrainees} />
       {isTraineesOpen && ( 
          <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
            {amIAdmin &&(
@@ -414,7 +414,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
     <td className="px-6 py-4">
       
     <input
-      className='border'
+      className='max-w-100 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
       type="text"
       value={inputConnectBoard}
       onChange={(event)=>{
@@ -446,12 +446,12 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
              />
 
     </td>
-    <td className="px-6 py-4 text-center"> 
+    <td className="px-6 py-4 text-center flex gap-2"> 
       {
        inputFiles.map((file)=>{  
          return( 
             <button   onClick={() => window.open("/assets/files/" + file, "_blank")}>
-              <FontAwesomeIcon   icon={faFileCode }  size="xl" style={{color:'#DC143C'}} />
+              <FontAwesomeIcon   icon={faFileCode }  size="2x" style={{color:'#DC143C'}} />
             </button> 
          )
        }) 

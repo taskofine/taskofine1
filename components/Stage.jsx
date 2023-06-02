@@ -275,40 +275,40 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   return  inputStartPeriod && inputEndPeriod &&(
     <div className=''>
       <tr>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-8">
           השלב
         </th>
         <th scope="col" className="px-6 py-3">
           צ'ט
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-8">
           סטטוס
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-2">
           לוז
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="">
           מבצע
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-6">
           שלב קודם
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-4">
           משך
         </th>
-        <th scope="col" className="px-6 py-3">
+        <th scope="col" className="px-2">
           זמן מתוכנן
         </th>
       </tr> 
       
       <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 z-0">
-      <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+      <td scope="row" className=" font-medium text-gray-900 whitespace-nowrap dark:text-white">
         <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
           <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
         </span>
           
         <input 
-               className='border'
+               className='max-w-300 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
                readOnly={amIAdmin?false:true}
                type="text"
                value={inputName}
@@ -345,7 +345,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
 
-      <td className="px-6 py-4">
+      <td className="px-6">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} } /> 
         {isPopupOpen && (
         <div className='absolute bg-slate-500 bg-opacity-60 h-1/4 w-2/4 '>
@@ -353,7 +353,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
        </div>
       )}
       </td>
-      <td className="px-6 py-4 relative" onClick={amIAdmin?setStatus:null} >
+      <td className="px-6  relative" onClick={amIAdmin?setStatus:null} >
         <div className='bg-white'>
           {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
           {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
@@ -361,20 +361,20 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
-            <div className='bg-white absolute top-0'>
+            <div className='bg-white absolute top-[-30px]'>
               <p className='bg-orange-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</p>       
               <p className='bg-green-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</p>      
               <p className='bg-gray-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</p>
             </div>
             )}
       </td>
-      <td className="px-6 py-4" onClick={setTimetable}>
-     
-      <DatePickerRange   stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
-
+      <td className="" onClick={setTimetable}>
+        <div style={{ maxWidth: '100px' }}>
+          <DatePickerRange  stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
+        </div>
       </td>
-      <td className="px-6 py-4 relative" >
-        <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
+      <td className="relative" >
+        <FontAwesomeIcon icon={faUserCircle } size="2x" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
           <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
             {amIAdmin &&(
@@ -427,10 +427,10 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
           </div>
             )}
           </td>
-          <td className="px-6 py-4">  
+          <td className="px-6">  
             <input
                readOnly={amIAdmin?false:true}
-               className='border'
+               className='max-w-100 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
                type="text"
                value={inputLastStage}
                onChange={(event)=>{
@@ -461,11 +461,12 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
                }}  
              />
            </td>
-           <td className="px-6 py-4">
+           <td className="px-2">
            <input
               readOnly={amIAdmin?false:true}
-               className='border'
+               className='max-w-50 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
                type="text"
+               style={{ maxWidth: '100px' }}
                value={inputDurationInDays}
                onChange={(event)=>{
                  setInputDurationInDays(event.target.value);
@@ -496,22 +497,22 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
              }}  
              />
            </td>
-           <td className="px-6 py-4">
-           
-           <input
+           <td >
+             <input
                readOnly={amIAdmin?false:true}
-               className='border'
+               className='max-w-50 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
+               style={{ maxWidth: '100px' }}
                type="text"
                value={inputPlannedTimeValue}
                onChange={(event)=>{
                  setInputPlannedTimeValue(event.target.value);
                }}
                onKeyDown={(event)=>{
-                 if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
                    event.preventDefault();
-                 }
+                  }
+                }
                }
-             }
              onBlur={(event)=> {
                const val = event.target.value; 
                
