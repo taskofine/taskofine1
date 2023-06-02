@@ -17,12 +17,15 @@ let countedStages = [];
 
 const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
   const popupTraineesRef = useRef(null);
+  const popupStatusRef = useRef(null);
+  const popupChatRef = useRef(null);
+
   const {data: session} = useSession();
   const router = useRouter();
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const setPopup = () =>{
-    setIsPopupOpen(!isPopupOpen);
+  const [isChatPopupOpen, setIsChatPopupOpen] = useState(false);
+  const setChatPopup = () =>{
+    setIsChatPopupOpen(!isChatPopupOpen);
   }
   
   const [isStatusOpen, setIsStatusOpen] = useState(false);
@@ -186,6 +189,12 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
      if (popupTraineesRef.current && !popupTraineesRef.current.contains(event.target)) {
        setTrainees();
      }
+     else  if (popupStatusRef.current && !popupStatusRef.current.contains(event.target)) {
+      setStatus();
+    }
+   /* else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
+      setChatPopup();
+    }*/
    };
    document.addEventListener('mousedown', handleClickOutside);
    return () => {
@@ -364,22 +373,22 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
       <td className="px-6">
-        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} } /> 
-        {isPopupOpen && (
-        <div className='absolute bg-slate-500 bg-opacity-60 h-1/4 w-2/4 '>
+        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} } /> 
+        {isChatPopupOpen && (
+        <div ref={popupChatRef} className='absolute bg-slate-500 bg-opacity-100 h-[300px] w-[400px] z-20 text-white '>
           <p>{chatContents}</p>
        </div>
       )}
       </td>
-      <td className="px-6  relative" onClick={amIAdmin?setStatus:null} >
-        <div className='bg-white'>
+      <td  className="px-6  relative" onClick={amIAdmin?setStatus:null} >
+        <div  className='bg-white'>
           {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
           {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
           {(inputStatus==="סגור" || status) && <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>}
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
-            <div className='bg-white absolute top-[-30px]'>
+            <div ref={popupStatusRef} className='bg-white absolute top-[-30px]'>
               <p className='bg-orange-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</p>       
               <p className='bg-green-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</p>      
               <p className='bg-gray-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</p>

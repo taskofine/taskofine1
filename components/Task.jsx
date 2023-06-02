@@ -14,6 +14,8 @@ import { useRouter } from 'next/navigation';
 
 const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
   const popupTraineesRef = useRef(null);
+  const popupStatusRef = useRef(null);
+  const popupChatRef = useRef(null);
   
   let name='';
   let status='';
@@ -21,10 +23,9 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   let connectBoard='';
   let files=[];
   const router = useRouter();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const setPopup = () =>{
-   // setIsPopupOpen(false);
-    setIsPopupOpen(!isPopupOpen);
+  const [isChatPopupOpen, setIsChatPopupOpen] = useState(false);
+  const setChatPopup = () =>{
+    setIsChatPopupOpen(!isChatPopupOpen);
   }
   const [isTaskStatusOpen, setIsTaskStatusOpen] = useState(false);
   const setTaskStatus = () => {
@@ -156,6 +157,12 @@ useEffect(()=>{
     if (popupTraineesRef.current && !popupTraineesRef.current.contains(event.target)) {
       setTrainees();
     }
+    else  if (popupStatusRef.current && !popupStatusRef.current.contains(event.target)) {
+      setTaskStatus();
+    }
+      /* else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
+      setChatPopup();
+    }*/
   };
   document.addEventListener('mousedown', handleClickOutside);
   return () => {
@@ -347,11 +354,10 @@ useEffect(()=>{
           /> 
     </th>
     <td className="py-4 px-4 relative">
-      <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} }/>
-      {isPopupOpen && (
-        <div className='absolute  bg-slate-500'>
-          <button onClick={()=>setIsPopupOpen(false)}>X</button> 
-         {chatContents}
+      <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
+      {isChatPopupOpen && (
+        <div ref={popupChatRef} className='absolute bg-slate-500 bg-opacity-100 h-[300px] w-[400px] z-20 text-white '>
+          <p>{chatContents}</p>
        </div>
       )} 
     </td>
@@ -369,7 +375,7 @@ useEffect(()=>{
         </div>
       </div> 
       {isTaskStatusOpen && (
-        <div className='absolute bg-slate-500 top-0 bg-opacity-90 z-10'>
+        <div ref={popupStatusRef} className='absolute bg-slate-500 top-[-10px] bg-opacity-90 z-10'>
           <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה חדשה"; populateStatusInCoaching(val);}} >משימה חדשה</p>
           <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בוצעה";  populateStatusInCoaching(val);}} >משימה בוצעה</p>
           <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בבדיקה";  populateStatusInCoaching(val);}} >משימה בבדיקה</p>
