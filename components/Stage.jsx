@@ -1,5 +1,5 @@
 'use client'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import { useRouter } from 'next/navigation';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,12 +11,12 @@ import Image from 'next/image';
 import ChatPage from '../app/chat/page';
 import Link from 'next/link';
 
-/////
+
 
 let countedStages = [];
 
 const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
- 
+  const popupTraineesRef = useRef(null);
   const {data: session} = useSession();
   const router = useRouter();
 
@@ -178,6 +178,24 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
     }  
    },[isSkeletonUpdated]);
    
+
+
+   useEffect(()=>{
+    //event listeners
+    const handleClickOutside = (event) => {   
+     if (popupTraineesRef.current && !popupTraineesRef.current.contains(event.target)) {
+       setTrainees();
+     }
+   };
+   document.addEventListener('mousedown', handleClickOutside);
+   return () => {
+     document.removeEventListener('mousedown', handleClickOutside);
+   };
+  
+ });
+ 
+
+
 
    const populateStatusInCoaching = (val) => {
     setInputStatus(val);
@@ -376,7 +394,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       <td className="relative" >
         <FontAwesomeIcon icon={faUserCircle } size="2x" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
-          <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
+          <div ref={popupTraineesRef} className='bg-slate-500 opacity-100 z-10 flex flex-col justify-center p-3  absolute rounded-xl'>
             {amIAdmin &&(
               <>
               <input type="text" 

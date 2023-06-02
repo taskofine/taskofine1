@@ -1,5 +1,5 @@
 'use client'
-import {useState, useEffect} from 'react'
+import {useState, useEffect,useRef} from 'react'
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faUserCircle, faFileCode, faArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -13,6 +13,8 @@ import { useRouter } from 'next/navigation';
 
 
 const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
+  const popupTraineesRef = useRef(null);
+  
   let name='';
   let status='';
   let trainees = [];
@@ -142,6 +144,29 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       } 
     }
   }, [isSkeletonUpdated]);
+
+
+
+
+
+
+useEffect(()=>{
+   //event listeners
+   const handleClickOutside = (event) => {   
+    if (popupTraineesRef.current && !popupTraineesRef.current.contains(event.target)) {
+      setTrainees();
+    }
+  };
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+ 
+});
+
+
+
+
 
 
 
@@ -366,7 +391,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
         <FontAwesomeIcon icon={faUserCircle }  size="3x" style={{color:'#008B8B'}}  onClick={setTrainees} />
       </div>  
       {isTraineesOpen && ( 
-         <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
+         <div ref={popupTraineesRef} className='bg-slate-500 opacity-100 z-10 flex flex-col justify-center p-3  absolute rounded-xl'>
            {amIAdmin &&(
               <>
               <input type="text" 
