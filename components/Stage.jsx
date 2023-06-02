@@ -375,7 +375,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       <td className="px-6">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} } /> 
         {isChatPopupOpen && (
-        <div ref={popupChatRef} className='absolute bg-slate-500 bg-opacity-100 h-[300px] w-[400px] z-20 text-white '>
+        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100 h-[300px] w-[200px] md:w-[400px] z-20 text-white '>
           <p>{chatContents}</p>
        </div>
       )}
