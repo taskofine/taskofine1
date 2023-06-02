@@ -265,22 +265,22 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       <th scope="col" className="px-6 py-3">
         המשימה
       </th>
-      <th scope="col" className="px-6 py-3">
+      <th scope="col" className="px-4 py-3">
         צ'ט
       </th>
-      <th scope="col" className="px-6 py-3">
+      <th scope="col" className="px-8 py-3">
         סטטוס המשימה
       </th>
-      <th scope="col" className="px-6 py-3">
+      <th scope="col" className="px-0 py-3">
         מועד הגשה
       </th>
-      <th scope="col" className="px-6 py-3">
+      <th scope="col" className="px-0 py-3">
         מבצע המשימה
       </th>
       <th scope="col" className="px-6 py-3">
         Connect Board
       </th>
-      <th scope="col" className="px-6 py-3">
+      <th scope="col" className="px-20 py-3">
         קבצים
       </th>
     </tr>
@@ -321,12 +321,12 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
             }}  
           /> 
     </th>
-    <td className="px-6 py-4 relative">
+    <td className="py-4 px-4 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} }/>
       {isPopupOpen && (
         <div className='absolute  bg-slate-500'>
           <button onClick={()=>setIsPopupOpen(false)}>X</button> 
-         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+         {chatContents}
        </div>
       )} 
     </td>
@@ -356,11 +356,15 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
         </div>
       )}
     </td>
-    <td className="px-6 py-4">
-     <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
+    <td className="">
+      <div style={{ maxWidth: '100px' }}>
+        <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
+      </div>  
     </td>
-    <td className="px-6 py-4 text-center relative">
-      <FontAwesomeIcon icon={faUserCircle }  size="3x" style={{color:'#008B8B'}}  onClick={setTrainees} />
+    <td className="text-center relative">
+      <div style={{ maxWidth: '100px' }}>
+        <FontAwesomeIcon icon={faUserCircle }  size="3x" style={{color:'#008B8B'}}  onClick={setTrainees} />
+      </div>  
       {isTraineesOpen && ( 
          <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
            {amIAdmin &&(
@@ -411,10 +415,11 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
            
             )}
     </td>
-    <td className="px-6 py-4">
-      
+    
+    <td className="">   
+      <div  className="px-5" style={{ maxWidth: '100px' }}>
     <input
-      className='max-w-100 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
+      className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
       type="text"
       value={inputConnectBoard}
       onChange={(event)=>{
@@ -444,9 +449,12 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
                updateDB();
              }}  
              />
-
+        </div>     
     </td>
-    <td className="px-6 py-4 text-center flex gap-2"> 
+
+
+
+    <td className="mx-20 text-center flex gap-1"> 
       {
        inputFiles.map((file)=>{  
          return( 
@@ -457,6 +465,8 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
        }) 
       }
     </td>
+
+
   </tr>
   </div>
   );
