@@ -323,12 +323,12 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       <td className="px-6 py-4">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} } /> 
         {isPopupOpen && (
-        <div className='absolute bg-red-500 bg-opacity-60 h-1/4 w-2/4 '>
+        <div className='absolute bg-slate-500 bg-opacity-60 h-1/4 w-2/4 '>
           <p>{chatContents}</p>
        </div>
       )}
       </td>
-      <td className="px-6 py-4" onClick={amIAdmin?setStatus:null} >
+      <td className="px-6 py-4 relative" onClick={amIAdmin?setStatus:null} >
         <div className='bg-white'>
           {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
           {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
@@ -336,7 +336,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
-            <div className='bg-white'>
+            <div className='bg-white absolute top-0'>
               <p className='bg-orange-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</p>       
               <p className='bg-green-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</p>      
               <p className='bg-gray-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</p>
@@ -348,10 +348,10 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       <DatePickerRange   stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
 
       </td>
-      <td className="px-6 py-4" >
+      <td className="px-6 py-4 relative" >
         <FontAwesomeIcon icon={faUserCircle } size="xl" style={{color:'#008B8B'}} onClick={setTrainees} />
           {isTraineesOpen && (
-          <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
+          <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
             {amIAdmin &&(
               <>
               <input type="text" 

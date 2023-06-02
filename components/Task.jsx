@@ -298,51 +298,48 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
             }}  
           /> 
     </th>
-    <td className="px-6 py-4">
+    <td className="px-6 py-4 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} }/>
       {isPopupOpen && (
-        <div className='absolute top-10 bg-red-500 bg-opacity-80 h-1/4 w-2/4 top-10'>
+        <div className='absolute  bg-slate-500'>
           <button onClick={()=>setIsPopupOpen(false)}>X</button> 
          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
        </div>
       )} 
     </td>
-    <td className="px-6 py-4" >
-    <div onClick={setTaskStatus}>
-      
-      <div className='bg-white flex flex-wrap static w-40'>
-        {(inputStatus==="משימה חדשה" || status) && <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>}
-        {(inputStatus==="משימה בוצעה" || status) && <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בוצעה</p>}
-        {(inputStatus==="משימה בבדיקה" || status) && <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בבדיקה</p>}
-        {(inputStatus==="משימה לעריכה" || status) && <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md'>משימה לעריכה</p>}
-        {(inputStatus==="משימה נערכה" || status) && <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md'>משימה נערכה</p>}
-        {(inputStatus==="אלחי תציל אותי" || status) && <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md'>אלחי תציל אותי</p>}
-        {(inputStatus==="הושלם בהצלחה" || status) && <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md'>הושלם בהצלחה</p>}
-        {(inputStatus==="איחור בהגשה" || status) && <p className='bg-black w-40 text-center mt-2 p-2 rounded-md'>איחור בהגשה</p>}
-       </div>
-     
-    </div>
-    -{isTaskStatusOpen &&(<hr className=''/>)} 
-    {isTaskStatusOpen && (
-       <div className='bg-white flex flex-wrap static w-40'>
-         <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה חדשה"; populateStatusInCoaching(val);}} >משימה חדשה</p>
-         <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בוצעה";  populateStatusInCoaching(val);}} >משימה בוצעה</p>
-         <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בבדיקה";  populateStatusInCoaching(val);}} >משימה בבדיקה</p>
-         <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה לעריכה"  ;populateStatusInCoaching(val);}} >משימה לעריכה</p>
-         <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה נערכה"  ;populateStatusInCoaching(val);}} >משימה נערכה</p>
-         <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "אלחי תציל אותי";  populateStatusInCoaching(val);}} >אלחי תציל אותי</p>
-         <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "הושלם בהצלחה";   populateStatusInCoaching(val);}} >הושלם בהצלחה</p>
-         <p className='bg-black text-white w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "איחור בהגשה"  ;populateStatusInCoaching(val);}} >איחור בהגשה</p>
-       </div>
-   )}
+    <td className="px-6 py-4 relative" >
+      <div onClick={setTaskStatus}>   
+        <div className='bg-white flex flex-wrap static w-40'>
+          {(inputStatus==="משימה חדשה" || status) && <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</p>}
+          {(inputStatus==="משימה בוצעה" || status) && <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בוצעה</p>}
+          {(inputStatus==="משימה בבדיקה" || status) && <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md'>משימה בבדיקה</p>}
+          {(inputStatus==="משימה לעריכה" || status) && <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md'>משימה לעריכה</p>}
+          {(inputStatus==="משימה נערכה" || status) && <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md'>משימה נערכה</p>}
+          {(inputStatus==="אלחי תציל אותי" || status) && <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md'>אלחי תציל אותי</p>}
+          {(inputStatus==="הושלם בהצלחה" || status) && <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md'>הושלם בהצלחה</p>}
+          {(inputStatus==="איחור בהגשה" || status) && <p className='bg-black w-40 text-center mt-2 p-2 rounded-md'>איחור בהגשה</p>}
+        </div>
+      </div> 
+      {isTaskStatusOpen && (
+        <div className='absolute bg-slate-500 top-0 bg-opacity-90 z-10'>
+          <p className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה חדשה"; populateStatusInCoaching(val);}} >משימה חדשה</p>
+          <p className='bg-green-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בוצעה";  populateStatusInCoaching(val);}} >משימה בוצעה</p>
+          <p className='bg-yellow-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה בבדיקה";  populateStatusInCoaching(val);}} >משימה בבדיקה</p>
+          <p className='bg-red-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה לעריכה"  ;populateStatusInCoaching(val);}} >משימה לעריכה</p>
+          <p className='bg-pink-400 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "משימה נערכה"  ;populateStatusInCoaching(val);}} >משימה נערכה</p>
+          <p className='bg-orange-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "אלחי תציל אותי";  populateStatusInCoaching(val);}} >אלחי תציל אותי</p>
+          <p className='bg-purple-600 w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "הושלם בהצלחה";   populateStatusInCoaching(val);}} >הושלם בהצלחה</p>
+          <p className='bg-black text-white w-40 text-center mt-2 p-2 rounded-md' onClick={()=>{const val = "איחור בהגשה"  ;populateStatusInCoaching(val);}} >איחור בהגשה</p>
+        </div>
+      )}
     </td>
     <td className="px-6 py-4">
      <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
     </td>
-    <td className="px-6 py-4 text-center">
+    <td className="px-6 py-4 text-center relative">
       <FontAwesomeIcon icon={faUserCircle }  size="xl" style={{color:'#008B8B'}}  onClick={setTrainees} />
       {isTraineesOpen && ( 
-         <div className='bg-slate-500 flex flex-col justify-center p-3 relative left-20 top-2'>
+         <div className='bg-slate-500 flex flex-col justify-center p-3  absolute'>
            {amIAdmin &&(
               <>
               <input type="text" 
