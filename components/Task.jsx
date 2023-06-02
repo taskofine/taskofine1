@@ -19,6 +19,11 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   let connectBoard='';
   let files=[];
   const router = useRouter();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const setPopup = () =>{
+   // setIsPopupOpen(false);
+    setIsPopupOpen(!isPopupOpen);
+  }
   const [isTaskStatusOpen, setIsTaskStatusOpen] = useState(false);
   const setTaskStatus = () => {
   
@@ -42,6 +47,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   const setTrainees =  () =>  {
     setIsTraineesOpen(!isTraineesOpen);
   }
+  const [chatContents, setChatContents] =  useState([]);
 
   useEffect(()=>{
     if(!(indexRenderedTasks.includes(index))){
@@ -50,6 +56,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       let arr = indexRenderedTasks;
       arr.push(index);
       setIndexRenderedTasks(arr);
+      setChatContents(coaching.chat);
       switch(stageNumber){
         case '1': 
           setInputName(coaching.stage1.tasks[index].name);
@@ -252,6 +259,9 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
 
 
   return(
+    <div className=''>
+     
+
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       
@@ -289,9 +299,13 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           /> 
     </th>
     <td className="px-6 py-4">
-      <Link href="/chat" onClick={()=> router.replace(router.asPath) } >
-        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
-      </Link>
+      <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} }/>
+      {isPopupOpen && (
+        <div className='absolute top-10 bg-red-500 bg-opacity-80 h-1/4 w-2/4 top-10'>
+          <button onClick={()=>setIsPopupOpen(false)}>X</button> 
+         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+       </div>
+      )} 
     </td>
     <td className="px-6 py-4" >
     <div onClick={setTaskStatus}>
@@ -424,6 +438,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       }
     </td>
   </tr>
+  </div>
   );
 }
 

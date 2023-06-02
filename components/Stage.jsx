@@ -19,6 +19,11 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
  
   const {data: session} = useSession();
   const router = useRouter();
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const setPopup = () =>{
+    setIsPopupOpen(!isPopupOpen);
+  }
   
   const [isStatusOpen, setIsStatusOpen] = useState(false);
   const setStatus =  () =>  {
@@ -47,6 +52,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   const [inputEndPeriod, setInputEndPeriod] = useState(null);
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
   const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
+  const [chatContents, setChatContents] =  useState([]);
  
   
   let name='';
@@ -63,6 +69,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
     if(!countedStages.includes(stageNumber)){
       countedStages.push(stageNumber);
       setListSuggestedTrainees(listTrainees);
+      setChatContents(coaching.chat);
       switch(stageNumber){
         case '1': 
           setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours);  
@@ -266,7 +273,10 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
    
 
   return  inputStartPeriod && inputEndPeriod &&(
-    <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <div className=''>
+
+      
+      <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 z-0">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
         <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
           <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
@@ -311,10 +321,12 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
 
       <td className="px-6 py-4">
-        <Link href={'/chat'} onClick={()=> router.replace(router.asPath)  }>
-          <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}}/>  
-        </Link>
-        
+        <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setPopup();} } /> 
+        {isPopupOpen && (
+        <div className='absolute bg-red-500 bg-opacity-60 h-1/4 w-2/4 '>
+          <p>{chatContents}</p>
+       </div>
+      )}
       </td>
       <td className="px-6 py-4" onClick={amIAdmin?setStatus:null} >
         <div className='bg-white'>
@@ -496,6 +508,8 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
              />
            </td>
          </tr> 
+    </div>
+    
          );
         } 
 
