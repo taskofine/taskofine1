@@ -274,7 +274,32 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
   return  inputStartPeriod && inputEndPeriod &&(
     <div className=''>
-
+      <tr>
+        <th scope="col" className="px-6 py-3">
+          השלב
+        </th>
+        <th scope="col" className="px-6 py-3">
+          צ'ט
+        </th>
+        <th scope="col" className="px-6 py-3">
+          סטטוס
+        </th>
+        <th scope="col" className="px-6 py-3">
+          לוז
+        </th>
+        <th scope="col" className="px-6 py-3">
+          מבצע
+        </th>
+        <th scope="col" className="px-6 py-3">
+          שלב קודם
+        </th>
+        <th scope="col" className="px-6 py-3">
+          משך
+        </th>
+        <th scope="col" className="px-6 py-3">
+          זמן מתוכנן
+        </th>
+      </tr> 
       
       <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 z-0">
       <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">

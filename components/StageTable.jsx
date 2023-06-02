@@ -10,6 +10,7 @@ const StageTable = ({stageNumber, amIAdmin,toggleTasks,openedTasks,setOpenedTask
  
   return (
     <table  className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      {/*}
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th scope="col" className="px-6 py-3">
@@ -38,6 +39,7 @@ const StageTable = ({stageNumber, amIAdmin,toggleTasks,openedTasks,setOpenedTask
           </th>
         </tr>
       </thead>
+  */}
     <tbody>
       <Stage stageNumber={stageNumber} amIAdmin={amIAdmin} listTrainees={listTrainees} toggleTasks={toggleTasks} openedTasks={openedTasks} setOpenedTasks={setOpenedTasks} updateDB={updateDB} isSkeletonUpdated={isSkeletonUpdated}/>
     </tbody>

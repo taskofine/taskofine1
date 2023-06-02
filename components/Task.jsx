@@ -261,6 +261,29 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   return(
     <div className=''>
      
+     <tr>
+      <th scope="col" className="px-6 py-3">
+        המשימה
+      </th>
+      <th scope="col" className="px-6 py-3">
+        צ'ט
+      </th>
+      <th scope="col" className="px-6 py-3">
+        סטטוס המשימה
+      </th>
+      <th scope="col" className="px-6 py-3">
+        מועד הגשה
+      </th>
+      <th scope="col" className="px-6 py-3">
+        מבצע המשימה
+      </th>
+      <th scope="col" className="px-6 py-3">
+        Connect Board
+      </th>
+      <th scope="col" className="px-6 py-3">
+        קבצים
+      </th>
+    </tr>
 
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
