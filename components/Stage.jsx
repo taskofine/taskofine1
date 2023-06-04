@@ -83,7 +83,6 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
           setInputTrainees(coaching.stage1.trainees);
           setInputStartPeriod(coaching.stage1.startPeriod);
           setInputEndPeriod(coaching.stage1.endPeriod);
-          
           break;
         case '2': 
           setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 

@@ -43,7 +43,7 @@ const handler = NextAuth({
         user.save();
         
        }
-
+       console.log("wwwwwwwwwwwwwwwwwwwww");
        return true;
      }catch(error){
        console.log("eeeeeeeeeeeeeeee=" + error);

@@ -131,6 +131,9 @@ const MainTable = () => {
   }
  
 
+console.log("aaaaaaaaaaaaaaaaa=" + amIAdmin);
+
+
   return (
     (<div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">    
