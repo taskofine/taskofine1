@@ -6,6 +6,7 @@ import {useState, useEffect} from 'react'
 import {useSession} from "next-auth/react";
 import Image from 'next/image';
 import coaching  from '../utils/skeletonCoaching';
+import { stringify } from 'querystring';
 
 
 
@@ -28,6 +29,9 @@ const MainTable = () => {
     //setTrainees(filteredListTrainess);
     setListSuggestedTrainees(filteredListTrainess);
  }
+
+ //when admin selects a trainee and wishes to enter his table
+ const [selectedTrainee, setSelectedTrainee] =  useState("");
 
   //this implies if the skeleton has been retreived from  the db
   const [isSkeletonUpdated, setIsSkeletonUpdated] = useState(false);
@@ -59,7 +63,7 @@ const MainTable = () => {
 
 
   //checking if the logged in user is an admin
-  useEffect(()=>{
+  useEffect(()=>{ 
     if(session){
       window.localStorage.setItem("session", JSON.stringify(session));  
     }
@@ -69,7 +73,7 @@ const MainTable = () => {
 
     listTrainees.map((item)=>{  
       //finding myseld on the list of users
-      if(item.email === session?.user?.email || item.email===emailSession){
+      if(item.email === session?.user?.email || item.email===emailSession || (selectedTrainee!='' && item.email===selectedTrainee)){
          
         setAmIAdmin(item.isAdmin);
   
@@ -89,7 +93,7 @@ const MainTable = () => {
         localStorage.setItem("isSkeletonUpdated", true);
         }
       }); 
-  }, [firstEffectComplete]); 
+  }, [firstEffectComplete, selectedTrainee]); 
 
 
 
@@ -144,7 +148,6 @@ const MainTable = () => {
  
 
 if(amIAdmin){
-
   return(
     <div className='flex flex-col justify-center mt-5'>
       
@@ -162,20 +165,18 @@ if(amIAdmin){
 
       <div className='mt-5 mx-auto'>
         {listSuggestedTraineees.map((trainee,index)=>{   
-          return (<p className="flex gap-3" onClick={()=>{console.log("xxxxxxxxxxxxxx=" + trainee.email);}}>
+          return (<p className="flex gap-3" onClick={()=>{setSelectedTrainee(trainee.email)}}>
              <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
             {trainee.name}
             </p>)
         })} 
       </div> 
       
-
     </div>
-
   )
 }
 
-
+//if I'm not admin
   return (
     (<div className='my-5 relative' dir="rtl">
     <div className="overflow-x-auto">    
