@@ -382,16 +382,16 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       </td>
       <td  className="px-6  relative" onClick={amIAdmin?setStatus:null} >
         <div  className='bg-white'>
-          {(inputStatus==="חדש" || status) && <p className='bg-orange-400 px-8 py-2 rounded-lg my-1'>חדש</p>}
-          {(inputStatus==="בוצע" || status) && <p className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</p>}
-          {(inputStatus==="סגור" || status) && <p className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</p>}
+          {(inputStatus==="חדש" || status) && <button className='bg-orange-400 px-8 py-2 rounded-lg my-1 '>חדש</button>}
+          {(inputStatus==="בוצע" || status) && <button className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</button>}
+          {(inputStatus==="סגור" || status) && <button className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</button>}
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
-            <div ref={popupStatusRef} className='bg-white absolute top-[-30px]'>
-              <p className='bg-orange-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</p>       
-              <p className='bg-green-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</p>      
-              <p className='bg-gray-400 px-8 py-2 rounded-lg my-1' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</p>
+            <div ref={popupStatusRef} className='absolute top-[-30px] bg-slate-500 top-[-10px] bg-opacity-100 z-10 rounded-xl flex flex-col justify-center'>
+              <button className='bg-orange-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</button>       
+              <button className='bg-green-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</button>      
+              <button className='bg-gray-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</button>
             </div>
             )}
       </td>
