@@ -296,9 +296,9 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
    }
    
  
-   
+  
 
-  return  inputStartPeriod && inputEndPeriod &&(
+  return  /*inputStartPeriod && inputEndPeriod &&*/(
     <div className=''>
       <tr>
         <th scope="col" className="px-8">
@@ -434,7 +434,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
             <div >
               {inputTrainees.map((trainee,index)=>{   
-                
+               
                 //we locate this trainee in listTrainees, in order to retreive his image + name
                 let image;  let name;
                 listTrainees.map((item)=>{ 

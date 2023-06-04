@@ -4,7 +4,7 @@ import TaskTable from './TaskTable';
 import StageTable from './StageTable';
 import {useState, useEffect} from 'react'
 import {useSession} from "next-auth/react";
-
+import Image from 'next/image';
 import coaching  from '../utils/skeletonCoaching';
 
 
@@ -17,6 +17,17 @@ const MainTable = () => {
 
  //Is the logged in user an admin?
  const [amIAdmin, setAmIAdmin] = useState(false);
+//for traineee search box
+ const [inputSearchTrainees, setInputSearchTrainees] = useState("");
+ //for suggesting trainees by the user's search
+ const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
+ const manipulateSuggestedTraineeList = (val) =>{
+    setInputSearchTrainees(val);
+    
+    const filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()));
+    //setTrainees(filteredListTrainess);
+    setListSuggestedTrainees(filteredListTrainess);
+ }
 
   //this implies if the skeleton has been retreived from  the db
   const [isSkeletonUpdated, setIsSkeletonUpdated] = useState(false);
@@ -27,6 +38,7 @@ const MainTable = () => {
   //getting all the users who have logged in (at least once) to this app
   // and have been registered in collection 'users' in DB
   const [listTrainees, setListTrainees] = useState([]);
+
   const [firstEffectComplete, setFirstEffectComplete] = useState(false);
   const retreiveUsers = async() => {  
     try{
@@ -131,7 +143,37 @@ const MainTable = () => {
   }
  
 
-console.log("aaaaaaaaaaaaaaaaa=" + amIAdmin);
+if(amIAdmin){
+
+  return(
+    <div className='flex flex-col justify-center mt-5'>
+      
+      <input type="text" 
+       value={inputSearchTrainees}  
+       onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
+       onKeyDown={(event)=>{
+       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+       event.preventDefault();
+        }
+       }} 
+       placeholder='חיפוש מתאמנים' 
+       className="border border-gray-300 rounded-md w-[50vw] m-auto p-2"
+      />
+
+      <div className='mt-5 mx-auto'>
+        {listSuggestedTraineees.map((trainee,index)=>{   
+          return (<p className="flex gap-3" onClick={()=>{console.log("xxxxxxxxxxxxxx=" + trainee.email);}}>
+             <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+            {trainee.name}
+            </p>)
+        })} 
+      </div> 
+      
+
+    </div>
+
+  )
+}
 
 
   return (
