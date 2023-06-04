@@ -294,31 +294,47 @@ useEffect(()=>{
     <div className=''>
      
      <tr>
-      <th scope="col" className="px-6 py-3">
-        המשימה
-      </th>
-      <th scope="col" className="px-4 py-3">
-        צ'ט
-      </th>
-      <th scope="col" className="px-8 py-3">
-        סטטוס המשימה
+     <th scope="col" className="px-10 py-3">
+        קבצים
       </th>
       <th scope="col" className="px-0 py-3">
+        המשימה
+      </th>
+      <th scope="col" className="px-6 py-3">
+        צ'ט
+      </th>
+      <th scope="col" className="px-6 py-3">
+        סטטוס המשימה
+      </th>
+      <th scope="col" className="px-2 py-3">
         מועד הגשה
       </th>
       <th scope="col" className="px-0 py-3">
         מבצע המשימה
       </th>
+      
       <th scope="col" className="px-6 py-3">
         Connect Board
-      </th>
-      <th scope="col" className="px-20 py-3">
-        קבצים
       </th>
     </tr>
 
     <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <td>
+      <div className="mx-10 flex gap-1">
+      {
+       inputFiles.map((file)=>{  
+         return( 
+            <button   onClick={() => window.open("/assets/files/" + file, "_blank")}>
+              <FontAwesomeIcon   icon={faFileCode }  size="2x" style={{color:'#DC143C'}} />
+            </button> 
+         )
+       }) 
+      }
+      </div> 
+    </td>
+
+
+    <td scope="row" className="px-0 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       
     <input
       readOnly={amIAdmin?false:true}
@@ -352,8 +368,8 @@ useEffect(()=>{
             updateDB();
             }}  
           /> 
-    </th>
-    <td className="py-4 px-4 relative">
+    </td>
+    <td className="py-4 px-6 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
       {isChatPopupOpen && (
         <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100 h-[300px] w-[300px] md:w-[400px] z-20 text-white '>
@@ -361,7 +377,7 @@ useEffect(()=>{
        </div>
       )} 
     </td>
-    <td className="px-6 py-4 relative" >
+    <td className="px-4 py-4 relative" >
       <div onClick={setTaskStatus} className='' >   
         <div className='bg-white flex flex-wrap static w-40'>
           {(inputStatus==="משימה חדשה" || status) && <button className='bg-orange-400 w-40 text-center mt-2 p-2 rounded-md'>משימה חדשה</button>}
@@ -388,7 +404,7 @@ useEffect(()=>{
       )}
     </td>
     <td className="">
-      <div style={{ maxWidth: '100px' }}>
+      <div className="px-2" style={{ maxWidth: '100px' }}>
         <DatePicker disabled={amIAdmin?false:true}  className='flex' dateFormat="dd/MM/yyyy" selected={new Date(inputEndDate)}  onChange={(date) => handleEndDateChange(date)}  minDate={new Date()} />
       </div>  
     </td>
@@ -447,10 +463,13 @@ useEffect(()=>{
             )}
     </td>
     
-    <td className="">   
-      <div  className="px-5" style={{ maxWidth: '100px' }}>
+
+
+
+    <td>   
+      <div  className="px-6" style={{ maxWidth: '100px' }}>
     <input
-      className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
+      className=' py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
       type="text"
       value={inputConnectBoard}
       onChange={(event)=>{
@@ -485,17 +504,7 @@ useEffect(()=>{
 
 
 
-    <td className="mx-20 text-center flex gap-1"> 
-      {
-       inputFiles.map((file)=>{  
-         return( 
-            <button   onClick={() => window.open("/assets/files/" + file, "_blank")}>
-              <FontAwesomeIcon   icon={faFileCode }  size="2x" style={{color:'#DC143C'}} />
-            </button> 
-         )
-       }) 
-      }
-    </td>
+
 
 
   </tr>
