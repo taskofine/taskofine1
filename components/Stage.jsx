@@ -191,9 +191,9 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
      else  if (popupStatusRef.current && !popupStatusRef.current.contains(event.target)) {
       setStatus();
     }
-   /* else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
+    else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
       setChatPopup();
-    }*/
+    }
    };
    document.addEventListener('mousedown', handleClickOutside);
    return () => {

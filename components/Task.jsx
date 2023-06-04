@@ -160,9 +160,9 @@ useEffect(()=>{
     else  if (popupStatusRef.current && !popupStatusRef.current.contains(event.target)) {
       setTaskStatus();
     }
-      /* else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
+     else  if (popupChatRef.current && !popupChatRef.current.contains(event.target)) {
       setChatPopup();
-    }*/
+    }
   };
   document.addEventListener('mousedown', handleClickOutside);
   return () => {
@@ -372,9 +372,9 @@ useEffect(()=>{
     <td className="py-4 px-6 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
       {isChatPopupOpen && (
-        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100 h-[300px] w-[300px] md:w-[400px] z-20 text-white '>
+        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100  absolute h-[200px] w-[250px] right-0  z-20 text-white rounded-xl '>
           <p>{chatContents}</p>
-       </div>
+        </div>
       )} 
     </td>
     <td className="px-4 py-4 relative" >
