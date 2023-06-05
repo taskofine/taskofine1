@@ -70,7 +70,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
 
 setTimeout(()=>{
-  console.log("vvvvvvvvvvvv=" +  stageNumber +  " " +  JSON.stringify(coach)); 
+  
   switch(stageNumber){
     case '1':
      
