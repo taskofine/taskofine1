@@ -5,6 +5,8 @@ import Task from './Task';
 
 const TaskTable = ({stageNumber, amIAdmin, updateDB, listTrainees, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated}) =>{  
  
+
+
   let openedTask='3';
      let relevantStage;
     switch(stageNumber){

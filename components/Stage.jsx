@@ -13,9 +13,11 @@ import Link from 'next/link';
 
 
 
+
 let countedStages = [];
 
-const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated}) => {
+const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach}) => {
+    
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
@@ -66,6 +68,117 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   let plannedTimeInHours='';
 
   
+
+setTimeout(()=>{
+  console.log("vvvvvvvvvvvv=" +  stageNumber +  " " +  JSON.stringify(coach)); 
+  switch(stageNumber){
+    case '1':
+     
+      setInputPlannedTimeValue(coach.stage1.plannedTimeInHours);  
+      setInputDurationInDays(coach.stage1.durationInDays);
+      setInputLastStage(coach.stage1.lastStage);
+      setInputStatus(coach.stage1.status);
+      setInputName(coach.stage1.name);
+      setInputTrainees(coach.stage1.trainees);
+      setInputStartPeriod(coach.stage1.startPeriod);
+      setInputEndPeriod(coach.stage1.endPeriod);
+      break;
+
+    case '2': 
+      setInputPlannedTimeValue(coach.stage2.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage2.durationInDays);
+      setInputLastStage(coach.stage2.lastStage);
+      setInputStatus(coach.stage2.status);
+      setInputName(coach.stage2.name);
+      setInputTrainees(coach.stage2.trainees);
+      setInputStartPeriod(coach.stage2.startPeriod);
+      setInputEndPeriod(coach.stage2.endPeriod);
+      break;
+
+    case '3': 
+      setInputPlannedTimeValue(coach.stage3.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage3.durationInDays);
+      setInputLastStage(coach.stage3.lastStage);
+      setInputStatus(coach.stage3.status);
+      setInputName(coach.stage3.name);
+      setInputTrainees(coach.stage3.trainees);
+      setInputStartPeriod(coach.stage3.startPeriod);
+      setInputEndPeriod(coach.stage3.endPeriod);
+      break;
+    case '4': 
+      setInputPlannedTimeValue(coach.stage4.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage4.durationInDays);
+      setInputLastStage(coach.stage4.lastStage);
+      setInputStatus(coach.stage4.status);
+      setInputName(coach.stage4.name);
+      setInputTrainees(coach.stage4.trainees);
+      setInputStartPeriod(coach.stage4.startPeriod);
+      setInputEndPeriod(coach.stage4.endPeriod);
+      break;
+    case '5': 
+      setInputPlannedTimeValue(coach.stage5.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage5.durationInDays);
+      setInputLastStage(coach.stage5.lastStage);
+      setInputStatus(coach.stage5.status);
+      setInputName(coach.stage5.name);
+      setInputTrainees(coach.stage5.trainees);
+      setInputStartPeriod(coach.stage5.startPeriod);
+      setInputEndPeriod(coach.stage5.endPeriod);
+      break;
+    case '6': 
+      setInputPlannedTimeValue(coach.stage6.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage6.durationInDays);
+      setInputLastStage(coach.stage6.lastStage);
+      setInputStatus(coach.stage6.status);
+      setInputName(coach.stage6.name);
+      setInputTrainees(coach.stage6.trainees);
+      setInputStartPeriod(coach.stage6.startPeriod);
+      setInputEndPeriod(coach.stage6.endPeriod);
+      break;
+    case '7': 
+      setInputPlannedTimeValue(coach.stage7.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage7.durationInDays);
+      setInputLastStage(coach.stage7.lastStage);
+      setInputStatus(coach.stage7.status);
+      setInputName(coach.stage7.name);
+      setInputTrainees(coach.stage7.trainees);
+      setInputStartPeriod(coach.stage7.startPeriod);
+      setInputEndPeriod(coach.stage7.endPeriod);
+      break;
+    case '8': 
+      setInputPlannedTimeValue(coach.stage8.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage8.durationInDays);
+      setInputLastStage(coach.stage8.lastStage);
+      setInputStatus(coach.stage8.status);
+      setInputName(coach.stage8.name);
+      setInputTrainees(coach.stage8.trainees);
+      setInputStartPeriod(coach.stage8.startPeriod);
+      setInputEndPeriod(coach.stage8.endPeriod);
+      break;
+    case '9': 
+      setInputPlannedTimeValue(coach.stage9.plannedTimeInHours); 
+      setInputDurationInDays(coach.stage9.durationInDays);
+      setInputLastStage(coach.stage9.lastStage);
+      setInputStatus(coach.stage9.status);
+      setInputName(coach.stage9.name);
+      setInputTrainees(coach.stage9.trainees);
+      setInputStartPeriod(coach.stage9.startPeriod);
+      setInputEndPeriod(coach.stage9.endPeriod);
+      break;
+    case '10': 
+    setInputPlannedTimeValue(coach.stage10.plannedTimeInHours); 
+    setInputDurationInDays(coach.stage10.durationInDays);
+    setInputLastStage(coach.stage10.lastStage);
+    setInputStatus(coach.stage10.status);
+    setInputName(coach.stage10.name);
+    setInputTrainees(coach.stage10.trainees);
+    setInputStartPeriod(coach.stage10.startPeriod);
+    setInputEndPeriod(coach.stage10.endPeriod);
+    break;
+    default:break;
+  }
+     
+},2000);
   
    useEffect(()=>{   
     if(!isSkeletonUpdated) return;  
@@ -73,109 +186,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       countedStages.push(stageNumber);
       setListSuggestedTrainees(listTrainees);
       setChatContents(coaching.chat);
-      switch(stageNumber){
-        case '1': 
-          setInputPlannedTimeValue(coaching.stage1.plannedTimeInHours);  
-          setInputDurationInDays(coaching.stage1.durationInDays);
-          setInputLastStage(coaching.stage1.lastStage);
-          setInputStatus(coaching.stage1.status);
-          setInputName(coaching.stage1.name);
-          setInputTrainees(coaching.stage1.trainees);
-          setInputStartPeriod(coaching.stage1.startPeriod);
-          setInputEndPeriod(coaching.stage1.endPeriod);
-          break;
-        case '2': 
-          setInputPlannedTimeValue(coaching.stage2.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage2.durationInDays);
-          setInputLastStage(coaching.stage2.lastStage);
-          setInputStatus(coaching.stage2.status);
-          setInputName(coaching.stage2.name);
-          setInputTrainees(coaching.stage2.trainees);
-          setInputStartPeriod(coaching.stage2.startPeriod);
-          setInputEndPeriod(coaching.stage2.endPeriod);
-          break;
-        case '3': 
-          setInputPlannedTimeValue(coaching.stage3.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage3.durationInDays);
-          setInputLastStage(coaching.stage3.lastStage);
-          setInputStatus(coaching.stage3.status);
-          setInputName(coaching.stage3.name);
-          setInputTrainees(coaching.stage3.trainees);
-          setInputStartPeriod(coaching.stage3.startPeriod);
-          setInputEndPeriod(coaching.stage3.endPeriod);
-          break;
-        case '4': 
-          setInputPlannedTimeValue(coaching.stage4.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage4.durationInDays);
-          setInputLastStage(coaching.stage4.lastStage);
-          setInputStatus(coaching.stage4.status);
-          setInputName(coaching.stage4.name);
-          setInputTrainees(coaching.stage4.trainees);
-          setInputStartPeriod(coaching.stage4.startPeriod);
-          setInputEndPeriod(coaching.stage4.endPeriod);
-          break;
-        case '5': 
-          setInputPlannedTimeValue(coaching.stage5.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage5.durationInDays);
-          setInputLastStage(coaching.stage5.lastStage);
-          setInputStatus(coaching.stage5.status);
-          setInputName(coaching.stage5.name);
-          setInputTrainees(coaching.stage5.trainees);
-          setInputStartPeriod(coaching.stage5.startPeriod);
-          setInputEndPeriod(coaching.stage5.endPeriod);
-          break;
-        case '6': 
-          setInputPlannedTimeValue(coaching.stage6.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage6.durationInDays);
-          setInputLastStage(coaching.stage6.lastStage);
-          setInputStatus(coaching.stage6.status);
-          setInputName(coaching.stage6.name);
-          setInputTrainees(coaching.stage6.trainees);
-          setInputStartPeriod(coaching.stage6.startPeriod);
-          setInputEndPeriod(coaching.stage6.endPeriod);
-          break;
-        case '7': 
-          setInputPlannedTimeValue(coaching.stage7.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage7.durationInDays);
-          setInputLastStage(coaching.stage7.lastStage);
-          setInputStatus(coaching.stage7.status);
-          setInputName(coaching.stage7.name);
-          setInputTrainees(coaching.stage7.trainees);
-          setInputStartPeriod(coaching.stage7.startPeriod);
-          setInputEndPeriod(coaching.stage7.endPeriod);
-          break;
-        case '8': 
-          setInputPlannedTimeValue(coaching.stage8.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage8.durationInDays);
-          setInputLastStage(coaching.stage8.lastStage);
-          setInputStatus(coaching.stage8.status);
-          setInputName(coaching.stage8.name);
-          setInputTrainees(coaching.stage8.trainees);
-          setInputStartPeriod(coaching.stage8.startPeriod);
-          setInputEndPeriod(coaching.stage8.endPeriod);
-          break;
-        case '9': 
-          setInputPlannedTimeValue(coaching.stage9.plannedTimeInHours); 
-          setInputDurationInDays(coaching.stage9.durationInDays);
-          setInputLastStage(coaching.stage9.lastStage);
-          setInputStatus(coaching.stage9.status);
-          setInputName(coaching.stage9.name);
-          setInputTrainees(coaching.stage9.trainees);
-          setInputStartPeriod(coaching.stage9.startPeriod);
-          setInputEndPeriod(coaching.stage9.endPeriod);
-          break;
-        case '10': 
-        setInputPlannedTimeValue(coaching.stage10.plannedTimeInHours); 
-        setInputDurationInDays(coaching.stage10.durationInDays);
-        setInputLastStage(coaching.stage10.lastStage);
-        setInputStatus(coaching.stage10.status);
-        setInputName(coaching.stage10.name);
-        setInputTrainees(coaching.stage10.trainees);
-        setInputStartPeriod(coaching.stage10.startPeriod);
-        setInputEndPeriod(coaching.stage10.endPeriod);
-        break;
-        default:break;
-      }
+   
     
     }  
    },[isSkeletonUpdated]);
@@ -295,11 +306,12 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
       updateDB();
    }
    
- 
-  
 
-  return  /*inputStartPeriod && inputEndPeriod &&*/(
-    <div className=''>
+ 
+
+ 
+  return  (
+    <>
       <tr>
         <th scope="col" className="px-8">
           השלב
@@ -560,7 +572,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
              />
            </td>
          </tr> 
-    </div>
+    </>
     
          );
         } 
