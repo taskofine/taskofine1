@@ -12,11 +12,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 
-const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach}) => {
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
-  
+
   let name='';
   let status='';
   let trainees = [];
@@ -62,84 +62,84 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       setChatContents(coaching.chat);
       switch(stageNumber){
         case '1': 
-          setInputName(coaching.stage1.tasks[index].name);
-          setInputStatus(coaching.stage1.tasks[index].status);
-          setInputConnectBoard(coaching.stage1.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage1.tasks[index].endTime));
-          setInputTrainees(coaching.stage1.tasks[index].trainees);
-          setInputFiles(coaching.stage1.tasks[index].files);
+          setInputName(coach.stage1.tasks[index].name);
+          setInputStatus(coach.stage1.tasks[index].status);
+          setInputConnectBoard(coach.stage1.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage1.tasks[index].endTime));
+          setInputTrainees(coach.stage1.tasks[index].trainees);
+          setInputFiles(coach.stage1.tasks[index].files);
           break;
         case '2': 
-          setInputName(coaching.stage2.tasks[index].name);
-          setInputStatus(coaching.stage2.tasks[index].status);
-          setInputConnectBoard(coaching.stage2.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage2.tasks[index].endTime));
-          setInputTrainees(coaching.stage2.tasks[index].trainees);
-          setInputFiles(coaching.stage2.tasks[index].files);
+          setInputName(coach.stage2.tasks[index].name);
+          setInputStatus(coach.stage2.tasks[index].status);
+          setInputConnectBoard(coach.stage2.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage2.tasks[index].endTime));
+          setInputTrainees(coach.stage2.tasks[index].trainees);
+          setInputFiles(coach.stage2.tasks[index].files);
           break;
         case '3': 
-          setInputName(coaching.stage3.tasks[index].name);
-          setInputStatus(coaching.stage3.tasks[index].status);
-          setInputConnectBoard(coaching.stage3.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage3.tasks[index].endTime));
-          setInputTrainees(coaching.stage3.tasks[index].trainees);
-          setInputFiles(coaching.stage3.tasks[index].files);
+          setInputName(coach.stage3.tasks[index].name);
+          setInputStatus(coach.stage3.tasks[index].status);
+          setInputConnectBoard(coach.stage3.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage3.tasks[index].endTime));
+          setInputTrainees(coach.stage3.tasks[index].trainees);
+          setInputFiles(coach.stage3.tasks[index].files);
           break;
         case '4': 
-          setInputName(coaching.stage4.tasks[index].name);
-          setInputStatus(coaching.stage4.tasks[index].status);
-          setInputConnectBoard(coaching.stage4.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage4.tasks[index].endTime));
-          setInputTrainees(coaching.stage4.tasks[index].trainees);
-          setInputFiles(coaching.stage4.tasks[index].files);
+          setInputName(coach.stage4.tasks[index].name);
+          setInputStatus(coach.stage4.tasks[index].status);
+          setInputConnectBoard(coach.stage4.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage4.tasks[index].endTime));
+          setInputTrainees(coach.stage4.tasks[index].trainees);
+          setInputFiles(coach.stage4.tasks[index].files);
           break;
         case '5': 
-          setInputName(coaching.stage5.tasks[index].name);
-          setInputStatus(coaching.stage5.tasks[index].status);
-          setInputConnectBoard(coaching.stage5.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage5.tasks[index].endTime));
-          setInputTrainees(coaching.stage5.tasks[index].trainees);
-          setInputFiles(coaching.stage5.tasks[index].files);
+          setInputName(coach.stage5.tasks[index].name);
+          setInputStatus(coach.stage5.tasks[index].status);
+          setInputConnectBoard(coach.stage5.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage5.tasks[index].endTime));
+          setInputTrainees(coach.stage5.tasks[index].trainees);
+          setInputFiles(coach.stage5.tasks[index].files);
           break; 
         case '6': 
-          setInputName(coaching.stage6.tasks[index].name);
-          setInputStatus(coaching.stage6.tasks[index].status);
-          setInputConnectBoard(coaching.stage6.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage6.tasks[index].endTime));
-          setInputTrainees(coaching.stage6.tasks[index].trainees);
-          setInputFiles(coaching.stage6.tasks[index].files);
+          setInputName(coach.stage6.tasks[index].name);
+          setInputStatus(coach.stage6.tasks[index].status);
+          setInputConnectBoard(coach.stage6.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage6.tasks[index].endTime));
+          setInputTrainees(coach.stage6.tasks[index].trainees);
+          setInputFiles(coach.stage6.tasks[index].files);
           break;
         case '7': 
-          setInputName(coaching.stage7.tasks[index].name);
-          setInputStatus(coaching.stage7.tasks[index].status);
-          setInputConnectBoard(coaching.stage7.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage7.tasks[index].endTime));
-          setInputTrainees(coaching.stage7.tasks[index].trainees);
-          setInputFiles(coaching.stage7.tasks[index].files);
+          setInputName(coach.stage7.tasks[index].name);
+          setInputStatus(coach.stage7.tasks[index].status);
+          setInputConnectBoard(coach.stage7.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage7.tasks[index].endTime));
+          setInputTrainees(coach.stage7.tasks[index].trainees);
+          setInputFiles(coach.stage7.tasks[index].files);
           break;
         case '8': 
-          setInputName(coaching.stage8.tasks[index].name);
-          setInputStatus(coaching.stage8.tasks[index].status);
-          setInputConnectBoard(coaching.stage8.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage8.tasks[index].endTime));
-          setInputTrainees(coaching.stage8.tasks[index].trainees);
-          setInputFiles(coaching.stage8.tasks[index].files);
+          setInputName(coach.stage8.tasks[index].name);
+          setInputStatus(coach.stage8.tasks[index].status);
+          setInputConnectBoard(coach.stage8.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage8.tasks[index].endTime));
+          setInputTrainees(coach.stage8.tasks[index].trainees);
+          setInputFiles(coach.stage8.tasks[index].files);
           break;
         case '9': 
-          setInputName(coaching.stage9.tasks[index].name);
-          setInputStatus(coaching.stage9.tasks[index].status);
-          setInputConnectBoard(coaching.stage9.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage9.tasks[index].endTime));
-          setInputTrainees(coaching.stage9.tasks[index].trainees);
-          setInputFiles(coaching.stage9.tasks[index].files);
+          setInputName(coach.stage9.tasks[index].name);
+          setInputStatus(coach.stage9.tasks[index].status);
+          setInputConnectBoard(coachstage9.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage9.tasks[index].endTime));
+          setInputTrainees(coach.stage9.tasks[index].trainees);
+          setInputFiles(coach.stage9.tasks[index].files);
           break; 
         case '10': 
-          setInputName(coaching.stage10.tasks[index].name);
-          setInputStatus(coaching.stage10.tasks[index].status);
-          setInputConnectBoard(coaching.stage10.tasks[index].connectBoard);
-          setInputEndDate(new Date(coaching.stage10.tasks[index].endTime));
-          setInputTrainees(coaching.stage10.tasks[index].trainees);
-          setInputFiles(coaching.stage10.tasks[index].files);
+          setInputName(coach.stage10.tasks[index].name);
+          setInputStatus(coach.stage10.tasks[index].status);
+          setInputConnectBoard(coach.stage10.tasks[index].connectBoard);
+          setInputEndDate(new Date(coach.stage10.tasks[index].endTime));
+          setInputTrainees(coach.stage10.tasks[index].trainees);
+          setInputFiles(coach.stage10.tasks[index].files);
           break;                
         default: break;  
       } 
