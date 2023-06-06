@@ -9,8 +9,22 @@ import coaching  from '../utils/skeletonCoaching';
 import { stringify } from 'querystring';
 import { useRouter } from 'next/router';
 
+import {auth} from '../app/firebase';
+import {signInWithPopup, GoogleAuthProvider}  from "firebase/auth";
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const MainTable = () => {
+
+
+  const [looggedInSuccessful, setLoggedInSuccessful] = useState(false);
+  const googleAuth = new GoogleAuthProvider();
+
+  const login = async()=>{
+    const result = await signInWithPopup(auth,googleAuth);
+    window.localStorage.setItem("session", JSON.stringify(result));
+    setLoggedInSuccessful(true);
+    //console.log("pppppppppppppppp=" + JSON.stringify(result?.user?.email));
+  }
 
   const [lior, setLior] = useState({  
   });
@@ -69,21 +83,17 @@ const MainTable = () => {
 
 
   //checking if the logged in user is an admin
-  useEffect(()=>{   
-    if(session){
-      window.localStorage.setItem("session", JSON.stringify(session));  
-    }
+  useEffect(()=>{   console.log("aaaaaaaaaaaaaaaaaaa");
     const RetreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(RetreivedSession);
     const emailSession = objSession?.user?.email;
-
     listTrainees.map((item)=>{  
       //finding myseld on the list of users
-      if(item.email === session?.user?.email || item.email===emailSession){
+      if(item.email === objSession?.user?.email){
         setAmIAdmin(item.isAdmin);
       }
-      
-      if(item.email === session?.user?.email || item.email===emailSession || (selectedTrainee!='' && item.email===selectedTrainee)){
+      if(item.email === objSession?.user?.email || (selectedTrainee!='' && item.email===selectedTrainee)){
+        
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
@@ -99,12 +109,13 @@ const MainTable = () => {
         const temp = item.coaching;
 
         setLior(temp);
-      
+        console.log("bbbbbbbbbbbbbbbb=" + JSON.stringify(temp));
         setIsSkeletonUpdated(true);
         localStorage.setItem("isSkeletonUpdated", true);
-        }
-      }); 
-  }, [firstEffectComplete, selectedTrainee]); 
+      }
+    });
+      
+  }, [firstEffectComplete, selectedTrainee, looggedInSuccessful]); 
 
 
 
@@ -145,9 +156,11 @@ const MainTable = () => {
   }
 
   if(!session){
-    return (<h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
+    return (<div>
+       <button onClick={login}>Login</button>  
+      <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
-    </h1>)
+    </h1></div>)
   }
 
   else if(!isSkeletonUpdated){
@@ -163,7 +176,7 @@ const MainTable = () => {
 //if I'm not admin
   return (
   <div className='my-5 relative' dir="rtl">
-
+   
     <div className='flex flex-col justify-center my-10'>
       <input type="text" 
        value={inputSearchTrainees}  

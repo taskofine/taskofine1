@@ -7,7 +7,6 @@ import coaching from '../../../../utils/skeletonCoaching';
 
 const handler = NextAuth(
   {
-    cache:false,
     providers: [
        GoogleProvider({
          clientId: process.env.GOOGLE_ID ,
