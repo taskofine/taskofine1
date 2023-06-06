@@ -3,7 +3,7 @@
 import TaskTable from './TaskTable';
 import StageTable from './StageTable';
 import {useState, useEffect} from 'react'
-import {useSession} from "next-auth/react";
+import {signOut, useSession} from "next-auth/react";
 import Image from 'next/image';
 import coaching  from '../utils/skeletonCoaching';
 import { stringify } from 'querystring';
@@ -16,14 +16,19 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 const MainTable = () => {
 
 
-  const [looggedInSuccessful, setLoggedInSuccessful] = useState(false);
+  const [loggedInSuccessful, setLoggedInSuccessful] = useState(false);
   const googleAuth = new GoogleAuthProvider();
 
   const login = async()=>{
     const result = await signInWithPopup(auth,googleAuth);
     window.localStorage.setItem("session", JSON.stringify(result));
     setLoggedInSuccessful(true);
-    //console.log("pppppppppppppppp=" + JSON.stringify(result?.user?.email));
+  }
+
+  const logout = async()=>{
+    window.localStorage.setItem("session", "{}");
+    setLoggedInSuccessful(true);
+    await signOut();
   }
 
   const [lior, setLior] = useState({  
@@ -83,17 +88,17 @@ const MainTable = () => {
 
 
   //checking if the logged in user is an admin
-  useEffect(()=>{   console.log("aaaaaaaaaaaaaaaaaaa");
-    const RetreivedSession = window.localStorage.getItem("session");
-    const objSession = JSON.parse(RetreivedSession);
+  useEffect(()=>{  
+    //window.localStorage.setItem("session", JSON.stringify("{}"));  
+    let retreivedSession = window.localStorage.getItem("session");
+    const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
-    listTrainees.map((item)=>{  
+    listTrainees.map((item)=>{    
       //finding myseld on the list of users
       if(item.email === objSession?.user?.email){
         setAmIAdmin(item.isAdmin);
       }
       if(item.email === objSession?.user?.email || (selectedTrainee!='' && item.email===selectedTrainee)){
-        
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
@@ -107,15 +112,13 @@ const MainTable = () => {
         coaching.stage9=item.coaching.stage9;
         coaching.stage10=item.coaching.stage10;
         const temp = item.coaching;
-
         setLior(temp);
-        console.log("bbbbbbbbbbbbbbbb=" + JSON.stringify(temp));
         setIsSkeletonUpdated(true);
         localStorage.setItem("isSkeletonUpdated", true);
       }
     });
       
-  }, [firstEffectComplete, selectedTrainee, looggedInSuccessful]); 
+  }, [firstEffectComplete, selectedTrainee, loggedInSuccessful]); 
 
 
 
@@ -155,7 +158,12 @@ const MainTable = () => {
    }
   }
 
-  if(!session){
+  let retreivedSession;
+  if (typeof window !== 'undefined') { 
+   retreivedSession = window.localStorage.getItem("session");
+  }
+  
+  if(retreivedSession==="{}"){   
     return (<div>
        <button onClick={login}>Login</button>  
       <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
@@ -164,7 +172,9 @@ const MainTable = () => {
   }
 
   else if(!isSkeletonUpdated){
-    localStorage.setItem("isSkeletonUpdated", false);
+    if (typeof window !== 'undefined') { 
+      window.localStorage.setItem("isSkeletonUpdated", false);
+    }
     return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
     אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
     </h1>)
@@ -176,7 +186,7 @@ const MainTable = () => {
 //if I'm not admin
   return (
   <div className='my-5 relative' dir="rtl">
-   
+    <button onClick={logout}>Logout</button>  
     <div className='flex flex-col justify-center my-10'>
       <input type="text" 
        value={inputSearchTrainees}  
