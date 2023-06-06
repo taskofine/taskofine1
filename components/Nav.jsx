@@ -64,16 +64,6 @@ const Nav = () => {
           (<div className='flex'>
              <Image src={session?.user.image} width={37} height={37} alt="profile" className='rounded-full' onClick={()=>{setToggleDropdown((prev)=>(!prev))}}/>
            
-              {toggleDropdown && (
-               <div className='dropdown'>
-                 <button type="button" className="w-full black_btn" 
-                  onClick={()=>{setToggleDropdown(false);
-                            signOut();}}>
-                  Sign Out   
-                 </button>  
-               </div>
-              )}
-
            </div>) 
           : 
           (<>

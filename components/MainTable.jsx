@@ -165,7 +165,7 @@ const MainTable = () => {
   
   if(retreivedSession==="{}"){   
     return (<div>
-       <button onClick={login}>Login</button>  
+       <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button>  
       <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
     </h1></div>)
@@ -186,7 +186,7 @@ const MainTable = () => {
 //if I'm not admin
   return (
   <div className='my-5 relative' dir="rtl">
-    <button onClick={logout}>Logout</button>  
+     <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>Logout</button>  
     <div className='flex flex-col justify-center my-10'>
       <input type="text" 
        value={inputSearchTrainees}  
