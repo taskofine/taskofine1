@@ -84,7 +84,6 @@ const MainTable = () => {
       }
       
       if(item.email === session?.user?.email || item.email===emailSession || (selectedTrainee!='' && item.email===selectedTrainee)){
-        console.log("aaaaaaaaaaaaaaaa=" + item.coaching.chat);
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;

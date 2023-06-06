@@ -5,7 +5,9 @@ import User from "../../../../models/user";
 import coaching from '../../../../utils/skeletonCoaching';
 
 
-const handler = NextAuth({
+const handler = NextAuth(
+  {
+    cache:false,
     providers: [
        GoogleProvider({
          clientId: process.env.GOOGLE_ID ,
@@ -43,7 +45,7 @@ const handler = NextAuth({
         user.save();
         
        }
-       console.log("wwwwwwwwwwwwwwwwwwwww");
+       
        return true;
      }catch(error){
        console.log("eeeeeeeeeeeeeeee=" + error);
