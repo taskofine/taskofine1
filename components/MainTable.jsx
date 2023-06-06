@@ -163,7 +163,7 @@ const MainTable = () => {
    retreivedSession = window.localStorage.getItem("session");
   }
   
-  if(retreivedSession==="{}"){   
+  if(!retreivedSession || retreivedSession==="{}"){
     return (<div>
        <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button>  
       <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
