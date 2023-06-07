@@ -22,7 +22,23 @@ const MainTable = () => {
   const login = async()=>{
     const result = await signInWithPopup(auth,googleAuth);
     window.localStorage.setItem("session", JSON.stringify(result));
-    setLoggedInSuccessful(true);
+    const email = result.user.email;
+    const displayName= result.user.displayName; 
+    const photoURL = result.user.photoURL;
+    
+    try{
+      const response = await fetch('/api/users', 
+      {method: 'POST',
+       headers: {'Content-Type': 'application/json',}, 
+       body:JSON.stringify({email:email, name:displayName, image: photoURL, coaching:coaching})
+      });
+      const data = await response.json();
+      retreiveUsers();
+      setTimeout(()=>{
+        setLoggedInSuccessful(true);
+      }, 1000);
+      
+    }catch(error){console.log("eeeeeeeeeee in login()=" + error);}
   }
 
   const logout = async()=>{
@@ -93,12 +109,14 @@ const MainTable = () => {
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
-    listTrainees.map((item)=>{    
+
+    listTrainees.map((item)=>{   console.log("xxxxxxxxxxxxxxxxxx=" + item.email +  " " + objSession?.user?.email);  
       //finding myseld on the list of users
       if(item.email === objSession?.user?.email){
         setAmIAdmin(item.isAdmin);
       }
       if(item.email === objSession?.user?.email || (selectedTrainee!='' && item.email===selectedTrainee)){
+       
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
@@ -162,7 +180,7 @@ const MainTable = () => {
   if (typeof window !== 'undefined') { 
    retreivedSession = window.localStorage.getItem("session");
   }
-  ////
+
   if(!retreivedSession || retreivedSession==="{}"){
     return (<div>
        <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button>  

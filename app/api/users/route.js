@@ -15,6 +15,35 @@ export const GET = async(req,{params}) =>{
 
 
 
+   export const POST = async (request, { params }) => {
+    const { email,name,image,coaching} = await request.json();
+
+    try{
+      await connectToDB();
+      //check if a user already exists
+      const userExists = await User.findOne({email:email});
+  
+      let user={};
+      if(!userExists){
+      console.log("aaaaaaaaaaaaaaaaa");
+      user = new User({
+        email:email,
+        userName:"bbbbbbbbbb",
+        name: name,
+        image:image,
+        coaching: coaching 
+      });
+      user.save();
+    
+     }
+     return new Response(JSON.stringify(user), {status:200})
+    }catch(error){
+      return new Response("Couldn't create new user", {status:500});
+    }
+   }
+
+
+
 
    export const PATCH = async (request, { params }) => {
     const { email, coaching } = await request.json();
