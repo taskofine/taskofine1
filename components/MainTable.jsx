@@ -60,16 +60,18 @@ const MainTable = () => {
  const [inputSearchTrainees, setInputSearchTrainees] = useState("");
  //for suggesting trainees by the user's search
  const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
- const manipulateSuggestedTraineeList = (val) =>{
+ const manipulateSuggestedTraineeList = (val="") =>{
     setInputSearchTrainees(val);
 
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
     
-    
-    const filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()) && trainee.email!=emailSession);
-    
+    let filteredListTrainess = listTrainees.filter((trainee)=>trainee.email!=emailSession);
+    if(val.length>0){
+      filteredListTrainess = listTrainees.filter((trainee)=>trainee.name.toLowerCase().includes(val.toLowerCase()));
+    }
+   
     //setTrainees(filteredListTrainess);
     setListSuggestedTrainees(filteredListTrainess);
  }
@@ -112,7 +114,7 @@ const MainTable = () => {
 
   //checking if the logged in user is an admin
   useEffect(()=>{  
-    //window.localStorage.setItem("session", JSON.stringify("{}"));  
+    manipulateSuggestedTraineeList(); 
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
@@ -233,7 +235,7 @@ const MainTable = () => {
       />
       <div className='mt-5 mx-auto'>
         {listSuggestedTraineees.map((trainee,index)=>{   
-          return (<p key={index} className="flex gap-3" onClick={()=>{setInputSearchTrainees(trainee.name);  selTrainee(trainee.email); }}>
+          return (<p key={index} className="flex gap-3 max-h-[50px] overflow-auto" onClick={()=>{setInputSearchTrainees(trainee.name);  selTrainee(trainee.email); }}>
              <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
             {trainee.name}
             </p>)
