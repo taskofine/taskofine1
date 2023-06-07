@@ -34,7 +34,6 @@ export const GET = async(req,{params}) =>{
         coaching: coaching 
       });
       user.save();
-    
      }
      return new Response(JSON.stringify(user), {status:200})
     }catch(error){

@@ -18,7 +18,8 @@ const MainTable = () => {
 
   const [loggedInSuccessful, setLoggedInSuccessful] = useState(false);
   const googleAuth = new GoogleAuthProvider();
-
+  googleAuth.setCustomParameters({ prompt: 'select_account' });
+   
   const login = async()=>{
     const result = await signInWithPopup(auth,googleAuth);
     window.localStorage.setItem("session", JSON.stringify(result));
