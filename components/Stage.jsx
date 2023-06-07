@@ -399,7 +399,7 @@ setTimeout(()=>{
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
-            <div ref={popupStatusRef} className='absolute top-[-30px] bg-slate-500 top-[-10px] bg-opacity-100 z-10 rounded-xl flex flex-col justify-center'>
+            <div ref={popupStatusRef} className='absolute  bg-slate-500 top-[-10px] bg-opacity-100 z-10 rounded-xl flex flex-col justify-center'>
               <button className='bg-orange-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</button>       
               <button className='bg-green-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</button>      
               <button className='bg-gray-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</button>

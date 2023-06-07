@@ -111,7 +111,7 @@ const MainTable = () => {
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
 
-    listTrainees.map((item)=>{   console.log("xxxxxxxxxxxxxxxxxx=" + item.email +  " " + objSession?.user?.email);  
+    listTrainees.map((item)=>{    
       //finding myseld on the list of users
       if(item.email === objSession?.user?.email){
         setAmIAdmin(item.isAdmin);
@@ -144,11 +144,15 @@ const MainTable = () => {
 
   //update the skeleton to DB
   const updateDB = async() =>{
+    let retreivedSession = window.localStorage.getItem("session");
+    const objSession = JSON.parse(retreivedSession);
+    const email =  objSession.user.email;
+  
     try{
       const response = await fetch(`/api/users`, {
         method: 'PATCH',
         body: JSON.stringify({
-          email: session?.user?.email,
+          email: email,
           coaching
         })
       });

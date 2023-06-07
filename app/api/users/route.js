@@ -46,6 +46,7 @@ export const GET = async(req,{params}) =>{
 
    export const PATCH = async (request, { params }) => {
     const { email, coaching } = await request.json();
+    console.log("aaaaaaaaaaaaaaaa=" + email);
     try {
       await connectToDB();
       const requestedUser =  await User?.findOne({email});
