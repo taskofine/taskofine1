@@ -61,7 +61,8 @@ const MainTable = () => {
  //for suggesting trainees by the user's search
  const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
  const manipulateSuggestedTraineeList = (val="") =>{
-    setInputSearchTrainees(val);
+   
+    //setInputSearchTrainees(val);
 
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
@@ -224,7 +225,7 @@ const MainTable = () => {
     <div className='flex flex-col justify-center my-10'>
       <input type="text" 
        value={inputSearchTrainees}  
-       onChange={(val) => manipulateSuggestedTraineeList(val.target.value)}
+       onChange={(val) => { setInputSearchTrainees(val.target.value); manipulateSuggestedTraineeList(val.target.value)}}
        onKeyDown={(event)=>{
        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
        event.preventDefault();
