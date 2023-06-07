@@ -119,14 +119,14 @@ const MainTable = () => {
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
-
+ 
     listTrainees.map((item)=>{    
       //finding myseld on the list of users
       if(item.email === objSession?.user?.email){
         setAmIAdmin(item.isAdmin);
       }
-      if(item.email === objSession?.user?.email || (selectedTrainee!='' && item.email===selectedTrainee)){
-       
+      if((selectedTrainee!='' && item.email===selectedTrainee) || (selectedTrainee==='' && item.email === emailSession)){
+                
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
@@ -196,7 +196,8 @@ const MainTable = () => {
   }
 
   if(!retreivedSession || retreivedSession==="{}"){
-    return (<div>
+    return 
+    (<div>
        <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button>  
       <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
@@ -218,7 +219,6 @@ const MainTable = () => {
   const email =  objSession.user.email;
   
   //if I'm admin, I don't show my own table (I'm not a trainee)
- 
   return (
   <div className='my-5 relative' dir="rtl">
      <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>Logout</button>  
