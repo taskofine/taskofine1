@@ -52,7 +52,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   }
   const [chatContents, setChatContents] =  useState([]);
 
-  useEffect(()=>{
+  useEffect(()=>{   
     if(!(indexRenderedTasks.includes(index))){
       //updating indexRenderedTasks to hold also this index
       setListSuggestedTrainees(listTrainees);
@@ -151,7 +151,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
 
 
 
-useEffect(()=>{
+useEffect(()=>{  
    //event listeners
    const handleClickOutside = (event) => {   
     if (popupTraineesRef.current && !popupTraineesRef.current.contains(event.target)) {

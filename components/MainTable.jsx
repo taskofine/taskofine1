@@ -80,7 +80,7 @@ const MainTable = () => {
  //when admin selects a trainee and wishes to enter his table
  const [selectedTrainee, setSelectedTrainee] =  useState("");
  const selTrainee =(email) =>{
-  
+  toggleTasks("-1");
   setSelectedTrainee(email);
  }
 
@@ -141,6 +141,7 @@ const MainTable = () => {
         coaching.stage10=item.coaching.stage10;
         const temp = item.coaching;
         setLior(temp);
+      
         setIsSkeletonUpdated(true);
         localStorage.setItem("isSkeletonUpdated", true);
       }
@@ -153,15 +154,11 @@ const MainTable = () => {
 
   //update the skeleton to DB
   const updateDB = async() =>{
-    let retreivedSession = window.localStorage.getItem("session");
-    const objSession = JSON.parse(retreivedSession);
-    const email =  objSession.user.email;
-    
     try{
       const response = await fetch(`/api/users`, {
         method: 'PATCH',
         body: JSON.stringify({
-          email: email,
+          email: selectedTrainee,
           coaching
         })
       });
