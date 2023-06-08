@@ -51,7 +51,7 @@ const MainTable = () => {
   const [coach, setCoach] = useState({  
   });
   
-  const {data: session} = useSession();
+  //const {data: session} = useSession();
  
 
  //Is the logged in user an admin?
@@ -188,20 +188,24 @@ const MainTable = () => {
   }
 
   let retreivedSession;
+  
   if (typeof window !== 'undefined') { 
+    //It's a string   
    retreivedSession = window.localStorage.getItem("session");
+   if(!retreivedSession)  retreivedSession = "";
   }
 
-  if(!retreivedSession || retreivedSession==="{}"){
-    return 
-    (<div>
-       <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button>  
+  if(retreivedSession===""){   
+    return  (<div>
+   
+      <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button> 
       <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
-    </h1></div>)
+    </h1>
+      </div>) 
   }
-
-  else if(!isSkeletonUpdated){
+ 
+  else if(!isSkeletonUpdated){ 
     if (typeof window !== 'undefined') { 
       window.localStorage.setItem("isSkeletonUpdated", false);
     }
