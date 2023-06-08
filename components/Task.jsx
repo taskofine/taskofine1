@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 
-const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, inputTrainees, setInputTrainees}) => {
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
@@ -37,7 +37,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   const [inputName, setInputName] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputEndDate, setInputEndDate] = useState(new Date());
-  const [inputTrainees, setInputTrainees] = useState("");
+  //const [inputTrainees, setInputTrainees] = useState("");
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
   const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");

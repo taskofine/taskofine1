@@ -16,7 +16,7 @@ import Link from 'next/link';
 
 let countedStages = [];
 
-const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach}) => {
+const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach, inputTrainees, setInputTrainees}) => {
     
 
   
@@ -53,7 +53,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputName, setInputName] = useState("");
-  const [inputTrainees, setInputTrainees] = useState([]);
+  //const [inputTrainees, setInputTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");
   const [inputStartPeriod, setInputStartPeriod] = useState(null);
   const [inputEndPeriod, setInputEndPeriod] = useState(null);
@@ -72,7 +72,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
 
 useEffect(()=>{
-  
+ 
   switch(stageNumber){
     case '1':
      
@@ -258,7 +258,7 @@ useEffect(()=>{
      let arr = inputTrainees;
     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
     setInputTrainees(arr);
-    //setIsTraineesOpen(false); 
+    setIsTraineesOpen(false); 
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
       case '2': coaching.stage2.trainees=arr; break;
@@ -447,8 +447,9 @@ useEffect(()=>{
      
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
             <div >
+            
               {inputTrainees.map((trainee,index)=>{   
-               
+              
                  let image;  let name;
                  listTrainees.map((item)=>{ 
                   if(item.email===trainee){
@@ -456,7 +457,7 @@ useEffect(()=>{
                     name = item?.name;
                   }
                 });
-               
+                
                 return <p key={index} className={`text-white flex mb-2 justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}

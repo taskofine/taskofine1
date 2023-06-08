@@ -15,7 +15,7 @@ import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 const MainTable = () => {
 
-
+  const [inputTrainees, setInputTrainees] = useState([]);
   const [loggedInSuccessful, setLoggedInSuccessful] = useState(false);
   const googleAuth = new GoogleAuthProvider();
   googleAuth.setCustomParameters({ prompt: 'select_account' });
@@ -51,7 +51,7 @@ const MainTable = () => {
   const [coach, setCoach] = useState({  
   });
   
-  //const {data: session} = useSession();
+  
  
 
  //Is the logged in user an admin?
@@ -130,6 +130,7 @@ const MainTable = () => {
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
+        console.log("xxxxxxxxxxxxxxxxx=" + JSON.stringify(coaching.stage1));
         coaching.stage2=item.coaching.stage2;
         coaching.stage3=item.coaching.stage3;
         coaching.stage4=item.coaching.stage4;
@@ -154,11 +155,14 @@ const MainTable = () => {
 
   //update the skeleton to DB
   const updateDB = async() =>{
+    retreivedSession = window.localStorage.getItem("session");
+    const objSession = JSON.parse(retreivedSession);
+
     try{
       const response = await fetch(`/api/users`, {
         method: 'PATCH',
         body: JSON.stringify({
-          email: selectedTrainee,
+          email: selectedTrainee!="" ? selectedTrainee : objSession.user.email,
           coaching
         })
       });
@@ -249,28 +253,28 @@ const MainTable = () => {
     
     {(!amIAdmin || (amIAdmin && selectedTrainee.length>0)) &&
           <div className="overflow-x-auto">   
-          <StageTable stageNumber="1" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}  coach={coach}/>
-          {openedTask==='1' && <TaskTable stageNumber="1" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} />}
+          <StageTable stageNumber="1" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}  coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='1' && <TaskTable stageNumber="1" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
          
-          <StageTable stageNumber="2" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='2' && <TaskTable stageNumber="2" updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
+          <StageTable stageNumber="2" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='2' && <TaskTable stageNumber="2" updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees}/>}
            
-          <StageTable stageNumber="3" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='3' && <TaskTable stageNumber="3" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="4" toggleTasks={toggleTasks} amIAdmin={amIAdmin} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='4' && <TaskTable stageNumber="4" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="5" toggleTasks={toggleTasks} amIAdmin={amIAdmin} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='5' && <TaskTable stageNumber="5" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="6" amIAdmin={amIAdmin} toggleTasks={toggleTasks}  openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='6' && <TaskTable stageNumber="6" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="7" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='7' && <TaskTable stageNumber="7" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="8" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='8' && <TaskTable stageNumber="8" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="9" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='9' && <TaskTable stageNumber="9" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>}
-          <StageTable stageNumber="10" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>
-          {openedTask==='10' && <TaskTable stageNumber="10" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach}/>} 
+          <StageTable stageNumber="3" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='3' && <TaskTable stageNumber="3" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="4" toggleTasks={toggleTasks} amIAdmin={amIAdmin} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='4' && <TaskTable stageNumber="4" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="5" toggleTasks={toggleTasks} amIAdmin={amIAdmin} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='5' && <TaskTable stageNumber="5" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="6" amIAdmin={amIAdmin} toggleTasks={toggleTasks}  openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='6' && <TaskTable stageNumber="6" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="7" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='7' && <TaskTable stageNumber="7" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="8" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='8' && <TaskTable stageNumber="8" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="9" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='9' && <TaskTable stageNumber="9" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
+          <StageTable stageNumber="10" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
+          {openedTask==='10' && <TaskTable stageNumber="10" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>} 
           
         </div>
     }
