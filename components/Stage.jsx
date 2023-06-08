@@ -69,7 +69,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
   
 
-setTimeout(()=>{
+useEffect(()=>{
   
   switch(stageNumber){
     case '1':
@@ -476,6 +476,7 @@ setTimeout(()=>{
                }}
                onKeyDown={(event)=>{
                  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                  console.log("aaaaaaaaaaaaaaa");
                    event.preventDefault();
                  }
                }

@@ -13,7 +13,6 @@ function DatePickerRange({stageNumber, amIAdmin, updateDB, startPeriod, endPerio
 
   useEffect(()=>{
     const update = () => { 
-      console.log("bbbbbbbbbbbb=" + startPeriod);
         if(startPeriod){ 
           modifiedStartDate? setStartDate(modifiedStartDate) :  setStartDate(new Date(startPeriod));
         }   
