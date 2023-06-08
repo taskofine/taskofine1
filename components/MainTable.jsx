@@ -223,27 +223,30 @@ const MainTable = () => {
   return (
   <div className='my-5 relative' dir="rtl">
      <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>Logout</button>  
-    <div className='flex flex-col justify-center my-10'>
-      <input type="text" 
-       value={inputSearchTrainees}  
-       onChange={(val) => { setInputSearchTrainees(val.target.value); manipulateSuggestedTraineeList(val.target.value)}}
-       onKeyDown={(event)=>{
-       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-       event.preventDefault();
-        }
-       }} 
-       placeholder='חיפוש מתאמנים' 
-       className="border border-gray-300 rounded-md w-[50vw] m-auto p-2"
-      />
-      <div className='mt-5 mx-auto'>
-        {listSuggestedTraineees.map((trainee,index)=>{   
-          return (<p key={index} className="flex gap-3 max-h-[50px] overflow-auto" onClick={()=>{setInputSearchTrainees(trainee.name);  selTrainee(trainee.email); }}>
-             <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
-            {trainee.name}
-            </p>)
-        })} 
-      </div>  
-    </div>
+     {amIAdmin && 
+        <div className='flex flex-col justify-center my-10'>
+          <input type="text" 
+           value={inputSearchTrainees}  
+           onChange={(val) => { setInputSearchTrainees(val.target.value); manipulateSuggestedTraineeList(val.target.value)}}
+           onKeyDown={(event)=>{
+           if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+           event.preventDefault();
+           }
+           }} 
+          placeholder='חיפוש מתאמנים' 
+          className="border border-gray-300 rounded-md w-[50vw] m-auto p-2"
+        />
+        <div className='mt-5 mx-auto'>
+          {listSuggestedTraineees.map((trainee,index)=>{   
+            return (<p key={index} className="flex gap-3 max-h-[50px] overflow-auto" onClick={()=>{setInputSearchTrainees(trainee.name);  selTrainee(trainee.email); }}>
+               <Image src={trainee.image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
+              {trainee.name}
+              </p>)
+          })} 
+        </div>  
+      </div> 
+     }
+    
     {(!amIAdmin || (amIAdmin && selectedTrainee.length>0)) &&
           <div className="overflow-x-auto">   
           <StageTable stageNumber="1" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}  coach={coach}/>
