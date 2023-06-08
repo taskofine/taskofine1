@@ -178,7 +178,7 @@ setTimeout(()=>{
     default:break;
   }
      
-},2000);
+},[coach]);
   
    useEffect(()=>{   
     if(!isSkeletonUpdated) return;  
@@ -408,7 +408,7 @@ setTimeout(()=>{
       </td>
       <td className="" onClick={setTimetable}>
         <div style={{ maxWidth: '100px' }}>
-          <DatePickerRange  stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod}/>
+          <DatePickerRange  stageNumber={stageNumber} amIAdmin={amIAdmin} updateDB={updateDB}  startPeriod={inputStartPeriod}  endPeriod={inputEndPeriod} coach={coach}/>
         </div>
       </td>
       <td className="relative" >

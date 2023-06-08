@@ -6,13 +6,14 @@ import coaching  from '../utils/skeletonCoaching';
 let modifiedStartDate;
 let modifiedEndDate;
 
-function DatePickerRange({stageNumber, amIAdmin, updateDB, startPeriod, endPeriod}) {
+function DatePickerRange({stageNumber, amIAdmin, updateDB, startPeriod, endPeriod,coach}) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   
 
   useEffect(()=>{
     const update = () => { 
+      console.log("bbbbbbbbbbbb=" + startPeriod);
         if(startPeriod){ 
           modifiedStartDate? setStartDate(modifiedStartDate) :  setStartDate(new Date(startPeriod));
         }   
@@ -21,23 +22,22 @@ function DatePickerRange({stageNumber, amIAdmin, updateDB, startPeriod, endPerio
         }
       }
      update();  
-  },[]);
+  },[startPeriod]);
 
 
   const handleStartDateChange = (date) => {
     setStartDate(date);
-    modifiedStartDate=date;
     switch(stageNumber){
-        case '1': coaching.stage1.startPeriod = date; break;
-        case '2': coaching.stage2.startPeriod = date; break;
-        case '3': coaching.stage3.startPeriod = date; break;
-        case '4': coaching.stage4.startPeriod = date; break;
-        case '5': coaching.stage5.startPeriod = date; break;
-        case '6': coaching.stage6.startPeriod = date;  break;
-        case '7': coaching.stage7.startPeriod = date;  break;
-        case '8': coaching.stage8.startPeriod = date;  break;
-        case '9': coaching.stage9.startPeriod = date;  break;
-        case '10': coaching.stage10.startPeriod = date;  break;
+        case '1': coach.stage1.startPeriod = date; break;
+        case '2': coach.stage2.startPeriod = date; break;
+        case '3': coach.stage3.startPeriod = date; break;
+        case '4': coach.stage4.startPeriod = date; break;
+        case '5': coach.stage5.startPeriod = date; break;
+        case '6': coach.stage6.startPeriod = date;  break;
+        case '7': coach.stage7.startPeriod = date;  break;
+        case '8': coach.stage8.startPeriod = date;  break;
+        case '9': coach.stage9.startPeriod = date;  break;
+        case '10': coach.stage10.startPeriod = date;  break;
         default: break;
        }
        updateDB();
