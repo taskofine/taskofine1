@@ -18,6 +18,8 @@ let countedStages = [];
 
 const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach}) => {
     
+
+  
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
@@ -256,7 +258,7 @@ useEffect(()=>{
      let arr = inputTrainees;
     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
     setInputTrainees(arr);
-    setIsTraineesOpen(false); 
+    //setIsTraineesOpen(false); 
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
       case '2': coaching.stage2.trainees=arr; break;
@@ -447,14 +449,14 @@ useEffect(()=>{
             <div >
               {inputTrainees.map((trainee,index)=>{   
                
-                //we locate this trainee in listTrainees, in order to retreive his image + name
-                let image;  let name;
-                listTrainees.map((item)=>{ 
-                    if(item.email===trainee){
-                      image = item?.image;
-                      name = item?.name;
-                    }
-                  });
+                 let image;  let name;
+                 listTrainees.map((item)=>{ 
+                  if(item.email===trainee){
+                    image = item?.image;
+                    name = item?.name;
+                  }
+                });
+               
                 return <p key={index} className={`text-white flex mb-2 justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
@@ -476,7 +478,7 @@ useEffect(()=>{
                }}
                onKeyDown={(event)=>{
                  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-                  console.log("aaaaaaaaaaaaaaa");
+                
                    event.preventDefault();
                  }
                }

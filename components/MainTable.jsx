@@ -192,10 +192,10 @@ const MainTable = () => {
   if (typeof window !== 'undefined') { 
     //It's a string   
    retreivedSession = window.localStorage.getItem("session");
-   if(!retreivedSession)  retreivedSession = "";
+   if(!retreivedSession || retreivedSession==='{}')  retreivedSession = "";
   }
 
-  if(retreivedSession===""){   
+  if(retreivedSession===""){     
     return  (<div>
    
       <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button> 
