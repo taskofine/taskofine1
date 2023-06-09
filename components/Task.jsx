@@ -52,7 +52,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   }
   const [chatContents, setChatContents] =  useState([]);
 
-  useEffect(()=>{      
+  useEffect(()=>{    
     if(!(indexRenderedTasks.includes(index))){
     
       //updating indexRenderedTasks to hold also this index
@@ -129,7 +129,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
         case '9': 
           setInputName(coach.stage9.tasks[index].name);
           setInputStatus(coach.stage9.tasks[index].status);
-          setInputConnectBoard(coachstage9.tasks[index].connectBoard);
+          setInputConnectBoard(coach.stage9.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage9.tasks[index].endTime));
           //updateInputTrainees(stageNumber,coach.stage9.tasks[index].trainees);
           setInputFiles(coach.stage9.tasks[index].files);
