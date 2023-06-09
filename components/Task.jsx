@@ -232,14 +232,18 @@ useEffect(()=>{
     console.log("aaaaaaaaaaaa=" + index);
    }
 
+
+
+
+
      //getting an index of a trainee in listTrainees & adding it to selected trainees
      const addTraineeToSelectedTrainees = (trainee)=>{ //trainee shows an entire record of  a trainee
     
       //trainee: the complete record of the trainee we wish to add to selectedTrainees
       //inputTrainees: selected trainees
-      let arr = inputTrainees;
-     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
-     updateInputTrainees(arr);
+      let arr = inputTraineesSpecificTask;
+      !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
+   
      setIsTraineesOpen(false); 
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;
@@ -259,6 +263,8 @@ useEffect(()=>{
  
  
  
+
+
  
     const removeTraineeFromSelectedTrainees = (trainee) => {
     
@@ -266,13 +272,13 @@ useEffect(()=>{
      //we use here inputTrainees that holds the selected trainees
      let arr = [];
  
-     inputTrainees.map((train)=>{
+     inputTraineesSpecificTask.map((train)=>{
        if(train!==trainee){  
          arr.push(train);
        }
      
      });   
-     updateInputTrainees(arr);
+    // updateInputTrainees(arr);
      setIsTraineesOpen(false);
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;

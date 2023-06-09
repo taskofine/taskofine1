@@ -34,16 +34,17 @@ const MainTable = () => {
     val.map((v)=>{
       arr.push(v);
     })
-     if(stageNumber===1) setInputTrainees1(arr); 
-     else if(stageNumber===2)  setInputTrainees2(arr);
-     else if(stageNumber===3)  setInputTrainees3(arr);
-     else if(stageNumber===4)  setInputTrainees4(arr);
-     else if(stageNumber===5)  setInputTrainees5(arr);
-     else if(stageNumber===6)  setInputTrainees6(arr);
-     else if(stageNumber===7)  setInputTrainees7(arr);
-     else if(stageNumber===8)  setInputTrainees8(arr);
-     else if(stageNumber===9)  setInputTrainees9(arr);
-     else if(stageNumber===10)  setInputTrainees10(arr);       
+
+     if(stageNumber==='1') setInputTrainees1(arr); 
+     else if(stageNumber==='2')  setInputTrainees2(arr);
+     else if(stageNumber==='3')  setInputTrainees3(arr);
+     else if(stageNumber==='4')  setInputTrainees4(arr);
+     else if(stageNumber==='5')  setInputTrainees5(arr);
+     else if(stageNumber==='6')  setInputTrainees6(arr);
+     else if(stageNumber==='7')  setInputTrainees7(arr);
+     else if(stageNumber==='8')  setInputTrainees8(arr);
+     else if(stageNumber==='9')  setInputTrainees9(arr);
+     else if(stageNumber==='10')  setInputTrainees10(arr);       
   }
 
 

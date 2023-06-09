@@ -70,7 +70,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
   
 
-useEffect(()=>{
+useEffect(()=>{  
   switch(stageNumber){
     case '1':
       setInputPlannedTimeValue(coach.stage1.plannedTimeInHours);  
@@ -443,7 +443,7 @@ useEffect(()=>{
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
             <div className=''>
               {inputTrainees.map((trainee,index)=>{   
-               
+                
                  let image;  let name;
                  listTrainees.map((item)=>{ 
                   if(item.email===trainee){
