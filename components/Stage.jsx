@@ -16,7 +16,7 @@ import Link from 'next/link';
 
 let countedStages = [];
 
-const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach, inputTrainees, setInputTrainees}) => {
+const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,setOpenedTask,updateDB, isSkeletonUpdated, coach, updateInputTrainees, inputTrainees}) => {
     
 
   
@@ -53,7 +53,6 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   const [inputLastStage, setInputLastStage] = useState("");
   const [inputStatus, setInputStatus] = useState("");
   const [inputName, setInputName] = useState("");
-  //const [inputTrainees, setInputTrainees] = useState([]);
   const [inputSearchTrainees, setInputSearchTrainees] = useState("");
   const [inputStartPeriod, setInputStartPeriod] = useState(null);
   const [inputEndPeriod, setInputEndPeriod] = useState(null);
@@ -72,16 +71,15 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
 
 useEffect(()=>{
-  console.log("aaaaaaaaaaaaaaa="+ JSON.stringify(inputTrainees));
+
   switch(stageNumber){
     case '1':
-     
       setInputPlannedTimeValue(coach.stage1.plannedTimeInHours);  
       setInputDurationInDays(coach.stage1.durationInDays);
       setInputLastStage(coach.stage1.lastStage);
       setInputStatus(coach.stage1.status);
       setInputName(coach.stage1.name);
-      setInputTrainees(coach.stage1.trainees);
+      updateInputTrainees(coach.stage1.trainees);
       setInputStartPeriod(coach.stage1.startPeriod);
       setInputEndPeriod(coach.stage1.endPeriod);
       break;
@@ -92,7 +90,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage2.lastStage);
       setInputStatus(coach.stage2.status);
       setInputName(coach.stage2.name);
-      setInputTrainees(coach.stage2.trainees);
+      updateInputTrainees(coach.stage2.trainees);
       setInputStartPeriod(coach.stage2.startPeriod);
       setInputEndPeriod(coach.stage2.endPeriod);
       break;
@@ -103,7 +101,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage3.lastStage);
       setInputStatus(coach.stage3.status);
       setInputName(coach.stage3.name);
-      setInputTrainees(coach.stage3.trainees);
+      updateInputTrainees(coach.stage3.trainees);
       setInputStartPeriod(coach.stage3.startPeriod);
       setInputEndPeriod(coach.stage3.endPeriod);
       break;
@@ -113,7 +111,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage4.lastStage);
       setInputStatus(coach.stage4.status);
       setInputName(coach.stage4.name);
-      setInputTrainees(coach.stage4.trainees);
+      updateInputTrainees(coach.stage4.trainees);
       setInputStartPeriod(coach.stage4.startPeriod);
       setInputEndPeriod(coach.stage4.endPeriod);
       break;
@@ -123,7 +121,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage5.lastStage);
       setInputStatus(coach.stage5.status);
       setInputName(coach.stage5.name);
-      setInputTrainees(coach.stage5.trainees);
+      updateInputTrainees(coach.stage5.trainees);
       setInputStartPeriod(coach.stage5.startPeriod);
       setInputEndPeriod(coach.stage5.endPeriod);
       break;
@@ -133,7 +131,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage6.lastStage);
       setInputStatus(coach.stage6.status);
       setInputName(coach.stage6.name);
-      setInputTrainees(coach.stage6.trainees);
+      updateInputTrainees(coach.stage6.trainees);
       setInputStartPeriod(coach.stage6.startPeriod);
       setInputEndPeriod(coach.stage6.endPeriod);
       break;
@@ -143,7 +141,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage7.lastStage);
       setInputStatus(coach.stage7.status);
       setInputName(coach.stage7.name);
-      setInputTrainees(coach.stage7.trainees);
+      updateInputTrainees(coach.stage7.trainees);
       setInputStartPeriod(coach.stage7.startPeriod);
       setInputEndPeriod(coach.stage7.endPeriod);
       break;
@@ -153,7 +151,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage8.lastStage);
       setInputStatus(coach.stage8.status);
       setInputName(coach.stage8.name);
-      setInputTrainees(coach.stage8.trainees);
+      updateInputTrainees(coach.stage8.trainees);
       setInputStartPeriod(coach.stage8.startPeriod);
       setInputEndPeriod(coach.stage8.endPeriod);
       break;
@@ -163,7 +161,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage9.lastStage);
       setInputStatus(coach.stage9.status);
       setInputName(coach.stage9.name);
-      setInputTrainees(coach.stage9.trainees);
+      updateInputTrainees(coach.stage9.trainees);
       setInputStartPeriod(coach.stage9.startPeriod);
       setInputEndPeriod(coach.stage9.endPeriod);
       break;
@@ -173,13 +171,13 @@ useEffect(()=>{
     setInputLastStage(coach.stage10.lastStage);
     setInputStatus(coach.stage10.status);
     setInputName(coach.stage10.name);
-    setInputTrainees(coach.stage10.trainees);
+    updateInputTrainees(coach.stage10.trainees);
     setInputStartPeriod(coach.stage10.startPeriod);
     setInputEndPeriod(coach.stage10.endPeriod);
     break;
     default:break;
   }
-     
+  //console.log("zzzzzzzzzzz=" + stageNumber +  " fff=" + JSON.stringify(inputTrainees))  
 },[coach]);
   
    useEffect(()=>{   
@@ -257,7 +255,7 @@ useEffect(()=>{
      //inputTrainees: selected trainees
      let arr = inputTrainees;
     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
-    setInputTrainees(arr);
+    updateInputTrainees(arr);
     setIsTraineesOpen(false); 
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
@@ -290,7 +288,7 @@ useEffect(()=>{
       }
     
     });   
-    setInputTrainees(arr);
+    updateInputTrainees(arr);
     setIsTraineesOpen(false);
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
@@ -310,7 +308,7 @@ useEffect(()=>{
    
 
  
-
+  
  
   return  (
     <>
@@ -444,10 +442,9 @@ useEffect(()=>{
          
      
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
-            <div >
-              {   console.log("bbbbbbbbbbbbbbb="+ JSON.stringify(inputTrainees))}
+            <div className=''>
               {inputTrainees.map((trainee,index)=>{   
-              
+               
                  let image;  let name;
                  listTrainees.map((item)=>{ 
                   if(item.email===trainee){
@@ -456,7 +453,7 @@ useEffect(()=>{
                   }
                 });
                 
-                return <p key={index} className={`text-white flex mb-2 justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
+                return <p key={index} className={`text-white flex mb-2  text-right` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
                   {amIAdmin && <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}

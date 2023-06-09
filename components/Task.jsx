@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 
-const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, inputTrainees, setInputTrainees}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, updateInputTrainees, inputTrainees}) => {
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
@@ -66,7 +66,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage1.tasks[index].status);
           setInputConnectBoard(coach.stage1.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage1.tasks[index].endTime));
-          setInputTrainees(coach.stage1.tasks[index].trainees);
+          updateInputTrainees(coach.stage1.tasks[index].trainees);
           setInputFiles(coach.stage1.tasks[index].files);
           break;
         case '2': 
@@ -74,7 +74,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage2.tasks[index].status);
           setInputConnectBoard(coach.stage2.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage2.tasks[index].endTime));
-          setInputTrainees(coach.stage2.tasks[index].trainees);
+          updateInputTrainees(coach.stage2.tasks[index].trainees);
           setInputFiles(coach.stage2.tasks[index].files);
           break;
         case '3': 
@@ -82,7 +82,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage3.tasks[index].status);
           setInputConnectBoard(coach.stage3.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage3.tasks[index].endTime));
-          setInputTrainees(coach.stage3.tasks[index].trainees);
+          updateInputTrainees(coach.stage3.tasks[index].trainees);
           setInputFiles(coach.stage3.tasks[index].files);
           break;
         case '4': 
@@ -90,7 +90,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage4.tasks[index].status);
           setInputConnectBoard(coach.stage4.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage4.tasks[index].endTime));
-          setInputTrainees(coach.stage4.tasks[index].trainees);
+          updateInputTrainees(coach.stage4.tasks[index].trainees);
           setInputFiles(coach.stage4.tasks[index].files);
           break;
         case '5': 
@@ -98,7 +98,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage5.tasks[index].status);
           setInputConnectBoard(coach.stage5.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage5.tasks[index].endTime));
-          setInputTrainees(coach.stage5.tasks[index].trainees);
+          updateInputTrainees(coach.stage5.tasks[index].trainees);
           setInputFiles(coach.stage5.tasks[index].files);
           break; 
         case '6': 
@@ -106,7 +106,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage6.tasks[index].status);
           setInputConnectBoard(coach.stage6.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage6.tasks[index].endTime));
-          setInputTrainees(coach.stage6.tasks[index].trainees);
+          updateInputTrainees(coach.stage6.tasks[index].trainees);
           setInputFiles(coach.stage6.tasks[index].files);
           break;
         case '7': 
@@ -114,7 +114,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage7.tasks[index].status);
           setInputConnectBoard(coach.stage7.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage7.tasks[index].endTime));
-          setInputTrainees(coach.stage7.tasks[index].trainees);
+          updateInputTrainees(coach.stage7.tasks[index].trainees);
           setInputFiles(coach.stage7.tasks[index].files);
           break;
         case '8': 
@@ -122,7 +122,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage8.tasks[index].status);
           setInputConnectBoard(coach.stage8.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage8.tasks[index].endTime));
-          setInputTrainees(coach.stage8.tasks[index].trainees);
+          updateInputTrainees(coach.stage8.tasks[index].trainees);
           setInputFiles(coach.stage8.tasks[index].files);
           break;
         case '9': 
@@ -130,7 +130,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage9.tasks[index].status);
           setInputConnectBoard(coachstage9.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage9.tasks[index].endTime));
-          setInputTrainees(coach.stage9.tasks[index].trainees);
+          updateInputTrainees(coach.stage9.tasks[index].trainees);
           setInputFiles(coach.stage9.tasks[index].files);
           break; 
         case '10': 
@@ -138,7 +138,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage10.tasks[index].status);
           setInputConnectBoard(coach.stage10.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage10.tasks[index].endTime));
-          setInputTrainees(coach.stage10.tasks[index].trainees);
+          updateInputTrainees(coach.stage10.tasks[index].trainees);
           setInputFiles(coach.stage10.tasks[index].files);
           break;                
         default: break;  
@@ -238,7 +238,7 @@ useEffect(()=>{
       //inputTrainees: selected trainees
       let arr = inputTrainees;
      !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
-     setInputTrainees(arr);
+     updateInputTrainees(arr);
      setIsTraineesOpen(false); 
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;
@@ -271,7 +271,7 @@ useEffect(()=>{
        }
      
      });   
-     setInputTrainees(arr);
+     updateInputTrainees(arr);
      setIsTraineesOpen(false);
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;
