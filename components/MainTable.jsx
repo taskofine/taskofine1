@@ -130,7 +130,7 @@ const MainTable = () => {
         //update the skeleton with the updated data from DB
         coaching.chat=item.coaching.chat;
         coaching.stage1=item.coaching.stage1;
-        console.log("xxxxxxxxxxxxxxxxx=" + JSON.stringify(coaching.stage1));
+        
         coaching.stage2=item.coaching.stage2;
         coaching.stage3=item.coaching.stage3;
         coaching.stage4=item.coaching.stage4;
@@ -255,7 +255,7 @@ const MainTable = () => {
           <div className="overflow-x-auto">   
           <StageTable stageNumber="1" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated}  coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
           {openedTask==='1' && <TaskTable stageNumber="1" amIAdmin={amIAdmin} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>}
-         
+           
           <StageTable stageNumber="2" amIAdmin={amIAdmin} toggleTasks={toggleTasks} openedTasks={openedTask} setOpenedTasks={setOpenedTask} updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees} setInputTrainees={setInputTrainees}/>
           {openedTask==='2' && <TaskTable stageNumber="2" updateDB={updateDB} listTrainees={listTrainees} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} coach={coach} inputTrainees={inputTrainees}/>}
            

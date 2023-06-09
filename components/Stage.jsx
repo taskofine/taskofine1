@@ -72,7 +72,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
 
 useEffect(()=>{
- 
+  console.log("aaaaaaaaaaaaaaa="+ JSON.stringify(inputTrainees));
   switch(stageNumber){
     case '1':
      
@@ -341,13 +341,13 @@ useEffect(()=>{
         </th>
       </tr> 
       
-      <tr key="key_tr"  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 z-0">
-      <td scope="row" className=" font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
-          <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
-        </span>
+      <tr key="key_tr"  className="bg-white border-b z-0">
+        <td scope="row" className=" font-medium text-gray-900 ">
+          <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
+            <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
+          </span>
           
-        <input 
+          <input 
                className='max-w-300 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
                readOnly={amIAdmin?false:true}
                type="text"
@@ -380,10 +380,7 @@ useEffect(()=>{
                updateDB();
              }}  
              />
-
-      </td>
-
-
+        </td>
 
       <td className="px-6">
         <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} } /> 
@@ -393,18 +390,19 @@ useEffect(()=>{
        </div>
       )}
       </td>
+      
       <td  className="px-6  relative" onClick={amIAdmin?setStatus:null} >
-        <div  className='bg-white'>
+        <div  className=''>
           {(inputStatus==="חדש" || status) && <button className='bg-orange-400 px-8 py-2 rounded-lg my-1 '>חדש</button>}
           {(inputStatus==="בוצע" || status) && <button className='bg-green-400 px-8 py-2 rounded-lg my-1'>בוצע</button>}
-          {(inputStatus==="סגור" || status) && <button className='bg-gray-400 px-8 py-2 rounded-lg my-1'>סגור</button>}
+          {(inputStatus==="סגור" || status) && <button className='bg-gray-100 px-8 py-2 rounded-lg my-1'>סגור</button>}
         </div>
           {isStatusOpen &&(<hr className='h-[5px]'/>)} 
           {isStatusOpen && (
             <div ref={popupStatusRef} className='absolute  bg-slate-500 top-[-10px] bg-opacity-100 z-10 rounded-xl flex flex-col justify-center'>
               <button className='bg-orange-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "חדש";populateStatusInCoaching(val);}}>חדש</button>       
               <button className='bg-green-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "בוצע";populateStatusInCoaching(val);}}>בוצע</button>      
-              <button className='bg-gray-400 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</button>
+              <button className='bg-gray-100 px-8 py-2 rounded-lg my-1 mx-2' onClick={()=>{const val = "סגור";populateStatusInCoaching(val);}  } >סגור</button>
             </div>
             )}
       </td>
@@ -447,7 +445,7 @@ useEffect(()=>{
      
             <p className='my-1 mx-2 text-white'>משתתפים:</p>
             <div >
-            
+              {   console.log("bbbbbbbbbbbbbbb="+ JSON.stringify(inputTrainees))}
               {inputTrainees.map((trainee,index)=>{   
               
                  let image;  let name;

@@ -318,7 +318,7 @@ useEffect(()=>{
       </th>
     </tr>
 
-    <tr  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tr  className="">
     <td>
       <div className="mx-10 flex gap-1">
       {
