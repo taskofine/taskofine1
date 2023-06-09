@@ -71,7 +71,6 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   
 
 useEffect(()=>{
-
   switch(stageNumber){
     case '1':
       setInputPlannedTimeValue(coach.stage1.plannedTimeInHours);  
@@ -79,7 +78,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage1.lastStage);
       setInputStatus(coach.stage1.status);
       setInputName(coach.stage1.name);
-      updateInputTrainees(coach.stage1.trainees);
+      updateInputTrainees(stageNumber,coach.stage1.trainees);
       setInputStartPeriod(coach.stage1.startPeriod);
       setInputEndPeriod(coach.stage1.endPeriod);
       break;
@@ -90,7 +89,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage2.lastStage);
       setInputStatus(coach.stage2.status);
       setInputName(coach.stage2.name);
-      updateInputTrainees(coach.stage2.trainees);
+      updateInputTrainees(stageNumber,coach.stage2.trainees);
       setInputStartPeriod(coach.stage2.startPeriod);
       setInputEndPeriod(coach.stage2.endPeriod);
       break;
@@ -101,7 +100,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage3.lastStage);
       setInputStatus(coach.stage3.status);
       setInputName(coach.stage3.name);
-      updateInputTrainees(coach.stage3.trainees);
+      updateInputTrainees(stageNumber,coach.stage3.trainees);
       setInputStartPeriod(coach.stage3.startPeriod);
       setInputEndPeriod(coach.stage3.endPeriod);
       break;
@@ -111,7 +110,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage4.lastStage);
       setInputStatus(coach.stage4.status);
       setInputName(coach.stage4.name);
-      updateInputTrainees(coach.stage4.trainees);
+      updateInputTrainees(stageNumber,coach.stage4.trainees);
       setInputStartPeriod(coach.stage4.startPeriod);
       setInputEndPeriod(coach.stage4.endPeriod);
       break;
@@ -121,7 +120,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage5.lastStage);
       setInputStatus(coach.stage5.status);
       setInputName(coach.stage5.name);
-      updateInputTrainees(coach.stage5.trainees);
+      updateInputTrainees(stageNumber,coach.stage5.trainees);
       setInputStartPeriod(coach.stage5.startPeriod);
       setInputEndPeriod(coach.stage5.endPeriod);
       break;
@@ -131,7 +130,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage6.lastStage);
       setInputStatus(coach.stage6.status);
       setInputName(coach.stage6.name);
-      updateInputTrainees(coach.stage6.trainees);
+      updateInputTrainees(stageNumber,coach.stage6.trainees);
       setInputStartPeriod(coach.stage6.startPeriod);
       setInputEndPeriod(coach.stage6.endPeriod);
       break;
@@ -141,7 +140,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage7.lastStage);
       setInputStatus(coach.stage7.status);
       setInputName(coach.stage7.name);
-      updateInputTrainees(coach.stage7.trainees);
+      updateInputTrainees(stageNumber,coach.stage7.trainees);
       setInputStartPeriod(coach.stage7.startPeriod);
       setInputEndPeriod(coach.stage7.endPeriod);
       break;
@@ -151,7 +150,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage8.lastStage);
       setInputStatus(coach.stage8.status);
       setInputName(coach.stage8.name);
-      updateInputTrainees(coach.stage8.trainees);
+      updateInputTrainees(stageNumber,coach.stage8.trainees);
       setInputStartPeriod(coach.stage8.startPeriod);
       setInputEndPeriod(coach.stage8.endPeriod);
       break;
@@ -161,7 +160,7 @@ useEffect(()=>{
       setInputLastStage(coach.stage9.lastStage);
       setInputStatus(coach.stage9.status);
       setInputName(coach.stage9.name);
-      updateInputTrainees(coach.stage9.trainees);
+      updateInputTrainees(stageNumber,coach.stage9.trainees);
       setInputStartPeriod(coach.stage9.startPeriod);
       setInputEndPeriod(coach.stage9.endPeriod);
       break;
@@ -171,13 +170,12 @@ useEffect(()=>{
     setInputLastStage(coach.stage10.lastStage);
     setInputStatus(coach.stage10.status);
     setInputName(coach.stage10.name);
-    updateInputTrainees(coach.stage10.trainees);
+    updateInputTrainees(stageNumber,coach.stage10.trainees);
     setInputStartPeriod(coach.stage10.startPeriod);
     setInputEndPeriod(coach.stage10.endPeriod);
     break;
     default:break;
   }
-  //console.log("zzzzzzzzzzz=" + stageNumber +  " fff=" + JSON.stringify(inputTrainees))  
 },[coach]);
   
    useEffect(()=>{   
@@ -255,7 +253,7 @@ useEffect(()=>{
      //inputTrainees: selected trainees
      let arr = inputTrainees;
     !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
-    updateInputTrainees(arr);
+    updateInputTrainees(stageNumber, arr);
     setIsTraineesOpen(false); 
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
@@ -287,8 +285,9 @@ useEffect(()=>{
         arr.push(train);
       }
     
-    });   
-    updateInputTrainees(arr);
+    });
+
+    updateInputTrainees(stageNumber,arr);
     setIsTraineesOpen(false);
     switch(stageNumber){
       case '1': coaching.stage1.trainees=arr;  break;
@@ -453,7 +452,7 @@ useEffect(()=>{
                   }
                 });
                 
-                return <p key={index} className={`text-white flex mb-2  text-right` } onClick={()=>manipulateSelectedTrainessList(index)}>
+                return <p key={index} className={`text-white flex mb-2  justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
                   {amIAdmin && <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}
