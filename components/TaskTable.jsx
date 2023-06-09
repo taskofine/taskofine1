@@ -3,9 +3,9 @@ import React,{useState, useEffect} from 'react'
 import coaching  from '../utils/skeletonCoaching';
 import Task from './Task';
 
-const TaskTable = ({stageNumber, amIAdmin, updateDB, listTrainees, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated,coach, updateInputTrainees, inputTrainees}) =>{  
+const TaskTable = ({stageNumber, amIAdmin, updateDB, listTrainees, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated,coach}) =>{  
  
-
+  let inputTraineesSpecificTask=[];
 
   let openedTask='3';
      let relevantStage;
@@ -25,11 +25,15 @@ const TaskTable = ({stageNumber, amIAdmin, updateDB, listTrainees, indexRendered
     return /*stageNumber===openedTask*/ 4>3 ?
       (
         <div className="relative overflow-x-auto mr-7 mt-5" >
-          <table   className="rtl-table w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table   className="rtl-table w-full text-sm text-left text-gray-500 ">
               <tbody>
-                {   
-                  relevantStage.tasks.map((item,index)=>{  
-                   return <Task  key={index} stageNumber={stageNumber} amIAdmin={amIAdmin} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} listTrainees={listTrainees} coach={coach} updateInputTrainees={updateInputTrainees} inputTrainees={inputTrainees} />
+                { 
+                  relevantStage.tasks.map((item,index)=>{ 
+                    if(stageNumber===1){
+                      //console.log("qqqqqqqqqqqqqqq=" + coach.stage1.tasks[index].trainees);
+                      inputTraineesSpecificTask.push(coach.stage1.tasks[index].trainees);
+                    } 
+                   return <Task  key={index} stageNumber={stageNumber} amIAdmin={amIAdmin} index={index} updateDB={updateDB} indexRenderedTasks={indexRenderedTasks} setIndexRenderedTasks={setIndexRenderedTasks} isSkeletonUpdated={isSkeletonUpdated} listTrainees={listTrainees} coach={coach} inputTraineesSpecificTask={inputTraineesSpecificTask} />
                  }) 
                 }
               </tbody>

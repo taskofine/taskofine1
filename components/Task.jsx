@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 
-const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, updateInputTrainees, inputTrainees}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, inputTraineesSpecificTask}) => {
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
@@ -52,8 +52,9 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   }
   const [chatContents, setChatContents] =  useState([]);
 
-  useEffect(()=>{   
+  useEffect(()=>{      
     if(!(indexRenderedTasks.includes(index))){
+    
       //updating indexRenderedTasks to hold also this index
       setListSuggestedTrainees(listTrainees);
       let arr = indexRenderedTasks;
@@ -66,7 +67,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage1.tasks[index].status);
           setInputConnectBoard(coach.stage1.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage1.tasks[index].endTime));
-          updateInputTrainees(coach.stage1.tasks[index].trainees);
+         // updateInputTrainees(11,coach.stage1.tasks[index].trainees);
           setInputFiles(coach.stage1.tasks[index].files);
           break;
         case '2': 
@@ -74,7 +75,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage2.tasks[index].status);
           setInputConnectBoard(coach.stage2.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage2.tasks[index].endTime));
-          updateInputTrainees(coach.stage2.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage2.tasks[index].trainees);
           setInputFiles(coach.stage2.tasks[index].files);
           break;
         case '3': 
@@ -82,7 +83,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage3.tasks[index].status);
           setInputConnectBoard(coach.stage3.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage3.tasks[index].endTime));
-          updateInputTrainees(coach.stage3.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage3.tasks[index].trainees);
           setInputFiles(coach.stage3.tasks[index].files);
           break;
         case '4': 
@@ -90,7 +91,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage4.tasks[index].status);
           setInputConnectBoard(coach.stage4.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage4.tasks[index].endTime));
-          updateInputTrainees(coach.stage4.tasks[index].trainees);
+         // updateInputTrainees(stageNumber,coach.stage4.tasks[index].trainees);
           setInputFiles(coach.stage4.tasks[index].files);
           break;
         case '5': 
@@ -98,7 +99,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage5.tasks[index].status);
           setInputConnectBoard(coach.stage5.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage5.tasks[index].endTime));
-          updateInputTrainees(coach.stage5.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage5.tasks[index].trainees);
           setInputFiles(coach.stage5.tasks[index].files);
           break; 
         case '6': 
@@ -106,7 +107,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage6.tasks[index].status);
           setInputConnectBoard(coach.stage6.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage6.tasks[index].endTime));
-          updateInputTrainees(coach.stage6.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage6.tasks[index].trainees);
           setInputFiles(coach.stage6.tasks[index].files);
           break;
         case '7': 
@@ -114,7 +115,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage7.tasks[index].status);
           setInputConnectBoard(coach.stage7.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage7.tasks[index].endTime));
-          updateInputTrainees(coach.stage7.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage7.tasks[index].trainees);
           setInputFiles(coach.stage7.tasks[index].files);
           break;
         case '8': 
@@ -122,7 +123,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage8.tasks[index].status);
           setInputConnectBoard(coach.stage8.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage8.tasks[index].endTime));
-          updateInputTrainees(coach.stage8.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage8.tasks[index].trainees);
           setInputFiles(coach.stage8.tasks[index].files);
           break;
         case '9': 
@@ -130,7 +131,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage9.tasks[index].status);
           setInputConnectBoard(coachstage9.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage9.tasks[index].endTime));
-          updateInputTrainees(coach.stage9.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage9.tasks[index].trainees);
           setInputFiles(coach.stage9.tasks[index].files);
           break; 
         case '10': 
@@ -138,7 +139,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
           setInputStatus(coach.stage10.tasks[index].status);
           setInputConnectBoard(coach.stage10.tasks[index].connectBoard);
           setInputEndDate(new Date(coach.stage10.tasks[index].endTime));
-          updateInputTrainees(coach.stage10.tasks[index].trainees);
+          //updateInputTrainees(stageNumber,coach.stage10.tasks[index].trainees);
           setInputFiles(coach.stage10.tasks[index].files);
           break;                
         default: break;  
@@ -324,7 +325,7 @@ useEffect(()=>{
       {
        inputFiles.map((file)=>{  
          return( 
-            <button   onClick={() => window.open("/assets/files/" + file, "_blank")}>
+            <button key={file._id}  onClick={() => window.open("/assets/files/" + file, "_blank")}>
               <FontAwesomeIcon   icon={faFileCode }  size="2x" style={{color:'#DC143C'}} />
             </button> 
          )
@@ -441,7 +442,7 @@ useEffect(()=>{
           
           <p className='my-1 mx-2 text-white'>משתתפים:</p>
           <div>
-              {inputTrainees.map((trainee,index)=>{   
+              {inputTraineesSpecificTask.map((trainee,index)=>{   
                 //we locate this trainee in listTrainees, in order to retreive his image + name
                 let image;  let name;
                 listTrainees.map((item)=>{ 
