@@ -386,7 +386,7 @@ useEffect(()=>{
     <td className="py-4 px-6 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
       {isChatPopupOpen && (
-        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100  absolute h-[200px] w-[250px] right-0  z-20 text-white rounded-xl '>
+        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100  absolute h-[300px] w-[300px]  md:h-[300px] md:w-[500px]  right-[-100px]  z-20 text-white rounded-xl '>
           <p>{chatContents}</p>
         </div>
       )} 
@@ -487,6 +487,7 @@ useEffect(()=>{
         style={{ minWidth: '200px' }}
         className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
         type="text"
+        maxLength={100}
         value={inputConnectBoard}
         onChange={(event)=>{
           setInputConnectBoard (event.target.value);
