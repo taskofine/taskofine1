@@ -386,10 +386,29 @@ useEffect(()=>{
     <td className="py-4 px-6 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
       {isChatPopupOpen && (
-        <div ref={popupChatRef} className=' bg-slate-500 bg-opacity-100  absolute h-[300px] w-[300px]  md:h-[300px] md:w-[500px]  right-[-100px]  z-20 text-white rounded-xl '>
-          <p>{chatContents}</p>
-        </div>
-      )} 
+        <div ref={popupChatRef}  style={{ backgroundImage: 'url("/assets/images/chat.jpg")' }} className='flex flex-col  bg-slate-500 bg-opacity-100  border-4 border-gray-500 border-dashed  absolute  w-[250px] h-[400px] md:h-[400px] md:w-[500px]  right-[-100px] md:right-[-200px]  z-20 text-white rounded-xl '>
+          <div className="flex-grow">
+             <p>{chatContents}</p>
+          </div>
+
+          
+          <div className=" mt-auto bg-gray-200 p-2 flex ">
+            <input
+             type="text"
+             //value={message}
+             //onChange={handleMessageChange}
+             placeholder="כתבו כאן..."
+             className="bg-white p-2 rounded-lg flex-grow outline-none"
+            />
+            <button
+             //onClick={handleSendMessage}
+             className="bg-blue-500 text-white  rounded-lg p-2"
+            >
+             שליחה
+            </button>
+         </div>
+       </div>
+      )}
     </td>
     <td className="px-4 py-4 relative" >
       <div onClick={setTaskStatus} className='' >   
