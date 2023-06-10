@@ -12,10 +12,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 
-const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, inputTraineesSpecificTask}) => {
+const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setIndexRenderedTasks, isSkeletonUpdated, listTrainees, coach, inputTraineesSpecific}) => {
   const popupTraineesRef = useRef(null);
   const popupStatusRef = useRef(null);
   const popupChatRef = useRef(null);
+
+  const [inputTraineesSpecificTask, setInputTraineesSpecificTasks] = useState([]); 
 
   let name='';
   let status='';
@@ -52,6 +54,8 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
   }
   const [chatContents, setChatContents] =  useState([]);
 
+ 
+
   useEffect(()=>{    
     if(!(indexRenderedTasks.includes(index))){
     
@@ -61,6 +65,7 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
       arr.push(index);
       setIndexRenderedTasks(arr);
       setChatContents(coaching.chat);
+      setInputTraineesSpecificTasks(inputTraineesSpecific);
       switch(stageNumber){
         case '1': 
           setInputName(coach.stage1.tasks[index].name);
@@ -244,6 +249,7 @@ useEffect(()=>{
       let arr = inputTraineesSpecificTask;
       !arr.includes(trainee?.email) &&  arr.push(trainee?.email);
    
+     setInputTraineesSpecificTasks(arr); 
      setIsTraineesOpen(false); 
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;
@@ -278,7 +284,8 @@ useEffect(()=>{
        }
      
      });   
-    // updateInputTrainees(arr);
+    
+     setInputTraineesSpecificTasks(arr);
      setIsTraineesOpen(false);
      switch(stageNumber){
        case '1': coaching.stage1.tasks[index].trainees=arr;  break;
@@ -321,7 +328,7 @@ useEffect(()=>{
       </th>
       
       <th scope="col" className="px-6 py-3">
-        Connect Board
+       יצירת קשר
       </th>
     </tr>
 
@@ -446,7 +453,7 @@ useEffect(()=>{
               </>
             )} 
           
-          <p className='my-1 mx-2 text-white'>משתתפים:</p>
+          <p className='my-1 mx-16 text-white'>משתתפים:</p>
           <div>
               {inputTraineesSpecificTask.map((trainee,index)=>{   
                 //we locate this trainee in listTrainees, in order to retreive his image + name
@@ -460,7 +467,8 @@ useEffect(()=>{
                 return <p key={index} className='text-white flex mb-2 justify-between' onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
-                  <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>
+                  {amIAdmin &&
+                  <span style={{ cursor: 'pointer' }} onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}
                </p>
               })} 
             </div>  
@@ -474,35 +482,36 @@ useEffect(()=>{
 
 
     <td>   
-      <div  className="px-6" style={{ maxWidth: '100px' }}>
-    <input
-      className=' py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
-      type="text"
-      value={inputConnectBoard}
-      onChange={(event)=>{
+      <div  className="px-6">
+       <input
+        style={{ minWidth: '200px' }}
+        className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
+        type="text"
+        value={inputConnectBoard}
+        onChange={(event)=>{
           setInputConnectBoard (event.target.value);
-      }}
-      onKeyDown={(event)=>{
+        }}
+        onKeyDown={(event)=>{
           if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
             event.preventDefault();
           }
-        }
-      }
-      onBlur={(event)=> {
-               const val = event.target.value; 
-               switch(stageNumber){
-                case '1': coaching.stage1.tasks[index].connectBoard = val;  break;
-                case '2': coaching.stage2.tasks[index].connectBoard  = val; break;
-                case '3': coaching.stage3.tasks[index].connectBoard  = val; break;
-                case '4': coaching.stage4.tasks[index].connectBoard  = val; break;
-                case '5':  coaching.stage5.tasks[index].connectBoard  = val; break;
-                case '6': coaching.stage6.tasks[index].connectBoard  = val; break;
-                case '7': coaching.stage7.tasks[index].connectBoard  = val; break;
-                case '8': coaching.stage8.tasks[index].connectBoard  = val; break;
-                case '9': coaching.stage9.tasks[index].connectBoard  = val; break;
-                case '10': coaching.stage10.tasks[index].connectBoard  = val; break;
-                default: break;
-               }
+         }
+       }
+        onBlur={(event)=> {
+          const val = event.target.value; 
+          switch(stageNumber){
+            case '1': coaching.stage1.tasks[index].connectBoard = val;  break;
+            case '2': coaching.stage2.tasks[index].connectBoard  = val; break;
+            case '3': coaching.stage3.tasks[index].connectBoard  = val; break;
+            case '4': coaching.stage4.tasks[index].connectBoard  = val; break;
+            case '5':  coaching.stage5.tasks[index].connectBoard  = val; break;
+            case '6': coaching.stage6.tasks[index].connectBoard  = val; break;
+            case '7': coaching.stage7.tasks[index].connectBoard  = val; break;
+            case '8': coaching.stage8.tasks[index].connectBoard  = val; break;
+            case '9': coaching.stage9.tasks[index].connectBoard  = val; break;
+            case '10': coaching.stage10.tasks[index].connectBoard  = val; break;
+            default: break;
+            }
                updateDB();
              }}  
              />

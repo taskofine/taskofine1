@@ -455,7 +455,7 @@ useEffect(()=>{
                 return <p key={index} className={`text-white flex mb-2  justify-between` } onClick={()=>manipulateSelectedTrainessList(index)}>
                   <Image src={image} alt="Description of the image" width={32} height={32} className='border rounded-full ml-2'/>
                   {name}
-                  {amIAdmin && <span onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}
+                  {amIAdmin && <span style={{ cursor: 'pointer' }} onClick={()=> removeTraineeFromSelectedTrainees(trainee)}>X</span>}
                </p>
               })} 
             </div>

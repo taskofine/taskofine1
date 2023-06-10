@@ -15,7 +15,7 @@ let coaching = {
             name:"א. למלא קובץ (בזמן הפגישה עם אלחי)",
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: ["stage1task0.pdf", "stage1task1.pdf"],
             endTime: new Date() 
         },
@@ -23,7 +23,7 @@ let coaching = {
             name:"ב. השלמת נתונים לתוכנית העסקית",
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         },
@@ -31,7 +31,7 @@ let coaching = {
             name:'ג. צירוף דו"ח רווח והפסד מרואה חשבון עבור הכנסות השנה הקודמת',
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         }
@@ -40,7 +40,7 @@ let coaching = {
             name:'ד. סיכום המצב הכספי הנוכחי',
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         },
@@ -48,7 +48,7 @@ let coaching = {
             name:'ה. איחוד הלוואות / הגשת בקשה למימון',
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         },
@@ -56,7 +56,7 @@ let coaching = {
             name:'ו. בנק - הפרדה בין החשבון הפרטי לחשבון העסקי',
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         },
@@ -64,7 +64,7 @@ let coaching = {
             name:'ז. השלמת מסמכים למימון (רק במידה ומגישים בקשה)',
             status: "משימה חדשה",
             trainees: [],
-            connectBoard: "Connect Us",
+            connectBoard: "כתבו לנו",
             files: [],
             endTime: new Date()  
         },
@@ -84,7 +84,7 @@ let coaching = {
               name:'א. כתיבת חזון עסקי (מסמך)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -92,7 +92,7 @@ let coaching = {
               name:'ב. מילוי מסמך התנגדויות',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -100,7 +100,7 @@ let coaching = {
               name:'ג. יצירת בידול לעסק שלך (בעניין התאמת השרות לקהל היעד המדוייק שלכם)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -109,7 +109,7 @@ let coaching = {
               name:'ד. הכנת מסמך שירות פרימיום',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -117,7 +117,7 @@ let coaching = {
               name:'ה. הכנת שירות כניסה (פגישה/טיפול)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -125,7 +125,7 @@ let coaching = {
               name:'ו. הכנת מוצר "אפס" חינמי: מדריך/סרטון חינמי/וובינר',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -145,7 +145,7 @@ let coaching = {
               name:"א. חשבונית דיגיטלית (חשבונית ירוקה)",
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -153,7 +153,7 @@ let coaching = {
               name:'ב. סליקה (משולם)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -161,7 +161,7 @@ let coaching = {
               name:'ג. לוודא פתיחה של הוראת קבע באשראי (לאחר קבלת אישור מחברת הסליקה)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -170,7 +170,7 @@ let coaching = {
               name:'ד. הגדרת מערכת לחתימה דיגיטלית על מסמכים',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -190,7 +190,7 @@ let coaching = {
               name:'א. עיצוב לוגו - אישור הלוגו מול הגרפיקאית וקבלת כל הקבצים כולל נגטיב וקובץ ללא רקע',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -198,7 +198,7 @@ let coaching = {
               name:'ב. דף פייסבוק עסקי מעוצב ומותאם גם לנייד',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -206,7 +206,7 @@ let coaching = {
               name:"ג. קאברים לעוד רשתות חברתיות (ערוץ יוטיוב, לינקדאין וכו')",
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -215,7 +215,7 @@ let coaching = {
               name:"ד. מסמך חברה, חתימה בסוף אימייל וכו' (בעזרת הגרפיקאית)",
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -223,7 +223,7 @@ let coaching = {
               name:'ה. הקמת מערכת אוטומטית לקביעת תורים',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -243,7 +243,7 @@ let coaching = {
               name:'א. ריכוז כל התמונות לאתר בתיקייה (דרייב)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -251,7 +251,7 @@ let coaching = {
               name:'ב. ריכוז המלצות כתובות',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -259,7 +259,7 @@ let coaching = {
               name:'ג. ריכוז סרטוני המלצה',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -267,7 +267,7 @@ let coaching = {
               name:'ד. פתיחת משתמש במערכת דיוור (עדיפות לסמוב, או אינפוריו מובייל)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -287,7 +287,7 @@ let coaching = {
               name:'א. תוכנית אסטרטגית לשיתופי פעולה (פגישה)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -295,7 +295,7 @@ let coaching = {
               name:'ב. הסכם שת"פ (מסמך)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -303,7 +303,7 @@ let coaching = {
               name:'ג. חוזה לעובדים (מסמך)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -312,7 +312,7 @@ let coaching = {
               name:'ד. השתתפות במפגש BNI כאורח/ת',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -332,7 +332,7 @@ let coaching = {
               name:'א. הרשמה לתוכנת ביזיבוקס',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -340,7 +340,7 @@ let coaching = {
               name:'ב. תיאום פגישת הדגמה עם נציג ביזיבוקס',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -348,7 +348,7 @@ let coaching = {
               name:'ג. השלמת הזנת כל הנתונים לביזיבוקס',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -357,7 +357,7 @@ let coaching = {
               name:'ד. בדיקה מסכמת של התוכנה והנתונים (פגישה)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -378,7 +378,7 @@ let coaching = {
               name:'א. פתיחת וואטסאפ עסקי כולל הגדרות של תגובה אוטומטית',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -386,7 +386,7 @@ let coaching = {
               name:'ב. ייצוא אנשי הקשר מגוגל והעלאת הקובץ למערכת (סרטון הסבר)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -394,7 +394,7 @@ let coaching = {
               name:'ג. הרשמה לתוכנת פלו - קבלת קישור מאלחי (תוכנית שותפים)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -402,7 +402,7 @@ let coaching = {
               name:'ד. הסבר על השימוש בתוכנה ושליחת הודעה לכל אנשי הקשר (פגישה)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -422,7 +422,7 @@ let coaching = {
               name:'א. פגישת אסטרטגיה יחד עם הקמפיינר',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -430,7 +430,7 @@ let coaching = {
               name:'ב. בניית שאלון ללקוחות בגוגל פורמס (פגישה)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -438,7 +438,7 @@ let coaching = {
               name:'ג. פתיחת חשבון מודעות בפייסבוק (פגישה עם הקמפיינר)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -446,7 +446,7 @@ let coaching = {
               name:'ד. אישור עיצובי המודעות מול מנהל הקמפיין / גרפיקאית',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
@@ -466,7 +466,7 @@ let coaching = {
               name:'א. צפייה בסרטון טיפול בהתנגדויות',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -474,7 +474,7 @@ let coaching = {
               name:'ב. בניית תסריטי שיחה (מסמך)',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -482,7 +482,7 @@ let coaching = {
               name:'ג. ביצוע סימולציה לשיחה עם לקוח',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           },
@@ -490,7 +490,7 @@ let coaching = {
               name:'ד. הנחיות לצוות מכירות חיצוני / פנימי - כתיבת מסמך נהלים והנחיות',
               status: "משימה חדשה",
               trainees: [],
-              connectBoard: "Connect Us",
+              connectBoard: "כתבו לנו",
               files: [],
               endTime: new Date()  
           }
