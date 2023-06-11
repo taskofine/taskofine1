@@ -37,35 +37,31 @@ const chat = ({coach,amIAdmin,updateDB}) => {
 
   ////////////////////////////////////////////////////////////////////////////////
   return (
-    <div   style={{ backgroundImage: 'url("/assets/images/chat.jpg")' }} className='flex flex-col    border-4 border-gray-500 border-dashed  absolute h-[400px] w-[300px]  md:h-[400px] md:w-[500px] right-5 md:right-[0px] z-20 text-white rounded-xl '>
+    <div   style={{ backgroundImage: 'url("/assets/images/chat.jpg")' }} className='flex flex-col overflow-y-auto border-4 border-gray-500 border-dashed  absolute h-[400px] w-[300px]  md:h-[400px] md:w-[500px] right-5 md:right-[0px] z-20 text-white rounded-xl '>
     <div className="flex-grow">
        {
-         chatContents.map((m)=>(
-           m.isAdmin==="true" ? 
-             <div>
-               <p className="mb-8 mr-2 mt-4">
-                 <span className=" bg-gray-100  rounded-md text-black p-2">{m.message}</span> 
-               </p>
-               <p className="">
-                 <span className=" bg-gray-100  rounded-md text-black p-2">{m.date} {m.time}</span> 
-               </p>
-             </div>  
+         chatContents.map((m)=>{
+           return m.isAdmin===true ? 
+            <div className="ml-5 mr-5 mb-5">
+              <p className=" bg-gray-100  rounded-md text-black p-2"> <b>מדריך:</b> {m.message}  <span className='text-xs'>{m.date} {m.time}</span></p> 
+            </div>
            :
-             <div>
-               <p className="mr-10 mt-4">
-                 <span className="bg-green-300 rounded-md text-black p-2">{m.message}</span>
-                 <span className="bg-green-300 rounded-md text-gray-400 p-2 text-xs">{m.date} {m.time}</span>
-               </p>
+            <div className="mx-10 mb-5">
+              <p className="bg-green-200 rounded-md text-black p-2">
+                <b>חניך:</b> {m.message}  <span className='text-xs'>{m.date} {m.time}</span>
+              </p>
+            </div>
             
-             </div>
-        ))
+            
+})
       }
     </div>
 
     
-    <div className=" mt-auto mb-2  bg-gray-200  flex h-10 ">
+    <div className=" mt-auto mb-2 mx-3  bg-gray-200  flex h-10 ">
       <input
        type="text"
+       maxLength={100}
        value={inputMessage}
        onChange={(event) => handleMessageChange(event.target.value)}
        placeholder="כתבו כאן..."
