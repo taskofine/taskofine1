@@ -354,7 +354,7 @@ useEffect(()=>{
     </td>
 
 
-    <td scope="row" className="px-0 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <td scope="row" className="px-0 py-4 font-medium text-gray-900 whitespace-nowrap ">
       
     <input
       readOnly={amIAdmin?false:true}
