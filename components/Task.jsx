@@ -387,7 +387,7 @@ useEffect(()=>{
     <td className="py-4 px-6 relative">
       <FontAwesomeIcon icon={faComment } size="xl" style={{color:'#FFD700'}} onClick={()=> {setChatPopup();} }/>
       {isChatPopupOpen && (
-      <Chat coach={coach}/>
+      <Chat coach={coach} amIAdmin={amIAdmin} updateDB={updateDB}/>
       )}
     </td>
     <td className="px-4 py-4 relative" >
