@@ -101,6 +101,7 @@ const MainTable = () => {
     let retreivedSession = window.localStorage.getItem("session");
     const objSession = JSON.parse(retreivedSession);
     const emailSession = objSession?.user?.email;
+
     
     let filteredListTrainess = listTrainees.filter((trainee)=>trainee.email!=emailSession);
     if(val.length>0){
