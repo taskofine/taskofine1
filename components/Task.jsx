@@ -54,6 +54,10 @@ const Task = ({stageNumber, amIAdmin,index, updateDB, indexRenderedTasks, setInd
     setIsTraineesOpen(!isTraineesOpen);
   }
   const [chatContents, setChatContents] =  useState([]);
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const updateIsSuccessAlertOpen = (val)=>{
+   setIsSuccessAlertOpen(!isSuccessAlertOpen);  
+  }
 
  
 
@@ -307,7 +311,7 @@ useEffect(()=>{
 
   return(
     <div className=''>
-     
+      {isSuccessAlertOpen && <div className='absolute w-full h-[50px] bg-green-500 rounded-lg text-center font-bold text-xl'>השינוי שהכנסת נקלט</div>}   
      <tr>
      <th scope="col" className="px-10 py-3">
         קבצים
@@ -334,7 +338,8 @@ useEffect(()=>{
     </tr>
 
     <tr  className="">
-    <td>
+      
+    <td>  
       <div className="mx-10 flex gap-1">
       {
        inputFiles.map((file)=>{  
@@ -381,6 +386,8 @@ useEffect(()=>{
             default: break;
             }
             updateDB();
+            setIsSuccessAlertOpen(true);
+            setTimeout(()=>setIsSuccessAlertOpen(false),2000);
             }}  
           /> 
     </td>
@@ -480,8 +487,10 @@ useEffect(()=>{
 
 
 
-    <td>   
+    <td>
+   
       <div  className="px-6">
+      
        <input
         style={{ minWidth: '200px' }}
         className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
@@ -490,6 +499,7 @@ useEffect(()=>{
         value={inputConnectBoard}
         onChange={(event)=>{
           setInputConnectBoard (event.target.value);
+          
         }}
         onKeyDown={(event)=>{
           if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
@@ -513,6 +523,8 @@ useEffect(()=>{
             default: break;
             }
                updateDB();
+               setIsSuccessAlertOpen(true);
+               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
              }}  
              />
         </div>     

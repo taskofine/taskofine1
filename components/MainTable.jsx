@@ -26,6 +26,7 @@ const MainTable = () => {
   const [inputTrainees8, setInputTrainees8] = useState([]);
   const [inputTrainees9, setInputTrainees9] = useState([]);
   const [inputTrainees10, setInputTrainees10] = useState([]);
+
   
   const updateInputTrainees = (stageNumber,val)=>{ 
     
@@ -260,6 +261,7 @@ const MainTable = () => {
   //if I'm admin, I don't show my own table (I'm not a trainee)
   return (
   <div className='my-5 relative' dir="rtl">
+    
      <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>Logout</button>  
      {amIAdmin && 
         <div className='flex flex-col justify-center my-10'>

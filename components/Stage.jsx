@@ -59,7 +59,10 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
   const [listSuggestedTraineees, setListSuggestedTrainees] = useState([]);
   const [listSelectedTraineees, setListSelectedTrainees] = useState([]);
   const [chatContents, setChatContents] =  useState([]);
- 
+  const [isSuccessAlertOpen, setIsSuccessAlertOpen] = useState(false);
+  const updateIsSuccessAlertOpen = (val)=>{
+   setIsSuccessAlertOpen(!isSuccessAlertOpen);  
+  }
   
   let name='';
   let status='';
@@ -339,11 +342,12 @@ useEffect(()=>{
       </tr> 
       
       <tr key="key_tr"  className="bg-white border-b z-0">
-        <td scope="row" className=" font-medium text-gray-900 ">
+        <td  className=" font-medium text-gray-900 flex">
+        {isSuccessAlertOpen && <div className='absolute w-full mx-4 h-[50px] bg-green-500 bg-opacity-100 z-30 rounded-lg text-center font-bold text-xl'>השינוי שהכנסת נקלט</div>} 
           <span onClick={() => toggleTasks(stageNumber)} className='ml-2'>
             <FontAwesomeIcon icon={faArrowDown } size="xl" style={{color:'#000000'}}/>
           </span>
-          
+         
           <input 
                className='max-w-300 py-2 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
                readOnly={amIAdmin?false:true}
@@ -375,6 +379,8 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
+               setIsSuccessAlertOpen(true);
+               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
              }}  
              />
         </td>
@@ -492,6 +498,8 @@ useEffect(()=>{
                  default: break;
                 }
                 updateDB();
+                setIsSuccessAlertOpen(true);
+                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
                }}  
              />
            </td>
@@ -528,6 +536,8 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
+               setIsSuccessAlertOpen(true);
+               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
              }}  
              />
            </td>
@@ -564,6 +574,8 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
+               setIsSuccessAlertOpen(true);
+               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
              }}  
              />
            </td>
