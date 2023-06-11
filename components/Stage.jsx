@@ -29,7 +29,7 @@ const Stage = ({stageNumber, amIAdmin, listTrainees, toggleTasks, openedTask,set
 
   const [isChatPopupOpen, setIsChatPopupOpen] = useState(false);
   const setChatPopup = () =>{
-    setIsChatPopupOpen(!isChatPopupOpen);
+    setIsChatPopupOpen(!isChatPopupOpen); 
   }
   
   const [isStatusOpen, setIsStatusOpen] = useState(false);
