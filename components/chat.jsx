@@ -1,8 +1,22 @@
-import React from 'react'
+import {useState} from 'react'
 
 const chat = () => {
+    
+  // useStates///////////////////////////////////////////////////////////////////////
+  const [inputMessage, setInputMessage] = useState("");
+  
+  /////////////////////////////////////////////////////////////////////////
+
+
+
+  ////functions////////////////////////////////////////////////////////////////////
+  const handleMessageChange = (val)=>{
+    setInputMessage(val);
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
   return (
-    <div   style={{ backgroundImage: 'url("/assets/images/chat.jpg")' }} className='flex flex-col  bg-slate-500 bg-opacity-100  border-4 border-gray-500 border-dashed  absolute h-[400px] w-[250px]  md:h-[400px] md:w-[500px] right-5 md:right-[0px] z-20 text-white rounded-xl '>
+    <div   style={{ backgroundImage: 'url("/assets/images/chat.jpg")' }} className='flex flex-col  bg-slate-500 bg-opacity-100  border-4 border-gray-500 border-dashed  absolute h-[400px] w-[300px]  md:h-[400px] md:w-[500px] right-5 md:right-[0px] z-20 text-white rounded-xl '>
     <div className="flex-grow">
        <p>aaaaaaaaaaaaaaaaaa</p>
     </div>
@@ -11,10 +25,10 @@ const chat = () => {
     <div className=" mt-auto mb-2  bg-gray-200  flex h-10 ">
       <input
        type="text"
-       //value={message}
-       //onChange={handleMessageChange}
+       value={inputMessage}
+       onChange={(event) => handleMessageChange(event.target.value)}
        placeholder="כתבו כאן..."
-       className="bg-white p-2 rounded-lg flex-grow outline-none "
+       className="bg-white  text-gray-800 p-2 rounded-lg flex-grow outline-none "
       />
       <button
        //onClick={handleSendMessage}
