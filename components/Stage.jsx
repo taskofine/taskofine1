@@ -379,8 +379,10 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
-               setIsSuccessAlertOpen(true);
-               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               if(amIAdmin){
+                setIsSuccessAlertOpen(true);
+                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               }
              }}  
              />
         </td>
@@ -498,8 +500,10 @@ useEffect(()=>{
                  default: break;
                 }
                 updateDB();
-                setIsSuccessAlertOpen(true);
-                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                if(amIAdmin){
+                  setIsSuccessAlertOpen(true);
+                  setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                 }
                }}  
              />
            </td>
@@ -536,8 +540,10 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
-               setIsSuccessAlertOpen(true);
-               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               if(amIAdmin){
+                setIsSuccessAlertOpen(true);
+                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               }
              }}  
              />
            </td>
@@ -574,8 +580,10 @@ useEffect(()=>{
                 default: break;
                }
                updateDB();
-               setIsSuccessAlertOpen(true);
-               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               if(amIAdmin){
+                setIsSuccessAlertOpen(true);
+                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               }
              }}  
              />
            </td>
