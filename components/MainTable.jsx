@@ -237,8 +237,8 @@ const MainTable = () => {
   if(retreivedSession===""){     
     return  (<div>
    
-      <button type="button" className="w-[64px] black_btn m-5" onClick={login}>Login</button> 
-      <h1 className='font-extrabold text-3xl text-green-500 flex justify-center mt-20'>
+      <button type="button" className="w-[64px] black_btn m-5" onClick={login}>כניסה</button> 
+      <h1 className='font-extrabold text-3xl text-green-500 flex text-center mt-20'>
       נא לוודא שביצעת כניסה. אם כן- מומלץ לרענן את הדף
     </h1>
       </div>) 
@@ -248,7 +248,7 @@ const MainTable = () => {
     if (typeof window !== 'undefined') { 
       window.localStorage.setItem("isSkeletonUpdated", false);
     }
-    return (<h1 className='font-extrabold text-3xl text-cyan-500 flex justify-center mt-20'>
+    return (<h1 className='font-extrabold text-3xl text-cyan-500 flex text-center mt-20'>
     אם בעוד מספר שניות לא יעלו הנתונים, מומלץ לרענן את הדף 
     </h1>)
   }
@@ -262,7 +262,7 @@ const MainTable = () => {
   return (
   <div className='my-5 relative' dir="rtl">
     
-     <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>Logout</button>  
+     <button type="button" className="w-[64px] black_btn m-5" onClick={logout}>יציאה</button>  
      {amIAdmin && 
         <div className='flex flex-col justify-center my-10'>
           <input type="text" 

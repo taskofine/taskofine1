@@ -388,7 +388,7 @@ useEffect(()=>{
             updateDB();
             if(amIAdmin){
               setIsSuccessAlertOpen(true);
-              setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+              setTimeout(()=>setIsSuccessAlertOpen(false),1000);
              }
             
             }}  
@@ -493,7 +493,7 @@ useEffect(()=>{
     <td>
    
       <div  className="px-6">
-      
+      {isSuccessAlertOpen && <div className='absolute w-[200px] h-[50px] bg-green-500 rounded-lg text-center font-bold text-xl'>השינוי שהכנסת נקלט</div>}   
        <input
         style={{ minWidth: '200px' }}
         className='py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500'
@@ -527,7 +527,7 @@ useEffect(()=>{
             }
                updateDB();
                setIsSuccessAlertOpen(true);
-               setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+               setTimeout(()=>setIsSuccessAlertOpen(false),1000);
              }}  
              />
         </div>     

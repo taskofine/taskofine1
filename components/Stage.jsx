@@ -381,7 +381,7 @@ useEffect(()=>{
                updateDB();
                if(amIAdmin){
                 setIsSuccessAlertOpen(true);
-                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                setTimeout(()=>setIsSuccessAlertOpen(false),1000);
                }
              }}  
              />
@@ -502,7 +502,7 @@ useEffect(()=>{
                 updateDB();
                 if(amIAdmin){
                   setIsSuccessAlertOpen(true);
-                  setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                  setTimeout(()=>setIsSuccessAlertOpen(false),1000);
                  }
                }}  
              />
@@ -542,7 +542,7 @@ useEffect(()=>{
                updateDB();
                if(amIAdmin){
                 setIsSuccessAlertOpen(true);
-                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                setTimeout(()=>setIsSuccessAlertOpen(false),1000);
                }
              }}  
              />
@@ -582,7 +582,7 @@ useEffect(()=>{
                updateDB();
                if(amIAdmin){
                 setIsSuccessAlertOpen(true);
-                setTimeout(()=>setIsSuccessAlertOpen(false),2000);
+                setTimeout(()=>setIsSuccessAlertOpen(false),1000);
                }
              }}  
              />
